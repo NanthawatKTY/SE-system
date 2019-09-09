@@ -76,7 +76,7 @@ $_SESSION['Teach_Lname'] = $result['Teach_Lname'];
                     <a href="#">แผนการเรียน</a>
                 </li>
                 <li>
-                    <a href="#">สถานะการลงทะเบียน</a>
+                    <a href="./Manager/subjects.html">สถานะการลงทะเบียน</a>
                 </li>
                 <li>
                     <a href="#">ตารางสอน</a>
@@ -85,10 +85,10 @@ $_SESSION['Teach_Lname'] = $result['Teach_Lname'];
 
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="index.html" class="article">กลับเมนูหลัก</a>
+                    <a href="./index.html" class="article">กลับเมนูหลัก</a>
                 </li>
                 <li>
-                    <a href="logout.php" class="download">ออกจากระบบ</a>
+                    <a href="./logout.php" class="download">ออกจากระบบ</a>
                 </li>
 
             </ul>
