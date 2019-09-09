@@ -1,5 +1,5 @@
 <?php
-$user = "localhosS";
+$user = "localhost";
 $pass = "root";
 $host = "";
 $tb = "softengdb"; 
