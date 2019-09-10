@@ -19,7 +19,7 @@ $_SESSION['password'] = $result['Mem_pass'];
 if(!$result)
 {
     echo "Username OR Password ไม่ถูกต้อง";
-    echo "<META HTTP-EQUIV='Refresh' CONTENT ='3;URL=login.php'>";
+    echo "<META HTTP-EQUIV='Refresh' CONTENT ='3;URL=./index.html'>";
 }
 else
 { 
@@ -31,7 +31,7 @@ echo '<script type="text/javascript">
     
 </script>';
 
-echo "<META HTTP-EQUIV='Refresh' CONTENT ='1;URL=login.php'>";
+echo "<META HTTP-EQUIV='Refresh' CONTENT ='1;URL=./index.html'>";
 }
 
 mysqli_close($link);

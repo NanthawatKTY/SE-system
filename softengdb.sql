@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 07, 2019 at 01:29 PM
+-- Generation Time: Sep 10, 2019 at 01:27 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sedb`
+-- Database: `softengdb`
 --
 
 -- --------------------------------------------------------
@@ -62,8 +62,8 @@ CREATE TABLE `member_tb` (
 --
 
 INSERT INTO `member_tb` (`Mem_id`, `Mem_user`, `Mem_pass`, `Type_id`, `Email`) VALUES
-(1, '60122660134', '251241', '1', 'nanthawat.tae123@gmail.com'),
-(2, 'Admin', '123456789qwerty', '3', 'admin@gmail.com'),
+(1, '60122660134', '251241', '3', 'nanthawat.tae123@gmail.com'),
+(2, 'Admin', '123456789qwerty', '1', 'admin@gmail.com'),
 (3, '56975', '15111990', '2', 'weera_mu@teach.com');
 
 -- --------------------------------------------------------
