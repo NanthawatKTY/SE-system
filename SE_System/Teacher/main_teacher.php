@@ -76,13 +76,13 @@ $_SESSION['Teach_Lname'] = $result['Teach_Lname'];
                     <a href="#">แผนการเรียน</a>
                 </li>
                 <li>
-                    <a href="./Manager/subjects.html">สถานะการลงทะเบียน</a>
+                    <a href="#">สถานะการลงทะเบียน</a>
                 </li>
                 <li>
                     <a href="#">ตารางสอน</a>
                 </li>
             </ul>
-
+            
             <ul class="list-unstyled CTAs">
                 <li>
                     <a href="./index.html" class="article">กลับเมนูหลัก</a>
