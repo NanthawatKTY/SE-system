@@ -30,10 +30,7 @@
             <div class="sidebar-header">
                 <h3>ตารางเรียน</h3>
             </div>
-            <img class=" circle-img mt-4"
-                src="https://scontent.fbkk13-1.fna.fbcdn.net/v/t1.0-9/62071969_10216624784104470_275687937776025600_n.jpg?_nc_cat=108&_nc_eui2=AeFlWjrNsKSDZAOkhDiO8Sh9gK_6MxCkO4I7Q7q-kDWjlvHgaQxXXnd_Kdgzvpf12-V57NUXyBmP9tQiXiQDK7h_oUO2uTgBIMIajS4DEgl9rw&_nc_oc=AQnPsBYrLEFJd65Nx-49Wa0az84w5sFxnLpeeeT6v3CGiW6Ct0XMM4l0zk2c3dPGwd8&_nc_ht=scontent.fbkk13-1.fna&oh=4de81c57afef203ee9addf36f5353172&oe=5E0D477F"
-                alt="">
-            <p class="text-center text-light mt-3">มารุตเทพ ร่มโพธิ์</p>
+            <p class="text-center text-light mt-3">นพดล วงศ์อุดทา</p>
             <p class="text-center text-light">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
             <ul class="list-unstyled components pl-2">
                 <li>
@@ -65,19 +62,8 @@
     <!--Menuด้านซ้าย-->
     <div class="container-fluid">
     <br>
-    <!--เลือกภาคเรียน-->
-    <div class="row">
-
-        <div class="col-sm"></div>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-        <div class="col-sm"><center><select name="term" id="term" onchange="$('#scForm').submit();" class="form-control " style="width: 120px;">
-        <optgroup label="ปีการศึกษา 2562"><option value="1/2562" selected=""> 1/2562 </option></optgroup><optgroup label="ปีการศึกษา 2561"><option value="2/2561"> 2/2561 </option><option value="1/2561"> 1/2561 </option></optgroup>
-        </select></center></div>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&emsp;
-        <div class="col-sm"><button type="button" class="btn btn-success">Edit</button></div>
-        <div class="col-sm"><button type="button" class="btn btn-dark">Back</button></div>
-    </div>
-    </div><br>
-
-    <!--ตารางบน-->
+   
+   <!--ตารางบน-->
 
     <div class="container-fluid">
         <div class="col-md-12">
@@ -85,206 +71,567 @@
                 <table class="table table-bordered table-sm table-responsive-sm tableSchedule newBg">
                 <thead>
                     <tr> 
-                    <th valign="center">วัน/เวลา</th>
+                    <th valign="center">No</th>
                         <th>
-                            <div><center>คาบ 1</center></div>                                        
-                            <div><H6>8.00 - 9.00</H6></div>
+                            <div><center>ภาคเรียน</center></div>                                        
                         </th>
                         <th>
-                            <div><center>คาบ 2</center></div>
-                            <div><H6>9.00 - 10.00</H6></div>
+                            <div><center>รหัสวิชา</center></div>
                         </th>
                         <th>
-                            <div><center>คาบ 3</center></div>                                        
-                            <div><H6>10.00 - 11.00</H6></div>
+                            <div><center>ชื่อวิชา</center></div>                                        
                         </th>
                         <th>
-                            <div><center>คาบ 4</center></div>                                        
-                            <div><H6>11.00 - 12.00</H6></div>
+                            <div><center>กลุ่มวิชา</center></div>                                        
                         </th>
                         <th>
-                            <div><center>คาบ 5</center></div>                                        
-                            <div><H6>12.00 - 13.00</H6></div>
+                            <div><center>หน่วยกิต</center></div>                                        
                         </th>
                         <th>
-                            <div><center>คาบ 6</center></div>                                        
-                            <div><H6>13.00 - 14.00</H6></div>
-                        </th>
-                        <th>
-                            <div><center>คาบ 7</center></div>                                        
-                            <div><H6>14.00 - 15.00</H6></div>
-                        </th>
-                        <th>
-                            <div><center>คาบ 8</center></div>                                        
-                            <div><H6>15.00 - 16.00</H6></div>
-                        </th>
-                        <th>
-                            <div><center>คาบ 9</center></div>                                        
-                            <div><H6>16.00 - 17.00</H6></div>
-                        </th>
-                        <th>
-                            <div><center>คาบ 10</center></div>                                        
-                            <div><H6>17.00 - 18.00</H6></div>
-                        </th>
-                        <th>
-                            <div><center>คาบ 11</cnter></div>                                        
-                            <div><H6>18.00 - 19.00</H6></div>
+                            <div><center>เกรด</center></div>                                        
                         </th>
                 </thead>
 
-            <tbody>
+            <tbody>  <!--ปี 1 -->
                 <tr class="Day1"> 
-                    <td class="dayOfWeek">จันทร์ </td>
+                    <td class="dayOfWeek">test test test </td>
                         <td class="empty"></td>                                                              
                         <td class="empty"></td>                                                               
                         <td class="empty"></td>                                                              
-                        <td class="empty"></td>  
-                    </td>                 
-                        <td class="empty"></td>                                           
-                        <td class="empty"></td>                                                              
-                        <td class="empty"></td>                                                               
-                        <td class="empty"></td>                                                              
-                        <td class="empty"></td>  
+                        <td class="empty"></td>   
                     </td>                                 
                         <td class="empty"></td>                                                              
-                        <td class="empty"></td>                                                                                                         
+                        <td class="empty">A</td>                                                                                                         
                 </tr>
 
                 <tr class="Day2"> 
-                    <td class="dayOfWeek">อังคาร</td>
+                    <td class="dayOfWeek">test test test </td>
                         <td class="empty"></td>                                                              
                         <td class="empty"></td>                                                               
                         <td class="empty"></td>                                                              
-                        <td class="empty"></td>  
-                    </td>                 
-                        <td class="empty"></td>                                           
-                        <td class="empty"></td>                                                              
-                        <td class="empty"></td>                                                               
-                        <td class="empty"></td>                                                              
-                        <td class="empty"></td>  
+                        <td class="empty"></td>    
                     </td>                                 
                         <td class="empty"></td>                                                              
-                        <td class="empty"></td>                                             
+                        <td class="empty">B</td>                                             
                 </tr>
 
                 <tr class="Day3"> 
-                    <td class="dayOfWeek">พุธ</td>
+                    <td class="dayOfWeek">test test test </td>
                         <td class="empty"></td>                                                              
                         <td class="empty"></td>                                                               
                         <td class="empty"></td>                                                              
-                        <td class="empty"></td>  
-                    </td>                 
-                        <td class="empty"></td>                                           
-                        <td class="empty"></td>                                                              
-                        <td class="empty"></td>                                                               
-                        <td class="empty"></td>                                                              
-                        <td class="empty"></td>  
+                        <td class="empty"></td>   
                     </td>                                 
                         <td class="empty"></td>                                                              
-                        <td class="empty"></td>                                             
+                        <td class="empty">C</td>                                             
                 </tr>
 
                 <tr class="Day4"> 
-                    <td class="dayOfWeek">พฤหัสบดี</td>
+                    <td class="dayOfWeek">test test test </td>
                         <td class="empty"></td>                                                              
                         <td class="empty"></td>                                                               
                         <td class="empty"></td>                                                              
-                        <td class="empty"></td>  
-                    </td>                 
-                        <td class="empty"></td>                                           
-                        <td class="empty"></td>                                                              
-                        <td class="empty"></td>                                                               
-                        <td class="empty"></td>                                                              
-                        <td class="empty"></td>  
+                        <td class="empty"></td>   
                     </td>                                 
                         <td class="empty"></td>                                                              
-                        <td class="empty"></td>                                             
+                        <td class="empty">D</td>                                             
                 </tr>
 
                 <tr class="Day5"> 
-                    <td class="dayOfWeek">ศุกร์</td>
-                        <td class="empty"></td>                                                              
-                        <td class="empty"></td>                                                               
-                        <td class="empty"></td>                                                              
-                        <td class="empty"></td>  
-                    </td>                 
-                        <td class="empty"></td>                                           
+                    <td class="dayOfWeek">test test test </td>
                         <td class="empty"></td>                                                              
                         <td class="empty"></td>                                                               
                         <td class="empty"></td>                                                              
                         <td class="empty"></td>  
                     </td>                                 
                         <td class="empty"></td>                                                              
-                        <td class="empty"></td>                                             
+                        <td class="empty">3.15</td>                                             
                 </tr>
 
                 <tr class="Day6"> 
-                    <td class="dayOfWeek">เสาร์</td>
+                    <td class="dayOfWeek">------------</td>
                         <td class="empty"></td>                                                              
                         <td class="empty"></td>                                                               
                         <td class="empty"></td>                                                              
-                        <td class="empty"></td>  
-                    </td>                 
-                        <td class="empty"></td>                                           
-                        <td class="empty"></td>                                                              
-                        <td class="empty"></td>                                                               
-                        <td class="empty"></td>                                                              
-                        <td class="empty"></td>  
+                        <td class="empty"></td>    
                     </td>                                 
                         <td class="empty"></td>                                                              
                         <td class="empty"></td>                                             
+                </tr>
+            <!--ปี 1/2 -->
+                <tr class="Day1"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">A</td>                                                                                                         
                 </tr>
 
-                <tr class="Day7"> 
-                    <td class="dayOfWeek">อาทิตย์</td>
+                <tr class="Day2"> 
+                    <td class="dayOfWeek">test test test </td>
                         <td class="empty"></td>                                                              
                         <td class="empty"></td>                                                               
                         <td class="empty"></td>                                                              
-                        <td class="empty"></td>  
-                    </td>                 
-                        <td class="empty"></td>                                           
+                        <td class="empty"></td>    
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">B</td>                                             
+                </tr>
+
+                <tr class="Day3"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">C</td>                                             
+                </tr>
+
+                <tr class="Day4"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">D</td>                                             
+                </tr>
+
+                <tr class="Day5"> 
+                    <td class="dayOfWeek">test test test </td>
                         <td class="empty"></td>                                                              
                         <td class="empty"></td>                                                               
                         <td class="empty"></td>                                                              
                         <td class="empty"></td>  
                     </td>                                 
                         <td class="empty"></td>                                                              
+                        <td class="empty">3.15</td>                                             
+                </tr>
+
+                <tr class="Day6"> 
+                    <td class="dayOfWeek">------------</td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>    
+                    </td>                                 
+                        <td class="empty"></td>                                                              
                         <td class="empty"></td>                                             
                 </tr>
-            </tbody>
+            <!--ปี 2 -->
+                <tr class="Day1"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">A</td>                                                                                                         
+                </tr>
+
+                <tr class="Day2"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>    
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">B</td>                                             
+                </tr>
+
+                <tr class="Day3"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">C</td>                                             
+                </tr>
+
+                <tr class="Day4"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">D</td>                                             
+                </tr>
+
+                <tr class="Day5"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>  
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">3.15</td>                                             
+                </tr>
+
+                <tr class="Day6"> 
+                    <td class="dayOfWeek">------------</td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>    
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                             
+                </tr>
+                <!--ปี 2/2 -->
+                <tr class="Day1"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">A</td>                                                                                                         
+                </tr>
+
+                <tr class="Day2"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>    
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">B</td>                                             
+                </tr>
+
+                <tr class="Day3"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">C</td>                                             
+                </tr>
+
+                <tr class="Day4"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">D</td>                                             
+                </tr>
+
+                <tr class="Day5"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>  
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">3.15</td>                                             
+                </tr>
+
+                <tr class="Day6"> 
+                    <td class="dayOfWeek">------------</td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>    
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                             
+                </tr>
+                 <!--ปี 3 -->
+                <tr class="Day1"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">A</td>                                                                                                         
+                </tr>
+
+                <tr class="Day2"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>    
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">B</td>                                             
+                </tr>
+
+                <tr class="Day3"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">C</td>                                             
+                </tr>
+
+                <tr class="Day4"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">D</td>                                             
+                </tr>
+
+                <tr class="Day5"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>  
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">3.15</td>                                             
+                </tr>
+
+                <tr class="Day6"> 
+                    <td class="dayOfWeek">------------</td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>    
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                             
+                </tr>
+                 <!--ปี 3/2 -->
+                 <tr class="Day1"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">A</td>                                                                                                         
+                </tr>
+
+                <tr class="Day2"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>    
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">B</td>                                             
+                </tr>
+
+                <tr class="Day3"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">C</td>                                             
+                </tr>
+
+                <tr class="Day4"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">D</td>                                             
+                </tr>
+
+                <tr class="Day5"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>  
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">3.15</td>                                             
+                </tr>
+
+                <tr class="Day6"> 
+                    <td class="dayOfWeek">------------</td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>    
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                             
+                </tr>
+                 <!--ปี 4 -->
+                 <tr class="Day1"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">A</td>                                                                                                         
+                </tr>
+
+                <tr class="Day2"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>    
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">B</td>                                             
+                </tr>
+
+                <tr class="Day3"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">C</td>                                             
+                </tr>
+
+                <tr class="Day4"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">D</td>                                             
+                </tr>
+
+                <tr class="Day5"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>  
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">3.15</td>                                             
+                </tr>
+
+                <tr class="Day6"> 
+                    <td class="dayOfWeek">------------</td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>    
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                             
+                </tr>
+                 <!--ปี 4/2 -->
+                 <tr class="Day1"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">A</td>                                                                                                         
+                </tr>
+
+                <tr class="Day2"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>    
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">B</td>                                             
+                </tr>
+
+                <tr class="Day3"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">C</td>                                             
+                </tr>
+
+                <tr class="Day4"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>   
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">D</td>                                             
+                </tr>
+
+                <tr class="Day5"> 
+                    <td class="dayOfWeek">test test test </td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>  
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty">3.15</td>                                             
+                </tr>
+
+                <tr class="Day6"> 
+                    <td class="dayOfWeek">------------</td>
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                                               
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>    
+                    </td>                                 
+                        <td class="empty"></td>                                                              
+                        <td class="empty"></td>                                             
+                </tr>
+             </tbody>
             </table><br>
-
-
     <!--ตารางล่าง-->
     <table class="table table-sm table-responsive-md table-bordered" style="font-size: 0.9rem;"> 
         <tbody><tr>
-            <th><center>รหัสวิชา</center></th>
-            <th> </th>
-                <th><center>ชื่อวิชา</center></th>
-                <th><center>หน่วยกิต</center></th>
-                <th><center>คาบเรียน</center></th>
-                <th><center>ห้องเรียน</center></th>
-                <th><center>อาจารย์ผู้สอน</center></th>
-        </tr>
-
+                <th><center>หน่วยกิตรวม</center></th>
+                <th><center>GPA</center></th>
+               </tr>
+            
         <tr> 
-            <td><!--รหัสวิชา--></td>
-            <td>.<!--Sec--></td>
-            <td><!--ชื่อวิชา--></td>
-            <td><!--หน่วยกิต--></td>
-            <td><!--คาบเรียน--></td>
-            <td><!--ห้องเรียน--></td> 
-            <td><!--ผู้สอน--></td>
-        </tr>
-
-        <tr> 
-            <td><!--รหัสวิชา--></td>
-            <td>.<!--Sec--></td>
-            <td><!--ชื่อวิชา--></td>
-            <td><!--หน่วยกิต--></td>
-            <td><!--คาบเรียน--></td>
-            <td><!--ห้องเรียน--></td> 
-            <td><!--ผู้สอน--></td>
+            <td>test test</td>
+            <td>test test</td>
         </tr>
     </tbody></table>
     </div>
