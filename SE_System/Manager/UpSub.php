@@ -5,55 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <title>Edit Subject</title>
+    <title>Edit menber</title>
 
 </head>
 <body>
-<body background color = "white">
-
+<body background="http://img.thzhost.com/i/lz/otxku.gif">
 <?php
-include 'condb.php'; 
-
-$ID = $_GET['Sub_id'];
+include 'condb.php';
+ $ID = $_GET['ID'];
 $sql = "SELECT * FROM subject_tb WHERE Sub_id=".$ID;
-$query = mysqli_query($con, $sql);
-while($result=mysqli_fetch_array($query,MYSQLI_ASSOC))
-
+$query = mysqli_query($conn, $sql);
+$result = mysqli_fetch_array($query)
 ?>
-
-<form name='Edit_Sub' method='POST' action='UpSub.php'>
-<center><h3>Edit Subject</h3>
-<table class="table table-dark"style="height: 500px; width: 900px;">
+<form name='EditMem' method='POST' action='UpdateMem.php'>
+<center><h3>Update Mem</h3>
+<table class="table table-dark">
     <tbody>
     <input name="MID"type="hidden" id="MID"value="<?php echo $result['Sub_id']?>">
         <tr>
-            <td width="125"> &nbsp;รหัสวิชา</td>
+            <td width="125"> &nbsp;Name</td>
             <td widrh="180">
-                <input name="txtName"type="text" id="txtName" value="<?php echo $result['Sub_code'];?>">
+                <input  name="txtName"type="text" id="txtName" value="<?php echo $result['Sub_id'];?>">
                
             </td>
         </tr>
         <tr>
-            <td width="125"> &nbsp;ชื่อวิชา</td>
+            <td width="125"> &nbsp;UserName</td>
             <td widrh="100">
-                <input name="txtUName"type="text" id="txtUName" value="<?php echo $result['Sub_Name'];?>">
+            
+                <input name="txtUName"type="text" id="txtUName" value="<?php echo $result['Sub_code'];?>">
                 </td>
             </td>
         </tr>
         <tr>
-            <td width="125"> &nbsp;หน่วยกิต</td>
+            <td width="125"> &nbsp;ชื่อรายวิชา</td>
+            <td widrh="500"hight="300">
+                
+                <textarea name="comment" rows="5" cols="40"><?php echo $result['Sub_Name'];?></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td width="125"> &nbsp;ฟหกฟห</td>
             <td widrh="180">
-                <input name="txtpasswd"type="text" id="txtpasswd" value="<?php echo $result['Sub_Credit'];?>">
+            <input name="txtpasswd"type="text" id="txtpasswd" value="<?php echo $result['฿฿ห'];?>">
+                    </center>
                
-                    </td>
-                </tr>
-            </tbody>
+            </td>
+        </tr>
+        </tbody>
         </table>
         <br>
-                <center>
-                    <input type="submit" name="Submit" value="Save">
+            <center>
+                <input type="submit" name="Submit" value="Save">
                 </center>
     </form>
+
 
 
 <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
