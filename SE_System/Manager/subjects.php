@@ -82,13 +82,14 @@
                 </div>
             </nav>
             <h3>รายวิชาทั้งหมด</h3>
-            <button class="btn btn-success btn-sm m-1">+ เพิ่มรายวิชา</button> 
+            <a><button class="btn btn-success btn-sm m-1">+ เพิ่มรายวิชา</button></a> 
                 <input type="text">
-                <button class="btn btn-secondary btn-sm m-1">ค้นหา</button> 
+            <a><button class="btn btn-secondary btn-sm m-1">ค้นหา</button></a>
             <table class="table table-bordered">
         <meta charset = "UTF-8">
         <script src="https://unpkg.com/ionicons@4.4.4/dist/ionicons.js"></script>
         <center>
+            
            <table class="table"style="height: 500px; width: 900px;">
         <thead>
           <tr>
