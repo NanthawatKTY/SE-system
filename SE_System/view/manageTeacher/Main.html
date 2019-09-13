@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>แสดงผลการเรียน</title>
+    <title>จัดการบุคลากร</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -81,79 +81,46 @@
                     </button>
                 </div>
             </nav>
-            <h3>แสดงผลการเรียน</h3>
-
-
-
+            <h3>จัดการบุคลากร</h3>
+<button class="btn btn-success btn-sm m-1">+ เพิ่มบุคลากร</button> 
+<input type="text">
+<button class="btn btn-secondary btn-sm m-1">ค้นหา</button> 
             <table class="table table-bordered mt-3">
                     <thead>
                       <tr>
-                        <th scope="col">รหัสวิชา</th>
-                        <th scope="col">ชื่อวิชา</th>
-                        <th scope="col">หน่วยกิต</th>
-                        <th scope="col">กลุ่มวิชา</th>
-                        <th scope="col">เกรด</th>
+                        <th scope="col">รหัส</th>
+                        <th scope="col">ชื่อ - นามสกุล</th>
+                        <th scope="col">เบอร์โทร</th>
+                        <th scope="col">แก้ไข</th>
+                        <th scope="col">ลบ</th>
                       </tr>
                     </thead>
                     <tbody>
-                        <th colspan="9">ภาคเรียนที่ 1/2560</th>
-                        <tr>
-                        <td scope="row">9011103</td>
-                        <td>การสร้างและการวิวัฒน์ซอฟต์แวร์</td>
-                        <td>3(3-0-6)</td>
-                        <td>พื้นฐานภาษา</td>
-                        <td class="text-success" >A</td>
-                      </tr>
-                      <tr>
-                        <td scope="row">9011202</td>
-                        <td>การทวนสอบและการทดสอบซอฟต์แวร์</td>
-                        <td>3(3-0-6)</td>
-                        <td> เอกบังคับ</td>
-                        <td class="text-success">B</td>
-                      </tr>
-                      
-                      <th cols pan="9">ภาคเรียนที่ 2/2560</th>
-                      <tr>
-                      <td scope="row">9011103</td>
-                      <td>สถาปัตยกรรมซอฟต์แวร์</td>
-                      <td>3(3-0-6)</td>
-                      <td>พื้นฐานภาษา</td>
-                      <td class="text-success">C</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">9011202</td>
-                      <td>พีชคณิตเชิงเส้นสำหรับวิศวกรรมซอฟต์แวร์</td>
-                      <td>3(3-0-6)</td>
-                      <td> เอกบังคับ</td>
-                      <td class="text-success">C+</td>
-                    </tr>
 
+                        <td scope="row">112233</td>
+                        <td>นาย สมชาย ไม่ค่อยมี</td>
+                        <td>0882235111</td>
+                        <td><button>แก้ไข</button></td>
+                        <td><button>ลบ</button></td>
+                      </tr>
+                      <tr>
+                        <td scope="row">445566</td>
+                        <td>นางสาว สมหญิง มีมากเหลือเกิน</td>
+                        <td>0123456789</td>
+                        <td><button>แก้ไข</button></td>
+                        <td><button>ลบ</button></td>
+                      </tr>
+                      <tr>
+                            <td scope="row">778899</td>
+                            <td>นาย เกิดมาทำไม ไม่รู้เหมือนกัน</td>
+                            <td>0123456789</td>
+                            <td><button>แก้ไข</button></td>
+                            <td><button>ลบ</button></td>
+                          </tr>
                     </tbody>
                   </table>
-<hr>
-<div class="row text-center">
-    <div class="col-6">
-        <div class="row">
-            <div class="col-12">
-                    หน่วยกิตรวม
-            </div>
-            <div class="col-12">
-                    78
-            </div>
-        </div>
-    </div>
-    <div class="col-6">
-            <div class="row">
-                    <div class="col-12">
-                            เกรดเฉลี่ย
-                    </div>
-                    <div class="col-12">
-                            4.00
-                    </div>
-                </div>
-    </div>
-</div>
-<hr>
+
+
         </div>
 
         <!-- jQuery CDN - Slim version (=without AJAX) -->

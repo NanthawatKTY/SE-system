@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Collapsible sidebar using Bootstrap 4</title>
+    <title>เพิ่มแผนการเรียน</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="../../Style.css">
+    <link rel="stylesheet" href="../../../Style.css">
 
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -55,10 +55,10 @@
 
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="../index.html" class="article">กลับเมนูหลัก</a>
+                    <a href="../../../index.html" class="article">กลับเมนูหลัก</a>
                 </li>
                 <li>
-                    <a href="../logout.php" class="download">ออกจากระบบ</a>
+                    <a href="../../../control/login/logout.php" class="download">ออกจากระบบ</a>
                 </li>
 
             </ul>
@@ -81,44 +81,103 @@
                     </button>
                 </div>
             </nav>
-            <h3>จัดการนักศึกษา</h3>
-<button class="btn btn-success btn-sm m-1">+ เพิ่มนักศึกษา</button> 
-<input type="text">
-<button class="btn btn-secondary btn-sm m-1">ค้นหา</button> 
-            <table class="table table-bordered mt-3">
-                    <thead>
-                      <tr>
-                        <th scope="col">รหัส</th>
-                        <th scope="col">ชื่อ - นามสกุล</th>
-                        <th scope="col">เบอร์โทร</th>
-                        <th scope="col">แก้ไข</th>
-                        <th scope="col">ลบ</th>
-                      </tr>
-                    </thead>
-                    <tbody>
+            <h3>จัดการแผนการเรียน</h3>
 
-                        <td scope="row">60122660101</td>
-                        <td>นาย สมชาย ไม่ค่อยมี</td>
-                        <td>0882235111</td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td scope="row">60122660102</td>
-                        <td>นางสาว สมหญิง มีมากเหลือเกิน</td>
-                        <td>0123456789</td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                            <td scope="row">60122660103</td>
-                            <td>นาย เกิดมาทำไม ไม่รู้เหมือนกัน</td>
-                            <td>0123456789</td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                    </tbody>
-                  </table>
+<input type="text" placeholder="รหัสรายวิชา">
+
+ <select class="" id="inputGroupSelect01">
+        <option selected>ภาคเรียน</option>
+        <option value="1">1/2560</option>
+        <option value="2">2/2560</option>
+        <option value="3">1/2561</option>
+        <option value="3">2/2561</option>
+      </select>
+ <button>เพิ่มรายวิชา</button>
+
+ <table class="table table-bordered mt-3">
+        <thead>
+          <tr>
+            <th scope="col">รหัสวิชา</th>
+            <th scope="col">ชื่อวิชา</th>
+            <th scope="col">หน่วยกิต</th>
+            <th scope="col">กลุ่มวิชา</th>
+            <th scope="col">อาจารย์ผู้สอน</th>
+            <th scope="col">คาบเรียน</th>
+            <th scope="col">ห้องเรียน</th>
+            <th scope="col">แก้ไข</th>
+            <th scope="col">ลบ</th>
+          </tr>
+        </thead>
+        <tbody>
+            <th colspan="9">ภาคเรียนที่ 1/2560</th>
+            <tr>
+            <td scope="row">9011103</td>
+            <td>วิศวกรรมซอฟต์แวร์ 2560</td>
+            <td>3(3-0-6)</td>
+            <td>พื้นฐานภาษา</td>
+            <td>ไพจิตร</td>
+            <td>จ1-4</td>
+            <td>39402</td>
+            <td><button>แก้ไข</button></td>
+            <td><button>ลบ</button></td>
+          </tr>
+          <tr>
+            <td scope="row">9011202</td>
+            <td>วิศวกรรมซอฟต์แวร์ 2562</td>
+            <td>3(3-0-6)</td>
+            <td> เอกบังคับ</td>
+            <td>ไพจิตร</td>
+            <td>จ6-9</td>
+            <td>39402</td>
+            <td><button>แก้ไข</button></td>
+            <td><button>ลบ</button></td>
+          </tr>
+          
+          <th colspan="9">ภาคเรียนที่ 2/2560</th>
+          <tr>
+          <td scope="row">9011103</td>
+          <td>วิศวกรรมซอฟต์แวร์ 2560</td>
+          <td>3(3-0-6)</td>
+          <td>พื้นฐานภาษา</td>
+          <td>ไพจิตร</td>
+            <td>ฤ1-4</td>
+            <td>39403</td>
+            <td><button>แก้ไข</button></td>
+            <td><button>ลบ</button></td>
+        </tr>
+        <tr>
+          <td scope="row">9011202</td>
+          <td>วิศวกรรมซอฟต์แวร์ 2562</td>
+          <td>3(3-0-6)</td>
+          <td> เอกบังคับ</td>
+          <td>ไพจิตร</td>
+            <td>ฤ2-4</td>
+            <td>39401</td>
+            <td><button>แก้ไข</button></td>
+            <td><button>ลบ</button></td>
+        </tr>
+        <tr>
+        <th colspan="9">ภาคเรียนที่ 1/2561</th>
+    </tr>
+    <tr>
+        <th colspan="9">ภาคเรียนที่ 2/2561</th>
+    </tr>
+    <tr>
+        <th colspan="9">ภาคเรียนที่ 1/2562</th>
+    </tr>
+    <tr>
+        <th colspan="9">ภาคเรียนที่ 2/2562</th>
+    </tr>
+    <tr>
+        <th colspan="9">ภาคเรียนที่ 1/2563</th>
+    </tr>
+    <tr>
+        <th colspan="9">ภาคเรียนที่ 2/2563</th>
+    </tr>
+
+        </tbody>
+      </table>
+
 
 
         </div>
