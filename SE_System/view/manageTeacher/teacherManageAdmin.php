@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="../../Style.css">
 
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -54,6 +54,9 @@
             </ul>
 
             <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="../index.html" class="article">กลับเมนูหลัก</a>
+                </li>
                 <li>
                     <a href="#" class="download">ออกจากระบบ</a>
                 </li>
