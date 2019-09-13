@@ -55,7 +55,10 @@
 
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="#" class="download">ออกจากระบบ</a>
+                    <a href="../../index.html" class="article">กลับเมนูหลัก</a>
+                </li>
+                <li>
+                    <a href="../../control/login/logout.php" class="download">ออกจากระบบ</a>
                 </li>
 
             </ul>

@@ -11,7 +11,7 @@
 <body>
 <body background="http://img.thzhost.com/i/lz/otxku.gif">
 <?php
-include 'condb.php';
+include '../../../model/condb.php';
  $ID = $_GET['ID'];
 $sql = "SELECT * FROM subject_tb WHERE Sub_id=".$ID;
 $query = mysqli_query($conn, $sql);
