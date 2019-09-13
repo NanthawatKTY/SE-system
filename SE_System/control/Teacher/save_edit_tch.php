@@ -1,5 +1,5 @@
 <?php
-require_once('connect.php');
+require_once('../../model/connect.php');
 session_start();
 $codename = $_POST['Teach_code'];
 $Pname  = $_POST['Teach_Pname'];
@@ -19,13 +19,13 @@ $id = $_SESSION['Teach_id'];
                     if($query){
                         echo "<script>";
                         echo "alert('แก้ไขเรียบร้อย');";
-                        echo "window.location='main.html';";
+                        echo "window.location='../../main.html';";
                         echo "</script>";
                     }
                     else{
                         echo "<script>";
                         echo "alert('เกิดข้อผิดพลาด');";
-                        echo "window.location='main.html';";
+                        echo "window.location='../../main.html';";
                         echo "</script>";
                     }
 

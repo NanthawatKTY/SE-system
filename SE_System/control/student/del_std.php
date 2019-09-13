@@ -1,5 +1,5 @@
 <?php
-require_once('connect.php');
+require_once('../../model/connect.php');
 $id = $_GET['Std_id'];
 $sql = "DELETE FROM `student_tb` WHERE `student_tb`.`Std_id` = '$id';";
 $query = $conn->query($sql);
