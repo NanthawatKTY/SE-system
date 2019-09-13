@@ -1,7 +1,7 @@
 <?php
 require_once('connect.php');
-$id = $_GET['id'];
-$sql = "DELETE FROM `student` WHERE `student`.`id` = '$id';";
+$id = $_GET['Std_id'];
+$sql = "DELETE FROM `student_tb` WHERE `student_tb`.`Std_id` = '$id';";
 $query = $conn->query($sql);
 if($query){
     echo "<script>";
