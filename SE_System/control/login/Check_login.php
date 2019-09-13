@@ -20,28 +20,28 @@ $_SESSION['pwd']=$_POST['password'];
 if(!$result)
 {
     echo "Username OR Password ไม่ถูกต้อง";
-  echo "<META HTTP-EQUIV='Refresh' CONTENT ='3;URL=./index.html'>";
+  echo "<META HTTP-EQUIV='Refresh' CONTENT ='3;URL=../../index.html'>";
 }
 else
 { if($result["Type_id"]==1)
     {
         $_SESSION['Type_id'] = 1;
        $_SESSION['Mem_user'] = $result['Mem_user'];
-       header("location: ./Manager/main_admin.php");
+       header("location: ../../view/profile/admin/mainAdmin.html");
     }
     else if($result["Type_id"]==2)
     {
         $_SESSION['Status'] = "teacher";
         $_SESSION['Mem_user'] = $result['Mem_user'];;
         $_SESSION['id'] = $result['id'];
-        header("location:./Teacher/main_teacher.php");
+        header("location:../../view/profile/teacher/mainTeacher.html");
     }
     else
     {
         $_SESSION['Type_id'] = 3;
         $_SESSION['Mem_user'] = $result['Mem_user'];
         
-        header("location:./Student/main_student.php");
+        header("location:");
     }
 }
 

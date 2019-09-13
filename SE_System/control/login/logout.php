@@ -25,5 +25,5 @@
 echo "ขอบคุณที่ใช้บริการ";
 session_start();
 session_destroy();
-echo "<META HTTP-EQUIV='Refresh' CONTENT ='3;URL=index.html'>";
+echo "<META HTTP-EQUIV='Refresh' CONTENT ='3;URL=../../index.html'>";
 ?>
