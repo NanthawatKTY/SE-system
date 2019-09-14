@@ -57,7 +57,10 @@ $result = mysqli_fetch_array($query);
         </table>
         <br>
             <center>
-                <input type="submit" name="Submit" value="Save">
+                <input type="submit" name="Submit" onclick="return confirm('You Sure thin want to Save?')" value="Save"
+                <?php 
+                 $sql = "UPDATE subject_tb SET Sub_code, Sub_Name, Sub_Credit WHERE 'subject_tb'";
+                ?>>
                 </center>
     </form>
 
