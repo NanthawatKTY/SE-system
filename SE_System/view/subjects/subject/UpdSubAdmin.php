@@ -12,7 +12,8 @@
 <body background="http://img.thzhost.com/i/lz/otxku.gif">
 <?php
 include '../../../model/condb.php';
- $ID = $_GET['ID'];
+
+$ID = $_GET['ID'];
 $sql = "SELECT * FROM subject_tb WHERE Sub_id=".$ID;
 $query = mysqli_query($conn, $sql);
 $result = mysqli_fetch_array($query)
@@ -25,7 +26,7 @@ $result = mysqli_fetch_array($query)
         <tr>
             <td width="125"> &nbsp;Name</td>
             <td widrh="180">
-                <input  name="txtName"type="text" id="txtName" value="<?php echo $result['Sub_id'];?>">
+                <input  name="txtName"type="int" id="txtName" value="<?php echo $result['Sub_id'];?>">
                
             </td>
         </tr>
@@ -45,7 +46,7 @@ $result = mysqli_fetch_array($query)
             </td>
         </tr>
         <tr>
-            <td width="125"> &nbsp;ฟหกฟห</td>
+            <td width="125"> &nbsp;คืออะไร?</td>
             <td widrh="180">
             <input name="txtpasswd"type="text" id="txtpasswd" value="<?php echo $result['฿฿ห'];?>">
                     </center>
