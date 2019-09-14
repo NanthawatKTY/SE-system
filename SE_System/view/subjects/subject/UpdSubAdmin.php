@@ -46,7 +46,7 @@ $result = mysqli_fetch_array($query)
             </td>
         </tr>
         <tr>
-            <td width="125"> &nbsp;คืออะไร?</td>
+            <td width="125"> &nbsp;คืออะไร? (หน่วยกิต?)</td>
             <td widrh="180">
             <input name="txtpasswd"type="text" id="txtpasswd" value="<?php echo $result['฿฿ห'];?>">
                     </center>
@@ -61,12 +61,7 @@ $result = mysqli_fetch_array($query)
                 </center>
     </form>
 
-
-
-<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
-<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-
-
-    
+    <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
