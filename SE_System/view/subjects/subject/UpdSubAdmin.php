@@ -16,22 +16,22 @@ include '../../../model/condb.php';
 $ID = $_GET['ID'];
 $sql = "SELECT * FROM subject_tb WHERE Sub_id=".$ID;
 $query = mysqli_query($conn, $sql);
-$result = mysqli_fetch_array($query)
+$result = mysqli_fetch_array($query);
 ?>
-<form name='EditMem' method='POST' action='UpdateMem.php'>
-<center><h3>Update Mem</h3>
+<form name='EditSub' method='POST' action='UpdSubAdmin.php'>
+<center><h3>Update Subject</h3>
 <table class="table table-dark">
     <tbody>
     <input name="MID"type="hidden" id="MID"value="<?php echo $result['Sub_id']?>">
         <tr>
-            <td width="125"> &nbsp;Name</td>
+            <td width="125"> &nbsp;ลำดับรายวิชา</td>
             <td widrh="180">
                 <input  name="txtName"type="int" id="txtName" value="<?php echo $result['Sub_id'];?>">
                
             </td>
         </tr>
         <tr>
-            <td width="125"> &nbsp;UserName</td>
+            <td width="125"> &nbsp;รหัสรายวิชา</td>
             <td widrh="100">
             
                 <input name="txtUName"type="text" id="txtUName" value="<?php echo $result['Sub_code'];?>">
@@ -46,9 +46,9 @@ $result = mysqli_fetch_array($query)
             </td>
         </tr>
         <tr>
-            <td width="125"> &nbsp;คืออะไร? (หน่วยกิต?)</td>
+            <td width="125"> &nbsp;หน่วยกิตรายวิชา</td>
             <td widrh="180">
-            <input name="txtpasswd"type="text" id="txtpasswd" value="<?php echo $result['฿฿ห'];?>">
+            <input name="txtpasswd"type="text" id="txtpasswd" value="<?php echo $result['Sub_Credit'];?>">
                     </center>
                
             </td>
