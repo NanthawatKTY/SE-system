@@ -18,7 +18,7 @@ $sql = "SELECT * FROM subject_tb WHERE Sub_id=".$ID;
 $query = mysqli_query($conn, $sql);
 $result = mysqli_fetch_array($query);
 ?>
-<form name='EditSub' method='POST' action='UpdSubAdmin.php'>
+<form name='EditSub' method='POST' action='subjects.php'>
 <center><h3>Update Subject</h3>
 <table class="table table-dark">
     <tbody>
