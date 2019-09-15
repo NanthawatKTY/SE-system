@@ -37,19 +37,19 @@
             <p class="text-center text-light">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
             <ul class="list-unstyled components pl-2">
                 <li>
-                    <a href="#">ข้อมูลส่วนตัว</a>
+                    <a href="/SE_System/view/profile/EditProfile.html">ข้อมูลส่วนตัว</a>
                 </li>
                 <li>
-                    <a href="#">ผลการเรียน</a>
+                    <a href="/SE_System/view/grade/gradeStudent.html">ผลการเรียน</a>
                 </li>
                 <li>
-                    <a href="#">แผนการเรียน</a>
+                    <a href="/SE_System/Edittranscript2.php">แผนการเรียน</a>
                 </li>
                 <li>
-                    <a href="#">สถานะการลงทะเบียน</a>
+                    <a href="/Manager/subjects.html">สถานะการลงทะเบียน</a>
                 </li>
                 <li>
-                    <a href="#">ตารางสอน</a>
+                    <a href="/SE_System/view/schedule/editSchedule.html">ตารางสอน</a>
                 </li>
             </ul>
 
@@ -82,18 +82,34 @@
                 </div>
             </nav>
             <h3>จัดการลงทะเบียน</h3>
- <select class="" id="inputGroupSelect01">
-        <option selected>ชั้นปี</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="3">4</option>
-      </select>
- <button>เลือก</button>
+<div class="form-group">
+        <select class="" id="inputGroupSelect01">
+                <option selected>ชั้นปี</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="3">4</option>
+              </select>
+         <button>เลือก</button>
+</div>
+
+<div class="form-group">
+        <select class="form-control-sm">
+                <option>เลือกแผนการเรียน</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+              <button>+ เพิ่มแผนการเรียน</button>
+</div>
+
 
             <table class="table table-bordered mt-3">
                     <thead>
                       <tr>
+                        <th scope="col">เลือก</th>
                         <th scope="col">รหัส</th>
                         <th scope="col">ชื่อ - นามสกุล</th>
                         <th scope="col">แผนการเรียน</th>
@@ -101,19 +117,33 @@
                       </tr>
                     </thead>
                     <tbody>
-
+<td><div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">1</label>
+      </div>
+    </td>
                         <td scope="row">60122660101</td>
                         <td>นาย สมชาย ไม่ค่อยมี</td>
                         <td><button class="btn btn-outline-success">วิศวกรรมซอฟต์แวร์ 2560</button></td>
                         <td><button>แก้ไข</button></td>
                       </tr>
                       <tr>
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">2</label>
+                                  </div>
+                                </td>
                         <td scope="row">60122660102</td>
                         <td>นางสาว สมหญิง มีมากเหลือเกิน</td>
                         <td><button class="btn btn-outline-success">วิศวกรรมซอฟต์แวร์ 2560</button></td>
                         <td><button>แก้ไข</button></td>
                       </tr>
                       <tr>
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">3</label>
+                                  </div>
+                                </td>
                             <td scope="row">60122660103</td>
                             <td>นาย เกิดมาทำไม ไม่รู้เหมือนกัน</td>
                             <td><button class="btn btn-outline-success">วิศวกรรมซอฟต์แวร์ 2560</button></td>

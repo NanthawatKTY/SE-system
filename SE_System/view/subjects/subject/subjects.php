@@ -36,29 +36,29 @@
             <p class="text-center text-light mt-3">มารุตเทพ ร่มโพธิ์</p>
             <p class="text-center text-light">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
             <ul class="list-unstyled components pl-2">
-                <li>
-                    <a href="#">ข้อมูลส่วนตัว</a>
+            <li>
+                    <a href="/SE_System/view/profile/EditProfile.html">ข้อมูลส่วนตัว</a>
                 </li>
                 <li>
-                    <a href="#">ผลการเรียน</a>
+                    <a href="/SE_System/view/grade/gradeStudent.html">ผลการเรียน</a>
                 </li>
                 <li>
-                    <a href="#">แผนการเรียน</a>
+                    <a href="/SE_System/Edittranscript2.php">แผนการเรียน</a>
                 </li>
                 <li>
-                    <a href="#">สถานะการลงทะเบียน</a>
+                    <a href="/Manager/subjects.html">สถานะการลงทะเบียน</a>
                 </li>
                 <li>
-                    <a href="#">ตารางสอน</a>
+                    <a href="/SE_System/view/schedule/editSchedule.html">ตารางสอน</a>
                 </li>
             </ul>
 
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="../../../index.html" class="article">กลับเมนูหลัก</a>
+                    <a href="/SE_System/index.html" class="article">กลับเมนูหลัก</a>
                 </li>
                 <li>
-                    <a href="../../../control/login/logout.php" class="download">ออกจากระบบ</a>
+                    <a href="/SE_System/logout.php" class="download">ออกจากระบบ</a>
                 </li>
 
             </ul>
@@ -122,7 +122,7 @@
             <td><div align="center">
             <?php echo $result['Sub_Credit'];?></div></td>
             <td><div align="center">
-            <a href="UpSub.php?ID=<?php echo $result['Sub_id'];?>"><ion-icon style="color:orange" name="construct"></ion-icon></a></td>
+            <a href="UpdSubAdmin.php?ID=<?php echo $result['Sub_id'];?>"><ion-icon style="color:orange" name="construct"></ion-icon></a></td>
             <td><div align="center"><a href="JavaScript:if(confirm('Confirm Delete?')== true){window.location='DelMem.php?ID=<?php echo $result['ID'];?>';}"><ion-icon style="color:red" name="trash"></ion-icon></a></td>
             </tr>
             <?php
