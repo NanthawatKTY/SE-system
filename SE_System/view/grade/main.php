@@ -1,3 +1,7 @@
+<?
+    session_start();
+    require_once('../../model/connect.php');
+?>
 <!DOCTYPE html>
 <html>
 
@@ -93,23 +97,41 @@
                         <th scope="col">จัดการ</th>
                       </tr>
                     </thead>
-                    <tbody>
-
+                    
+                 
+                        <!-- <tr>
+                        
                         <td scope="row">9011103</td>
                         <td>	การทวนสอบและการทดสอบซอฟต์แวร์</td>
-                        <td><button>จัดการ</button></td>
-                      </tr>
-                      <tr>
-                        <td scope="row">9011105</td>
-                        <td>การสร้างและการวิวัฒน์ซอฟต์แวร์</td>
-                        <td><button>จัดการ</button></td>
-                      </tr>
-                      <tr>
-                            <td scope="row">9011107</td>
-                            <td>พีชคณิตเชิงเส้นสำหรับวิศวกรรมซอฟต์แวร์</td>
-                            <td><button>จัดการ</button></td>
-                          </tr>
-                    </tbody>
+                        <td><a class="btn btn-info" href ="./manager.html">จัดการ</a></td>
+                        
+                        </tr> -->
+                    
+                    <?php 
+        include_once('../../model/connect.php');
+        $sql = "SELECT * FROM subject_tb";
+        $query = mysqli_query($conn, $sql);
+        while($result=mysqli_fetch_array($query,MYSQLI_ASSOC)) 
+        {
+            ?>
+            <tr>
+           
+            
+            <td><div align="center">
+            <?php echo $result['Sub_code'];?></div></td>
+            <td><div align="left">
+            <?php echo $result['Sub_Name'];?></div></td>
+            <td><div align="center">
+            <a class="btn btn-info" href ="./manager.php">จัดการ</a></td>
+            </tr>
+            <?php
+
+        
+      }
+    ?>
+                    
+                   
+                    
                   </table>
 
         </div>
