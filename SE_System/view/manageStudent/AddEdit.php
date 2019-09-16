@@ -88,7 +88,7 @@
                     <div class="form-group row">
                       <label for="colFormLabelSm" class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ชื่อ - นามสกุล :</label>
                       <div class="col-sm-5">
-                        <input type="name" class="form-control form-control-sm" id="colFormLabelSm" value="สมชาย ไม่ชอบสมหญิง">
+                        <input type="name" class="form-control form-control-sm" id="colFormLabelSm" value="สมชาย ไม่ชอบสมหญิง" >
                       </div>
                     </div>
 <!-- วันเกิด  -->
