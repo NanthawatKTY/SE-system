@@ -7,20 +7,21 @@
 
 <?php
 
- include '../../../model/condb.php'; 
- $ID = $_POST['MID'];
- $sql = "UPDATE subject_tb SET Sub_id ='".$_POST['txtName']."',Sub_code = '".$_POST['txtcode']."',Sub_Name = '".$_POST['comment']."',Sub_Credit = '".$_POST['txtcredit']."' WHERE Sub_id =".$ID;
+include '../../../model/condb.php'; 
+$ID = $_POST['MID'];
+$sql = "UPDATE subject_tb SET Sub_id ='".$_POST['txtName']."',Sub_code = '".$_POST['txtcode']."',Sub_Name = '".$_POST['comment']."',Sub_Credit = '".$_POST['txtcredit']."' WHERE Sub_id =".$ID;
 $query = mysqli_query($conn, $sql);
-echo $sql ;
+//echo $sql ;
+
 if($query==TRUE)
 {
-    echo"UPdate Complete";
-   echo"<META HTTP-EQUIV ='Refresh' CONTENT = '2;URL= subjects.php'>";
+    echo"Update Complete";
+    echo"<META HTTP-EQUIV ='Refresh' CONTENT = '2;URL= subjects.php'>";
 }
 else
 {
-    echo "Error , can't Update member";
-     echo "<META HTTP-EQUIV='Refresh'CONTENT = '2;URL=subjects.php'>";
+    echo "Error Can't Update member";
+    echo "<META HTTP-EQUIV='Refresh'CONTENT = '2;URL=subjects.php'>";
 }
 mysqli_close($conn);
 ?>
