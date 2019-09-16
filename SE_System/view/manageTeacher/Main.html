@@ -82,42 +82,34 @@
                 </div>
             </nav>
             <h3>จัดการบุคลากร</h3>
-<button class="btn btn-success btn-sm m-1">+ เพิ่มบุคลากร</button> 
+<button class="btn btn-success btn-sm m-1"><a href="/SE_System/view/manageTeacher/AddEdit.html">+ เพิ่มบุคลากร</a></button> 
 <input type="text">
 <button class="btn btn-secondary btn-sm m-1">ค้นหา</button> 
             <table class="table table-bordered mt-3">
                     <thead>
-                      <tr>
-                        <th scope="col">รหัส</th>
-                        <th scope="col">ชื่อ - นามสกุล</th>
-                        <th scope="col">เบอร์โทร</th>
-                        <th scope="col">แก้ไข</th>
-                        <th scope="col">ลบ</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                        <td scope="row">112233</td>
-                        <td>นาย สมชาย ไม่ค่อยมี</td>
-                        <td>0882235111</td>
-                        <td><button>แก้ไข</button></td>
-                        <td><button>ลบ</button></td>
-                      </tr>
-                      <tr>
-                        <td scope="row">445566</td>
-                        <td>นางสาว สมหญิง มีมากเหลือเกิน</td>
-                        <td>0123456789</td>
-                        <td><button>แก้ไข</button></td>
-                        <td><button>ลบ</button></td>
-                      </tr>
-                      <tr>
-                            <td scope="row">778899</td>
-                            <td>นาย เกิดมาทำไม ไม่รู้เหมือนกัน</td>
-                            <td>0123456789</td>
-                            <td><button>แก้ไข</button></td>
-                            <td><button>ลบ</button></td>
-                          </tr>
-                    </tbody>
+                            <tr>
+                              <th scope="col">รหัสบุคากร</th>
+                              <th scope="col">ชื่อ - นามสกุล</th>
+                              <th scope="col">สาขา</th>
+                              <th scope="col">คณะ</th>
+                              <th scope="col">แก้ไข</th>
+                              <th scope="col">ลบ</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+      
+                              <tbody>
+                                  <tr>
+                                  <?php while($result = $query->fetch_assoc()){ ?>
+                                    <td><?php echo $result['Teach_Code']; ?></td>
+                                    <td><?php echo $result['Teach_Pname','Teach_Fname',Teach_Lname]; ?></td>
+                                    <td><?php echo $result['Teach_Maojr']; ?></td>
+                                    <td><?php echo $result['Teach_Faculty']; ?></td>
+                                    <td><a class="btn btn-dark btn-sm" href="/SE_System/view/manageTeacher/AddEdit.html?id=<?php echo $result['Teach_id']; ?>">แก้ไข</a></td>
+                                    <td><a class="btn btn-danger btn-sm" href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='\SE_System\control\Teacher\del_tch.php?id=<?php echo $result["Teach_id"];?>';}">ลบ</a></td>
+                                  </tr>
+                                  <?php } ?>
+                                </tbody>
                   </table>
 
 
