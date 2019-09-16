@@ -1,3 +1,15 @@
+<?php
+session_start();
+include_once('../../model/connect.php');
+
+
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html>
 
@@ -58,7 +70,7 @@
                     <a href="/SE_System/index.html" class="article">กลับเมนูหลัก</a>
                 </li>
                 <li>
-                    <a href="/SE_System/logout.php" class="download">ออกจากระบบ</a>
+                    <a href="../../control/login/logout.php" class="download">ออกจากระบบ</a>
                 </li>
 
             </ul>
@@ -82,42 +94,71 @@
                 </div>
             </nav>
             <h3>จัดการผลการเรียน</h3>
-<h5>วิชา ภาษาอังกฤษเพื่อทักษะการเรียน - 9011103</h5>
 
 
             <table class="table table-bordered mt-3">
                     <thead>
                       <tr>
-                        <th scope="col">รหัส</th>
-                        <th scope="col">ชื่อ - นามสกุล</th>
-                        <th scope="col">คะแนน</th>
-                        <th scope="col">เกรด</th>
-                        <th scope="col">แก้ไข</th>
+                        <th scope="col"><div  align="center">รหัส</th></div>
+                        <th scope="col"><div  align="center">ชื่อ - นามสกุล</th></div>
+                        <th scope="col"><div  align="center">คะแนน</th></div>
+                        <th scope="col"><div  align="center">เกรด</th></div>
+                        <th scope="col"><div  align="center">แก้ไข</th></div>
+                        <th scope="col"><div  align="center">เพิ่มเกรด</th></div>
                       </tr>
                     </thead>
-                    <tbody>
-
-                        <td scope="row">60122660101</td>
-                        <td>นาย สมชาย ไม่ค่อยมี</td>
-                        <td>51</td>
-                        <td>D</td>
-                        <td><button>แก้ไข</button></td>
-                      </tr>
-                      <tr>
-                        <td scope="row">60122660102</td>
-                        <td>นางสาว สมหญิง มีมากเหลือเกิน</td>
-                        <td>79</td>
-                        <td>B+</td>
-                        <td><button>แก้ไข</button></td>
-                      </tr>
+                    
+<!-- 
                       <tr>
                             <td scope="row">60122660103</td>
                             <td>นาย เกิดมาทำไม ไม่รู้เหมือนกัน</td>
                             <td>80</td>
                             <td>A</td>
                             <td><button>แก้ไข</button></td>
-                          </tr>
-                    </tbody>
+                          </tr> -->
+    <?php
+        
+        $ID = $_GET['ID'];
+        $_SESSION['ID'] = $ID;
+        $sql = "SELECT register_tb.Sub_code, register_tb.Std_code, grade_tb.GPA, student_tb.Std_Fname, student_tb.Std_Lname, subject_tb.Sub_Name
+        FROM (((register_tb
+        INNER JOIN subject_tb ON register_tb.Sub_code = subject_tb.Sub_code)
+        INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_code) 
+        INNER JOIN grade_tb ON register_tb.Std_code = grade_tb.Std_code)          
+        WHERE subject_tb.Sub_code='".$_SESSION['ID']."'" ;
+
+    
+        $query = mysqli_query($conn, $sql);
+        echo $_SESSION['Sub_code'];echo"&nbsp&nbsp";echo"-";echo"&nbsp&nbsp";echo $_SESSION['Sub_Name'];
+
+        while($result=mysqli_fetch_array($query,MYSQLI_ASSOC)) 
+        {
+            $_SESSION['Sub_code'] = $result['Sub_code'];
+            $_SESSION['Sub_Name'] = $result['Sub_Name'];
+            error_reporting(0);
+            ?>
+            <tr>
+           
+           
+            <td><div align="center">
+            <?php echo $result['Std_code'];?></div></td>
+            <td><div align="center">
+            <?php echo $result['Std_Fname'];echo"&nbsp&nbsp";echo $result['Std_Lname'];?></div></td>
+            <td><div align="center">
+            <?php echo $result['GPA'];?></div></td>
+            <td><div align="center">
+            <?php echo $result['grad_font']; ?></div></td>
+            <td><div align="center">
+            <a class="btn btn-info" href ="./AddScore.php">จัดการ</a></td>
+            <td><div align="center">
+            <a class="btn btn-info" href ="./AddScore.php">+ เพิ่มเกรด</a></td>
+            </tr>
+            <?php
+
+        
+      }
+    ?>
+                   
                   </table>
 
         </div>
@@ -142,6 +183,9 @@
                 });
             });
         </script>
+
+
+
 </body>
 
 </html>

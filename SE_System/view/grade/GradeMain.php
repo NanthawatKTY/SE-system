@@ -1,6 +1,14 @@
-<?
-    session_start();
-    require_once('../../model/connect.php');
+<?php
+session_start();
+include_once('../../model/connect.php');
+
+
+$sql = "SELECT DISTINCT register_tb.Sub_code,subject_tb.Sub_Name FROM register_tb INNER JOIN subject_tb ON register_tb.Sub_code = subject_tb.Sub_code 
+WHERE register_tb.Teach_code = '".$_SESSION['Mem_user']."'";
+
+$query = mysqli_query($conn, $sql);
+$result = mysqli_fetch_array($query,MYSQLI_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -62,7 +70,7 @@
                     <a href="/SE_System/index.html" class="article">กลับเมนูหลัก</a>
                 </li>
                 <li>
-                    <a href="/SE_System/logout.php" class="download">ออกจากระบบ</a>
+                    <a href="../../control/login/logout.php" class="download">ออกจากระบบ</a>
                 </li>
 
             </ul>
@@ -107,9 +115,11 @@
                         
                         </tr> -->
                     
-                    <?php 
-        include_once('../../model/connect.php');
-        $sql = "SELECT * FROM subject_tb";
+    <?php
+        
+        $sql = "SELECT DISTINCT register_tb.Sub_code,subject_tb.Sub_Name FROM register_tb INNER JOIN subject_tb ON register_tb.Sub_code = subject_tb.Sub_code 
+        WHERE register_tb.Teach_code = '".$_SESSION['Mem_user']."'";
+
         $query = mysqli_query($conn, $sql);
         while($result=mysqli_fetch_array($query,MYSQLI_ASSOC)) 
         {
@@ -122,7 +132,7 @@
             <td><div align="left">
             <?php echo $result['Sub_Name'];?></div></td>
             <td><div align="center">
-            <a class="btn btn-info" href ="./GradeManager.php">จัดการ</a></td>
+            <a class="btn btn-info" href ="./GradeManager.php?ID=<?php echo $result['Sub_code'];?>" ?>จัดการ</a></td>
             </tr>
             <?php
 

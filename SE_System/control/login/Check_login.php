@@ -32,7 +32,7 @@ else
     else if($result["Type_id"]==2)
     {
         $_SESSION['Status'] = "teacher";
-        $_SESSION['Mem_user'] = $result['Mem_user'];;
+        $_SESSION['Mem_user'] = $result['Mem_user'];
         $_SESSION['id'] = $result['id'];
         header("location: ../../view/profile/Profile.html");
     }

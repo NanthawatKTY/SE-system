@@ -1,3 +1,11 @@
+<?php
+session_start();
+include_once('../../model/connect.php');
+
+$_SESSION['ID'];
+$_GET['ID'] = $_SESSION['ID'];
+echo $_GET['ID'];
+?>
 <!DOCTYPE html>
 <html>
 
@@ -89,11 +97,11 @@
           <label for="staticEmail2">นายสมชาย ไม่ค่อยมี</label>
         </div>
         <div class="form-group mx-sm-3 mb-2">
-          <input type="password" class="form-control" id="inputPassword2" placeholder="คะแนน">
+          <input type="g" class="form-control" id="g" placeholder="คะแนน" name="g">
         </div>
         <button type="submit" class="btn btn-success mb-2" href = "../../control/grade/save_add_score.php">บันทึก</button>
       </form>
-      <a type="back" class="btn btn-secondary mb-2" href="./GradeManager.php">กลับหน้าเดิม</a>
+      <a type="back" class="btn btn-secondary mb-2" href="./GradeManager.php?ID=<?php echo $_SESSION['ID'];?>">กลับหน้าเดิม</a>
 
 
 
@@ -118,7 +126,7 @@
                     $('#sidebar').toggleClass('active');
                 });
             });
-        </script>
+
 </body>
 
 </html>
