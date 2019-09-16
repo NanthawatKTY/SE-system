@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>จัดการนักศึกษา</title>
+    <title>สืบค้นบุคลากร</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -28,18 +28,20 @@
 
         <!-- Page Content  -->
         <div class="container mt-5">
-                <h3>จัดการนักศึกษา / บุคลากร</h3>
+                <div class="container mt-5">
+                        <div class="form-inline row">
+                                <button class="btn btn-sm btn-outline-info m-2 pl-3 pr-3">กลับ</button>
+                                <h4 class="my-auto">สืบค้นบุคลากร</h4>
+                        </div>
 <div class="row">
     <div class="col-9">
-            <label for="" class="">ค้นหาจาก ชื่อ / นามสกุล / รหัสนักศึกษา / รหัสหมู่เรียน</label><br>
+            <label for="" class="">คำค้น (ชื่อ - นามสกุล / เลขประจำตำแหน่ง)</label><br>
             <input type="text" class="form-control"> 
-            <div class="mt-1">
-<small>เช่น 60122660xxx</small>
-            </div>
-           
+
+       
             
     </div>
-    <div class="col-3 my-auto">
+    <div class="col-3 my-auto" style="padding-top: 30px;">
             <button class="btn btn-outline-secondary">ค้นหา</button>
     </div>
 </div>
@@ -50,37 +52,32 @@
             <table class="table table-bordered mt-3 text-center">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col">รหัสนักศึกษา/ รหัสบุคลากร</th>
-                        <!-- ใส่ if else แยกเอา  -->
-                        <th scope="col">รหัสหมู่เรียน</th>
+                        <th scope="col">เลขประจำตำแหน่ง</th>
                         <th scope="col">ชื่อ - นามสกุล</th>
-                        <th scope="col">สาขาวิชา</th>
+                        <th scope="col">ตำแหน่ง</th>
                         <th scope="col">แก้ไข</th>
                         <th scope="col">ลบ</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    <td scope="row">60122660101</td>
-                    <td>601226601</td>
-                    <td>นาย สมชาย ไม่ค่อยมี</td>
-                    <td></td>
+                    <td scope="row">50248</td>
+                    <td>นายDaniel Warren Riddle</td>
+                    <td>อาจารย์</td>
                     <td></td>
                     <td></td>
                     </tr>
                     <tr>
-                        <td scope="row">60122660102</td>
-                        <td>601226601</td>
-                        <td>นางสาว สมหญิง มีมากเหลือเกิน</td>
-                        <td></td>
+                        <td scope="row">50244</td>
+                        <td>นางสาวFan Sun</td>
+                        <td>อาจารย์</td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td scope="row">60122660103</td>
-                        <td>601226601</td>
-                        <td>นาย เกิดมาทำไม ไม่รู้เหมือนกัน</td>
-                        <td></td>
+                        <td scope="row">50040</td>
+                        <td>นายOliver Leonard Dilley</td>
+                        <td>อาจารย์</td>
                         <td></td>
                         <td></td>
                     </tr>
