@@ -27,7 +27,7 @@ $result = mysqli_fetch_array($query);
         <tr>
             <td width="125"> &nbsp;ลำดับรายวิชา</td>
             <td widrh="180">
-                <input  name="txtName"type="int" id="txtName" value="<?php echo $result['Sub_id'];?>">
+                <input  name="txtName"type="int" id="txtName" value="<?php $result['Sub_id'];?>">
                
             </td>
         </tr>
@@ -35,7 +35,7 @@ $result = mysqli_fetch_array($query);
             <td width="125"> &nbsp;รหัสรายวิชา</td>
             <td widrh="100">
             
-                <input name="txtcode"type="text" id="txtcode" value="<?php echo $result['Sub_code'];?>">
+                <input name="txtcode"type="text" id="txtcode" value="<?php $result['Sub_code'];?>">
                 </td>
             </td>
         </tr>
@@ -43,13 +43,13 @@ $result = mysqli_fetch_array($query);
             <td width="125"> &nbsp;ชื่อรายวิชา</td>
             <td widrh="500"hight="300">
                 
-                <textarea name="comment" rows="5" cols="40"><?php echo $result['Sub_Name'];?></textarea>
+                <textarea name="comment" rows="5" cols="40"><?php $result['Sub_Name'];?></textarea>
             </td>
         </tr>
         <tr>
             <td width="125"> &nbsp;หน่วยกิตรายวิชา</td>
             <td widrh="180">
-            <input name="txtcredit" type="text" id="txtcredit" value="<?php echo $result['Sub_Credit'];?>">
+            <input name="txtcredit" type="text" id="txtcredit" value="<?php $result['Sub_Credit'];?>">
                     </center>
                
             </td>

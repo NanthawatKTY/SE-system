@@ -9,7 +9,8 @@
 
 include '../../../model/condb.php'; 
 $ID = $_POST['MID'];
-$sql = "INSERT INTO subject_tb VALUES ( Sub_id, Sub_code, Sub_Name, Sub_Credit)";
+$sql = "INSERT INTO subject_tb VALUES (Sub_id ='".$_POST['txtName']."', Sub_code ='".$_POST['txtcode']."',
+                                        Sub_Name ='".$_POST['comment']."', Sub_Credit ='".$_POST['txtcredit']."')";
 $query = mysqli_query($conn, $sql);
 //echo $sql ;
 
