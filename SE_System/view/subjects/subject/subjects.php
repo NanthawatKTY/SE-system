@@ -82,7 +82,7 @@
                 </div>
             </nav>
             <h3>รายวิชาทั้งหมด</h3>
-            <a><button class="btn btn-success btn-sm m-1">+ เพิ่มรายวิชา</button></a> 
+            <a href="ADDSubAdmin.php"><button class="btn btn-success btn-sm m-1">+ เพิ่มรายวิชา</button></a> 
                 <input type="text">
             <a><button class="btn btn-secondary btn-sm m-1">ค้นหา</button></a>
             <table class="table table-bordered">

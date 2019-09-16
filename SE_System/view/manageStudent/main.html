@@ -1,3 +1,8 @@
+<?php
+include_once('connect.php');
+$sql = "SELECT * FROM student_tb";
+$query = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html>
 
@@ -82,18 +87,26 @@
                 </div>
             </nav>
             <h3>จัดการนักศึกษา</h3>
+<<<<<<< HEAD
             <button class="btn btn-success btn-sm m-1"><a href="/SE_System/control/student/save_add_std.php"> +
                     เพิ่มนักศึกษา</a></button>
             <input type="text" placeholder="รหัสนักศึกษา/ชื่อ - นามสกุล">
             <button class="btn btn-secondary btn-sm m-1">ค้นหา</button>
+=======
+<button class="btn btn-success btn-sm m-1"><a href="/SE_System/view/manageStudent/AddEdit.html"> + เพิ่มนักศึกษา</a></button> 
+<input type="text" placeholder="รหัสนักศึกษา/ชื่อ - นามสกุล">
+<button class="btn btn-secondary btn-sm m-1">ค้นหา</button> 
+>>>>>>> 1201c25429fde0d87b57eaec4423897c20c67d1c
             <table class="table table-bordered mt-3">
                 <thead>
                     <tr>
                         <th scope="col">รหัสนักศึกษา</th>
                         <th scope="col">ชื่อ - นามสกุล</th>
-                        <th scope="col">เบอร์โทร</th>
+                        <th scope="col">สาขา</th>
+                        <th scope="col">คณะ</th>
                         <th scope="col">แก้ไข</th>
                         <th scope="col">ลบ</th>
+<<<<<<< HEAD
                     </tr>
                 </thead>
                 <tbody>
@@ -120,6 +133,25 @@
                     </tr>
                 </tbody>
             </table>
+=======
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                        <tbody>
+                            <tr>
+                            <?php while($result = $query->fetch_assoc()){ ?>
+                              <td><?php echo $result['Std_Code']; ?></td>
+                              <td><?php echo $result['Std_Pname','Std_Fname',Std_Lname]; ?></td>
+                              <td><?php echo $result['Std_Maojr']; ?></td>
+                              <td><?php echo $result['Std_Faculty']; ?></td>
+                              <td><a class="btn btn-dark btn-sm" href="/SE_System/view/manageStudent/AddEdit.html echo $result['Std_id']; ?>">แก้ไข</a></td>
+                              <td><a class="btn btn-danger btn-sm" href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='\SE_System\control\Teacher\del_tch.php?id=<?php echo $result["Std_id"];?>';}">ลบ</a></td>
+                            </tr>
+                            <?php } ?>
+                          </tbody>
+                  </table>
+>>>>>>> 1201c25429fde0d87b57eaec4423897c20c67d1c
 
 
         </div>

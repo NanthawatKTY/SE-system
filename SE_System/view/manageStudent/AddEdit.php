@@ -24,6 +24,12 @@
 </head>
 
 <body class="setfont">
+    <?php
+        $objConnect = mysql_connect("localhost","root","root") or die("Error Connect to Database");
+        $objDB = mysql_select_db("softengdb");
+        $strSQL = "SELECT * FROM student_tb";
+        $objQuery = mysql_query($strSQL) or die ("Error Query [".$strSQL."]");
+?>
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -84,55 +90,89 @@
             <h3>เพิ่ม/แก้ไข ข้อมูลส่วนตัวนักศึกษา</h3>
             <hr>
             <form>
+                <?php
+                    while($objResult = mysql_fetch_array($objQuery))
+                    {
+                ?>
                 <!-- ชื่อ-นามกสุล  -->
+<<<<<<< HEAD:SE_System/view/manageStudent/AddEdit.php
                     <div class="form-group row">
                       <label for="colFormLabelSm" class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ชื่อ - นามสกุล :</label>
                       <div class="col-sm-5">
                         <input type="name" class="form-control form-control-sm" id="colFormLabelSm" value="สมชาย ไม่ชอบสมหญิง" >
                       </div>
+=======
+                <div class="form-group row">
+                    <label for="colFormLabelSm"
+                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ชื่อ - นามสกุล
+                        :</label>
+                    <div class="col-sm-5">
+                        <input type="name" class="form-control form-control-sm" id="colFormLabelSm"
+                            value="<?php echo"$objResult['Std_Fname']";?>">
+>>>>>>> 1201c25429fde0d87b57eaec4423897c20c67d1c:SE_System/view/manageStudent/AddEdit.html
                     </div>
-<!-- วันเกิด  -->
-                    <div class="form-group row">
-                            <label for="colFormLabelSm" class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">วันเกิด : </label>
-                            <div class="col-sm-5">
-                              <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm" value="22-05-1994">
-                            </div>
-                          </div>
-                          <!-- เลขที่บัตรประจำตัวประชาชน -->
-                          <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">เลขที่บัตรประจำตัวประชาชน : </label>
-                                <div class="col-sm-5">
-                                  <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm" value="1520100104758">
-                                </div>
-                              </div>
-                              <!-- รหัสนักศึกษา -->
-                              <div class="form-group row">
-                                    <label for="colFormLabelSm" class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">รหัสนักศึกษา : </label>
-                                    <div class="col-sm-5">
-                                      <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm" value="60122660132">
-                                    </div>
-                                  </div>
-                                      <!-- หลักสูตร -->
-                                      <div class="form-group row">
-                                            <label for="colFormLabelSm" class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">หลักสูตร : </label>
-                                            <div class="col-sm-5">
-                                              <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm" value="วิทยาศาสตรบัณฑิต">
-                                            </div>
-                                          </div>
-                                          <!-- สาขาวิชา -->
-                                          <div class="form-group row">
-                                                <label for="colFormLabelSm" class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">สาขาวิชา : </label>
-                                                <div class="col-sm-5">
-                                                  <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm" value="วิศวกรรมซอฟต์แวร์">
-                                                </div>
-                                              </div>
+                </div>
+                <!-- วันเกิด  -->
+                <div class="form-group row">
+                    <label for="colFormLabelSm"
+                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">วันเกิด : </label>
+                    <div class="col-sm-5">
+                        <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm"
+                            value="<?php echo"$objResult['Std_Birth']"?>">
+                    </div>
+                </div>
+                <!-- เลขที่บัตรประจำตัวประชาชน -->
+                <div class="form-group row">
+                    <label for="colFormLabelSm"
+                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">เลขที่บัตรประจำตัวประชาชน
+                        : </label>
+                    <div class="col-sm-5">
+                        <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm"
+                            value="<?php echo"$objResult['Std_Card']"?>">
+                    </div>
+                </div>
+                <!-- รหัสนักศึกษา -->
+                <div class="form-group row">
+                    <label for="colFormLabelSm"
+                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ที่อยู่ :
+                    </label>
+                    <div class="col-sm-5">
+                        <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm"
+                            value="<?php echo"$objResult['Std_Add']"?>">
+                    </div>
+                </div>
+                <!-- หลักสูตร -->
+                <div class="form-group row">
+                    <label for="colFormLabelSm"
+                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">สาขา :
+                    </label>
+                    <div class="col-sm-5">
+                        <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm"
+                            value="<?php echo"$objResult['Std_Major']"?>">
+                    </div>
+                </div>
+                <!-- สาขาวิชา -->
+                <div class="form-group row">
+                    <label for="colFormLabelSm"
+                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">คณะ :
+                    </label>
+                    <div class="col-sm-5">
+                        <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm"
+                            value="<?php echo"$objResult['Std_Faculty']"?>">
+                    </div>
+                </div>
+                <?php
+                    }
+                ?>
+            </form>
 
-                  </form>
-
-<div class="row">
-        <button class="btn btn-sm btn-primary mx-auto col-2"><a href="/SE_System/control/student/save_edit_std.php">บันทึก</a></button>
-</div>
-
+            <div class="row">
+                <button class="btn btn-sm btn-primary mx-auto col-2"><a
+                        href="/SE_System/control/student/save_edit_std.php">บันทึก</a></button>
+            </div>
+                    <?php
+                    mysql_close($objConnect);
+                    ?>
         </div>
 
         <!-- jQuery CDN - Slim version (=without AJAX) -->
