@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>เพิ่ม/แก้ไข ข้อมูลส่วนตัวนักศึกษา</title>
+    <title>จัดการผลการเรียน</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -33,8 +33,8 @@
             <img class=" circle-img mt-4"
                 src="https://scontent.fbkk13-1.fna.fbcdn.net/v/t1.0-9/62071969_10216624784104470_275687937776025600_n.jpg?_nc_cat=108&_nc_eui2=AeFlWjrNsKSDZAOkhDiO8Sh9gK_6MxCkO4I7Q7q-kDWjlvHgaQxXXnd_Kdgzvpf12-V57NUXyBmP9tQiXiQDK7h_oUO2uTgBIMIajS4DEgl9rw&_nc_oc=AQnPsBYrLEFJd65Nx-49Wa0az84w5sFxnLpeeeT6v3CGiW6Ct0XMM4l0zk2c3dPGwd8&_nc_ht=scontent.fbkk13-1.fna&oh=4de81c57afef203ee9addf36f5353172&oe=5E0D477F"
                 alt="">
-            <p class="text-center text-light mt-3 setfont">มารุตเทพ ร่มโพธิ์</p>
-            <p class="text-center text-light setfont">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
+            <p class="text-center text-light mt-3">มารุตเทพ ร่มโพธิ์</p>
+            <p class="text-center text-light">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
             <ul class="list-unstyled components pl-2">
                 <li>
                     <a href="/SE_System/view/profile/EditProfile.html">ข้อมูลส่วนตัว</a>
@@ -55,10 +55,10 @@
 
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="../../index.html" class="article">กลับเมนูหลัก</a>
+                    <a href="/SE_System/index.html" class="article">กลับเมนูหลัก</a>
                 </li>
                 <li>
-                    <a href="../../control/login/logout.php" class="download">ออกจากระบบ</a>
+                    <a href="/SE_System/logout.php" class="download">ออกจากระบบ</a>
                 </li>
 
             </ul>
@@ -81,57 +81,44 @@
                     </button>
                 </div>
             </nav>
-            <h3>เพิ่ม/แก้ไข ข้อมูลส่วนตัวนักศึกษา</h3>
-            <hr>
-            <form>
-                <!-- ชื่อ-นามกสุล  -->
-                    <div class="form-group row">
-                      <label for="colFormLabelSm" class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ชื่อ - นามสกุล :</label>
-                      <div class="col-sm-5">
-                        <input type="name" class="form-control form-control-sm" id="colFormLabelSm" value="สมชาย ไม่ชอบสมหญิง">
-                      </div>
-                    </div>
-<!-- วันเกิด  -->
-                    <div class="form-group row">
-                            <label for="colFormLabelSm" class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">วันเกิด : </label>
-                            <div class="col-sm-5">
-                              <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm" value="22-05-1994">
-                            </div>
-                          </div>
-                          <!-- เลขที่บัตรประจำตัวประชาชน -->
-                          <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">เลขที่บัตรประจำตัวประชาชน : </label>
-                                <div class="col-sm-5">
-                                  <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm" value="1520100104758">
-                                </div>
-                              </div>
-                              <!-- รหัสนักศึกษา -->
-                              <div class="form-group row">
-                                    <label for="colFormLabelSm" class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">รหัสนักศึกษา : </label>
-                                    <div class="col-sm-5">
-                                      <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm" value="60122660132">
-                                    </div>
-                                  </div>
-                                      <!-- หลักสูตร -->
-                                      <div class="form-group row">
-                                            <label for="colFormLabelSm" class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">หลักสูตร : </label>
-                                            <div class="col-sm-5">
-                                              <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm" value="วิทยาศาสตรบัณฑิต">
-                                            </div>
-                                          </div>
-                                          <!-- สาขาวิชา -->
-                                          <div class="form-group row">
-                                                <label for="colFormLabelSm" class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">สาขาวิชา : </label>
-                                                <div class="col-sm-5">
-                                                  <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm" value="วิศวกรรมซอฟต์แวร์">
-                                                </div>
-                                              </div>
+            <h3>จัดการผลการเรียน</h3>
+<h5>วิชา ภาษาอังกฤษเพื่อทักษะการเรียน - 9011103</h5>
 
-                  </form>
 
-<div class="row">
-        <button class="btn btn-sm btn-primary mx-auto col-2"><a href="/SE_System/control/student/save_edit_std.php">บันทึก</a></button>
-</div>
+            <table class="table table-bordered mt-3">
+                    <thead>
+                      <tr>
+                        <th scope="col">รหัส</th>
+                        <th scope="col">ชื่อ - นามสกุล</th>
+                        <th scope="col">คะแนน</th>
+                        <th scope="col">เกรด</th>
+                        <th scope="col">แก้ไข</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                        <td scope="row">60122660101</td>
+                        <td>นาย สมชาย ไม่ค่อยมี</td>
+                        <td>51</td>
+                        <td>D</td>
+                        <td><button>แก้ไข</button></td>
+                      </tr>
+                      <tr>
+                        <td scope="row">60122660102</td>
+                        <td>นางสาว สมหญิง มีมากเหลือเกิน</td>
+                        <td>79</td>
+                        <td>B+</td>
+                        <td><button>แก้ไข</button></td>
+                      </tr>
+                      <tr>
+                            <td scope="row">60122660103</td>
+                            <td>นาย เกิดมาทำไม ไม่รู้เหมือนกัน</td>
+                            <td>80</td>
+                            <td>A</td>
+                            <td><button>แก้ไข</button></td>
+                          </tr>
+                    </tbody>
+                  </table>
 
         </div>
 

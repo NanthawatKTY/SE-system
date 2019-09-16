@@ -1,7 +1,6 @@
-<?php
-include_once('connect.php');
-$sql = "SELECT * FROM student_tb";
-$query = $conn->query($sql);
+<?
+    session_start();
+    require_once('../../model/connect.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +10,7 @@ $query = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>จัดการนักศึกษา</title>
+    <title>จัดการผลการเรียน</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -60,10 +59,10 @@ $query = $conn->query($sql);
 
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="../../index.html" class="article">กลับเมนูหลัก</a>
+                    <a href="/SE_System/index.html" class="article">กลับเมนูหลัก</a>
                 </li>
                 <li>
-                    <a href="../../control/login/logout.php" class="download">ออกจากระบบ</a>
+                    <a href="/SE_System/logout.php" class="download">ออกจากระบบ</a>
                 </li>
 
             </ul>
@@ -86,73 +85,54 @@ $query = $conn->query($sql);
                     </button>
                 </div>
             </nav>
-            <h3>จัดการนักศึกษา</h3>
-<<<<<<< HEAD
-            <button class="btn btn-success btn-sm m-1"><a href="/SE_System/control/student/save_add_std.php"> +
-                    เพิ่มนักศึกษา</a></button>
-            <input type="text" placeholder="รหัสนักศึกษา/ชื่อ - นามสกุล">
-            <button class="btn btn-secondary btn-sm m-1">ค้นหา</button>
-=======
-<button class="btn btn-success btn-sm m-1"><a href="/SE_System/view/manageStudent/AddEdit.html"> + เพิ่มนักศึกษา</a></button> 
-<input type="text" placeholder="รหัสนักศึกษา/ชื่อ - นามสกุล">
-<button class="btn btn-secondary btn-sm m-1">ค้นหา</button> 
->>>>>>> 1201c25429fde0d87b57eaec4423897c20c67d1c
-            <table class="table table-bordered mt-3">
-                <thead>
-                    <tr>
-                        <th scope="col">รหัสนักศึกษา</th>
-                        <th scope="col">ชื่อ - นามสกุล</th>
-                        <th scope="col">สาขา</th>
-                        <th scope="col">คณะ</th>
-                        <th scope="col">แก้ไข</th>
-                        <th scope="col">ลบ</th>
-<<<<<<< HEAD
-                    </tr>
-                </thead>
-                <tbody>
+            <h3>จัดการผลการเรียน</h3>
+<h5>รายวิชาที่สอน</h5> <input type="text" placeholder="รหัสวิชา/ชื่อวิชา"> <button>ค้นหา</button>
 
-                    <td scope="row">60122660101</td>
-                    <td>นาย สมชาย ไม่ค่อยมี</td>
-                    <td>0882235111</td>
-                    <td></td>
-                    <td></td>
-                    </tr>
-                    <tr>
-                        <td scope="row">60122660102</td>
-                        <td>นางสาว สมหญิง มีมากเหลือเกิน</td>
-                        <td>0123456789</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td scope="row">60122660103</td>
-                        <td>นาย เกิดมาทำไม ไม่รู้เหมือนกัน</td>
-                        <td>0123456789</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-=======
+
+            <table class="table table-bordered mt-3">
+                    <thead>
+                      <tr>
+                        <th scope="col">รหัสวิชา</th>
+                        <th scope="col">รายวิชา</th>
+                        <th scope="col">จัดการ</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    
+                 
+                        <!-- <tr>
+                        
+                        <td scope="row">9011103</td>
+                        <td>	การทวนสอบและการทดสอบซอฟต์แวร์</td>
+                        <td><a class="btn btn-info" href ="./manager.html">จัดการ</a></td>
+                        
+                        </tr> -->
+                    
+                    <?php 
+        include_once('../../model/connect.php');
+        $sql = "SELECT * FROM subject_tb";
+        $query = mysqli_query($conn, $sql);
+        while($result=mysqli_fetch_array($query,MYSQLI_ASSOC)) 
+        {
+            ?>
+            <tr>
+           
+            
+            <td><div align="center">
+            <?php echo $result['Sub_code'];?></div></td>
+            <td><div align="left">
+            <?php echo $result['Sub_Name'];?></div></td>
+            <td><div align="center">
+            <a class="btn btn-info" href ="./GradeManager.php">จัดการ</a></td>
+            </tr>
+            <?php
 
-                        <tbody>
-                            <tr>
-                            <?php while($result = $query->fetch_assoc()){ ?>
-                              <td><?php echo $result['Std_Code']; ?></td>
-                              <td><?php echo $result['Std_Pname','Std_Fname',Std_Lname]; ?></td>
-                              <td><?php echo $result['Std_Maojr']; ?></td>
-                              <td><?php echo $result['Std_Faculty']; ?></td>
-                              <td><a class="btn btn-dark btn-sm" href="/SE_System/view/manageStudent/AddEdit.html echo $result['Std_id']; ?>">แก้ไข</a></td>
-                              <td><a class="btn btn-danger btn-sm" href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='\SE_System\control\Teacher\del_tch.php?id=<?php echo $result["Std_id"];?>';}">ลบ</a></td>
-                            </tr>
-                            <?php } ?>
-                          </tbody>
+        
+      }
+    ?>
+                    
+                   
+                    
                   </table>
->>>>>>> 1201c25429fde0d87b57eaec4423897c20c67d1c
-
 
         </div>
 
