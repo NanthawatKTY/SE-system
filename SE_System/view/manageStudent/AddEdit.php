@@ -24,12 +24,6 @@
 </head>
 
 <body class="setfont">
-    <?php
-        $objConnect = mysql_connect("localhost","root","root") or die("Error Connect to Database");
-        $objDB = mysql_select_db("softengdb");
-        $strSQL = "SELECT * FROM student_tb";
-        $objQuery = mysql_query($strSQL) or die ("Error Query [".$strSQL."]");
-?>
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -90,10 +84,6 @@
             <h3>เพิ่ม/แก้ไข ข้อมูลส่วนตัวนักศึกษา</h3>
             <hr>
             <form>
-                <?php
-                    while($objResult = mysql_fetch_array($objQuery))
-                    {
-                ?>
                 <!-- ชื่อ-นามกสุล  -->
                 <div class="form-group row">
                     <label for="colFormLabelSm"
@@ -101,7 +91,7 @@
                         :</label>
                     <div class="col-sm-5">
                         <input type="name" class="form-control form-control-sm" id="colFormLabelSm"
-                            value="<?php echo"$objResult['Std_Fname']";?>">
+                            value="">
                     </div>
                 </div>
                 <!-- วันเกิด  -->
@@ -110,7 +100,7 @@
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">วันเกิด : </label>
                     <div class="col-sm-5">
                         <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm"
-                            value="<?php echo"$objResult['Std_Birth']"?>">
+                            value="">
                     </div>
                 </div>
                 <!-- เลขที่บัตรประจำตัวประชาชน -->
@@ -120,7 +110,7 @@
                         : </label>
                     <div class="col-sm-5">
                         <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm"
-                            value="<?php echo"$objResult['Std_Card']"?>">
+                            value="">
                     </div>
                 </div>
                 <!-- รหัสนักศึกษา -->
@@ -130,7 +120,7 @@
                     </label>
                     <div class="col-sm-5">
                         <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm"
-                            value="<?php echo"$objResult['Std_Add']"?>">
+                            value="">
                     </div>
                 </div>
                 <!-- หลักสูตร -->
@@ -140,7 +130,7 @@
                     </label>
                     <div class="col-sm-5">
                         <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm"
-                            value="<?php echo"$objResult['Std_Major']"?>">
+                            value="">
                     </div>
                 </div>
                 <!-- สาขาวิชา -->
@@ -150,21 +140,13 @@
                     </label>
                     <div class="col-sm-5">
                         <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm"
-                            value="<?php echo"$objResult['Std_Faculty']"?>">
+                            value="">
                     </div>
-                </div>
-                <?php
-                    }
-                ?>
-            </form>
-
+                </div>         
             <div class="row">
                 <button class="btn btn-sm btn-primary mx-auto col-2"><a
                         href="/SE_System/control/student/save_edit_std.php">บันทึก</a></button>
             </div>
-                    <?php
-                    mysql_close($objConnect);
-                    ?>
         </div>
 
         <!-- jQuery CDN - Slim version (=without AJAX) -->
