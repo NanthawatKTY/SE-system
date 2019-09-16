@@ -95,13 +95,6 @@
                     {
                 ?>
                 <!-- ชื่อ-นามกสุล  -->
-<<<<<<< HEAD:SE_System/view/manageStudent/AddEdit.php
-                    <div class="form-group row">
-                      <label for="colFormLabelSm" class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ชื่อ - นามสกุล :</label>
-                      <div class="col-sm-5">
-                        <input type="name" class="form-control form-control-sm" id="colFormLabelSm" value="สมชาย ไม่ชอบสมหญิง" >
-                      </div>
-=======
                 <div class="form-group row">
                     <label for="colFormLabelSm"
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ชื่อ - นามสกุล
@@ -109,7 +102,6 @@
                     <div class="col-sm-5">
                         <input type="name" class="form-control form-control-sm" id="colFormLabelSm"
                             value="<?php echo"$objResult['Std_Fname']";?>">
->>>>>>> 1201c25429fde0d87b57eaec4423897c20c67d1c:SE_System/view/manageStudent/AddEdit.html
                     </div>
                 </div>
                 <!-- วันเกิด  -->

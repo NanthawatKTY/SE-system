@@ -147,7 +147,7 @@ include_once('../../model/connect.php');
             <td><div align="center">
             <?php echo $result['GPA'];?></div></td>
             <td><div align="center">
-            <?php echo $result['grad_font']; ?></div></td>
+            <?php echo $result['grade_font']; ?></div></td>
             <td><div align="center">
             <a class="btn btn-info" href ="./AddScore.php">จัดการ</a></td>
             <td><div align="center">
