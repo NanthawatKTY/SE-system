@@ -27,21 +27,21 @@ else
     {
         $_SESSION['Type_id'] = 1;
        $_SESSION['Mem_user'] = $result['Mem_user'];
-       header("location: ../../view/profile/admin/mainAdmin.html");
+       header("location: ../../view/profile/Profile.html");
     }
     else if($result["Type_id"]==2)
     {
         $_SESSION['Status'] = "teacher";
         $_SESSION['Mem_user'] = $result['Mem_user'];;
         $_SESSION['id'] = $result['id'];
-        header("location:../../view/profile/teacher/mainTeacher.html");
+        header("location: ../../view/profile/Profile.html");
     }
     else
     {
         $_SESSION['Type_id'] = 3;
         $_SESSION['Mem_user'] = $result['Mem_user'];
         
-        header("location:");
+        header("location: ../../view/profile/Profile.html");
     }
 }
 
