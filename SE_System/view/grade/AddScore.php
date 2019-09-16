@@ -97,7 +97,7 @@ echo $_GET['ID'];
           <label for="staticEmail2">นายสมชาย ไม่ค่อยมี</label>
         </div>
         <div class="form-group mx-sm-3 mb-2">
-          <input type="g" class="form-control" id="g" placeholder="คะแนน" name="g">
+          <input type="g" class="form-control" id="txtGrade" placeholder="คะแนน" name="txtGrade">
         </div>
         <button type="submit" class="btn btn-success mb-2" href = "../../control/grade/save_add_score.php">บันทึก</button>
       </form>
