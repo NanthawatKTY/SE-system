@@ -18,7 +18,7 @@ $sql = "SELECT * FROM subject_tb WHERE Sub_id=".$ID;
 $query = mysqli_query($conn, $sql);
 $result = mysqli_fetch_array($query);
 ?>
-<form name='EditSub' method='POST' action='subjects.php'>
+<form name='EditSub' method='POST' action='Check_UpdateSub.php'>
 <center><h3>Update Subject</h3>
 <table class="table table-dark">
     <tbody>
@@ -34,7 +34,7 @@ $result = mysqli_fetch_array($query);
             <td width="125"> &nbsp;รหัสรายวิชา</td>
             <td widrh="100">
             
-                <input name="txtUName"type="text" id="txtUName" value="<?php echo $result['Sub_code'];?>">
+                <input name="txtcode"type="text" id="txtcode" value="<?php echo $result['Sub_code'];?>">
                 </td>
             </td>
         </tr>
@@ -48,7 +48,7 @@ $result = mysqli_fetch_array($query);
         <tr>
             <td width="125"> &nbsp;หน่วยกิตรายวิชา</td>
             <td widrh="180">
-            <input name="txtpasswd"type="text" id="txtpasswd" value="<?php echo $result['Sub_Credit'];?>">
+            <input name="txtcredit" type="text" id="txtcredit" value="<?php echo $result['Sub_Credit'];?>">
                     </center>
                
             </td>
@@ -57,10 +57,7 @@ $result = mysqli_fetch_array($query);
         </table>
         <br>
             <center>
-                <input type="submit" name="Submit" onclick="return confirm('You Sure thin want to Save?')" value="Save"
-                <?php 
-                 $sql = "UPDATE subject_tb SET Sub_code, Sub_Name, Sub_Credit WHERE 'subject_tb'";
-                ?>>
+            <input type="submit" name="Submit" value="Save">
                 </center>
     </form>
 
