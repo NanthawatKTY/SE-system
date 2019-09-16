@@ -81,10 +81,23 @@
                     </button>
                 </div>
             </nav>
+<?php
+	ini_set('display_errors', 1);
+	error_reporting(~0);
+
+	$strKeyword = null;
+
+	if(isset($_POST["txtKeyword"]))
+	{
+		$strKeyword = $_POST["txtKeyword"];
+	}
+?>
             <h3>รายวิชาทั้งหมด</h3>
             <a href="ADDSubAdmin.php"><button class="btn btn-success btn-sm m-1">+ เพิ่มรายวิชา</button></a> 
-                <input type="text"> 
-            <a><button class="btn btn-secondary btn-sm m-1">ค้นหา</button></a>
+
+            <a><input name="txtKeyword" type="text" id="txtKeyword" value="<?php echo $strKeyword;?>">
+            <button class="btn btn-secondary btn-sm m-1" type="submit" value="Search" >ค้นหา</button></a>
+
             <table class="table table-bordered">
         <meta charset = "UTF-8">
         <script src="https://unpkg.com/ionicons@4.4.4/dist/ionicons.js"></script>
@@ -107,7 +120,7 @@
  <?php 
      include '../../../model/condb.php';
 
-        $sql = "SELECT * FROM subject_tb";
+        $sql = "SELECT * FROM subject_tb WHERE Sub_code LIKE '%".$strKeyword."%' ";
         $query = mysqli_query($conn, $sql);
         while($result=mysqli_fetch_array($query,MYSQLI_ASSOC)) 
         {
