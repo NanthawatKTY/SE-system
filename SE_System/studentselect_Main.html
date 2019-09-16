@@ -1,0 +1,157 @@
+<?php
+include_once('connect.php');
+$sql = "SELECT * FROM student_tb";
+$query = $conn->query($sql);
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="urf-8">
+        <title>  ระบบสารสนเทศ มหาวิทยลัยราชภัฏลำปาง</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta NAME="Author" CONTENT="Lampang Rajabhat University ">
+        <meta NAME="keywords" CONTENT="Lampang Rajabhat University,LPRU MIS,ระบบสารสนเทศ มหาวิทยาลัยราชภัฏลำปาง">
+        <meta NAME="Keywords"  lang="th" CONTENT="ระบบสารสนเทศ มหาวิทยาลัยราชภัฏลำปาง,Lampang Rajabhat University,Lampang,Thailand,Lampang,Thai,University,lpru,rajabhat,มหาวิทยาลัยราชภัฏลำปาง, ลำปาง, มหาวิทยาลัยราชภัฏ, Lampang,Rajabhat,University,LPRU,lpru,สถาบันอุดมศึกษา">
+        <meta name="description" content="ระบบสารสนเทศ มหาวิทยาลัยราชภัฏลำปาง,Lampang Rajabhat University มหาวิทยาลัยเพื่อการพัฒนาท้องถิ่น"/>
+        
+        <meta property="og:locale" content="th_TH" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content=" ระบบแสดงรายชื่อนักศึกษา - LPRU MIS" />
+        <meta property="og:description" content=" ระบบแสดงรายชื่อนักศึกษา - LPRU MIS" />
+        <meta property="og:url" content="/" />
+        <meta property="og:site_name" content=" ระบบแสดงรายชื่อนักศึกษา - LPRU MIS" />
+        <meta property="article:publisher" content="https://www.facebook.com/LampangRajabhatUniversity" />
+        <meta name="expires" content="never" />
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="shortcut icon" href="http://mis.lpru.ac.th/public/favicon/lpru-logo.ico" type="image/x-icon" >
+        <link rel="icon" href="http://mis.lpru.ac.th/public/favicon/lpru-logo32X32.png" sizes="32x32" >
+        <link rel="icon" href="http://mis.lpru.ac.th/public/favicon/lpru-logo48X48.png" sizes="48x48" >
+        <link rel="icon" href="http://mis.lpru.ac.th/public/favicon/lpru-logo96X96.png" sizes="96x96" >
+        <link rel="icon" href="http://mis.lpru.ac.th/public/favicon/lpru-logo144X144.png" sizes="144x144" >
+
+
+        <link href="http://mis.lpru.ac.th/public/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+        <link href="http://mis.lpru.ac.th/public/fontawesome/css/all.min.css" rel="stylesheet" >
+        <link href="http://mis.lpru.ac.th/public/css/jquery-confirm.min.css?i=1" rel="stylesheet" >
+        <link href="http://mis.lpru.ac.th/public/css/main.css?i=1" rel="stylesheet" >
+        <link href="http://mis.lpru.ac.th/public/css/mobie_main.css?i=1" rel="stylesheet" >
+    </head>
+    <body style="background: #ececec;">
+
+        <header style="border-bottom: 5px solid #114921;border-radius: 0px;margin-bottom: 20px;">
+            <div id="bg_header">
+                <div  class="container" id="TOPBAR">
+                    <div id="LOGO_SYSTEM">
+                            <div id="LOGOANDNAME">
+                            </div>
+                    </div>
+                    <nav class="navbar navbar-expand-sm navbar-light " id="MobieOnly">
+                        <a class="navbar-brand" href="http://mis.lpru.ac.th/">หน้าแรก</a>
+                       
+                    </nav>
+
+                    <div id="TOP_MANU">
+                        <a href="http://mis.lpru.ac.th/">หน้าแรก</a> 
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </header>
+        <div id="Main">
+
+
+
+<div class=" container" >
+    <div class="row">
+        <div class="col-md-12" style="padding-top: 10px;">
+            <div  class="page-title">
+                <a class="btn btn-link pull-right btn-info-gradiant btn-ex  " href="http://mis.lpru.ac.th/"  ><i class="fas fa-angle-left"></i> กลับ</a>
+                <div class="page-title-ch">
+
+                   ค้นหารายชือนักศึกษา
+                </div>
+            </div> 
+            <div class="card mt-2 mb-2"  >
+                <div class="card-body">
+                    <div >
+                        <form class="row">
+                            <div class="col-md-9">
+
+                                <label >ค้นหาจาก  ชื่อ / นามสกุล / รหัสนักศึกษา /&nbsp; <div class="btn-group">
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    ชั้นปี
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">1</a>
+    <a class="dropdown-item" href="#">2</a>
+    <a class="dropdown-item" href="#">3</a>
+    <a class="dropdown-item" href="#">4</a>
+
+
+  </div>
+</div></label>
+
+                                <input type="text" name="txt" class="form-control" value="">
+                               
+                            </div>
+                            <div class="col-md-3">
+                                <label > &nbsp;</label>
+                                <div>
+                                    <button type="submit" name="txtsearch" class="btn btn-info-gradiant btn-ex"><i class="fas fa-search"></i> ค้นหา</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <center>    <table class="table table-dark "style="height: 500px; width: 900px;">  
+           <thead>
+            <table class="table table-bordered mt-3">
+                <thead>
+                  <tr>
+                    <th scope="col">รหัสนักศึกษา</th>
+                    <th scope="col">ชื่อ - นามสกุล</th>
+                    <th scope="col">สาขา</th>
+                    <th scope="col">คณะ</th>
+                    <th scope="col">แก้ไข</th>
+                    <th scope="col">ลบ</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                    <tbody>
+                        <tr>
+                        <?php while($result = $query->fetch_assoc()){ ?>
+                          <td><?php echo $result['Std_Code']; ?></td>
+                          <td><?php echo $result['Std_Pname','Std_Fname',Std_Lname]; ?></td>
+                          <td><?php echo $result['Std_Maojr']; ?></td>
+                          <td><?php echo $result['Std_Faculty']; ?></td>
+                          <td><a class="btn btn-dark btn-sm" href="edit_member.php?id=<?php echo $result['id']; ?>">แก้ไข</a></td>
+                          <td><a class="btn btn-danger btn-sm" href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='del_member_save.php?id=<?php echo $result["id"];?>';}">ลบ</a></td>
+                        </tr>
+                        <?php } ?>
+                      </tbody>
+                    </thead>
+              </table>
+            </thead>        
+        </div>
+    </div>
+</div></div>
+
+<footer style="    background: #343a40;margin-top: 20px;
+        color: #ffffff;
+        padding: 20px;
+        position: sti;
+        bottom: 0px;
+        width: 100%;">
+    <div class="container">
+        <div>ระบบสารสนเทศ มหาวิทยาลัยราชภัฏลำปาง  </div>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
