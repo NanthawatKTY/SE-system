@@ -1,3 +1,11 @@
+<?php
+session_start();
+require_once('connect.php');
+$sql = $sql = "SELECT * FROM student_tb WHERE id ='".$_GET['Std_id']."'";
+$_SESSION['id_edit_student'] = $_GET['Std_id'];
+$query = $conn->query($sql);
+$result = $query->fetch_assoc();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -156,8 +164,10 @@
                 <?php
                     }
                 ?>
-            </form>
 
+
+
+           
             <div class="row">
                 <button class="btn btn-sm btn-primary mx-auto col-2"><a
                         href="/SE_System/control/student/save_edit_std.php">บันทึก</a></button>
