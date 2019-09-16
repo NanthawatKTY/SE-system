@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2019 at 01:27 PM
+-- Generation Time: Sep 16, 2019 at 05:35 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -33,15 +33,16 @@ CREATE TABLE `grade_tb` (
   `Grad_Term` text COLLATE utf8_unicode_ci NOT NULL,
   `Std_code` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
   `Sub_code` varchar(13) COLLATE utf8_unicode_ci NOT NULL,
-  `GPA` text COLLATE utf8_unicode_ci NOT NULL
+  `GPA` text COLLATE utf8_unicode_ci NOT NULL,
+  `grade_font` varchar(2) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `grade_tb`
 --
 
-INSERT INTO `grade_tb` (`Grad_id`, `Grad_Term`, `Std_code`, `Sub_code`, `GPA`) VALUES
-(1, '1/2561', '6012266011', '569836', '3.99');
+INSERT INTO `grade_tb` (`Grad_id`, `Grad_Term`, `Std_code`, `Sub_code`, `GPA`, `grade_font`) VALUES
+(1, '1/2561', '60122660118', '5671101', '70', '');
 
 -- --------------------------------------------------------
 
@@ -64,7 +65,8 @@ CREATE TABLE `member_tb` (
 INSERT INTO `member_tb` (`Mem_id`, `Mem_user`, `Mem_pass`, `Type_id`, `Email`) VALUES
 (1, '60122660134', '251241', '3', 'nanthawat.tae123@gmail.com'),
 (2, 'Admin', '123456789qwerty', '1', 'admin@gmail.com'),
-(3, '56975', '15111990', '2', 'weera_mu@teach.com');
+(3, '56975', '15111990', '2', 'weera_mu@teach.com'),
+(4, '48978', '123456789', '2', '48978@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -258,7 +260,7 @@ ALTER TABLE `grade_tb`
 -- AUTO_INCREMENT for table `member_tb`
 --
 ALTER TABLE `member_tb`
-  MODIFY `Mem_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Mem_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `register_tb`
