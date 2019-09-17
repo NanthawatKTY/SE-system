@@ -1,3 +1,14 @@
+<?php
+session_start();
+include_once('../../../model/connect.php');
+error_reporting(0);
+$_SESSION['IdEditProgram'] = $_GET["ID"];
+$sql = "SELECT * FROM `course_tb` WHERE `Cos_code`= '".$_SESSION['IdEditProgram']."'";
+$query = $conn->query($sql);
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -82,82 +93,125 @@
                 </div>
             </nav>
             <h3>จัดการแผนการเรียน / แผนการเรียน</h3> 
+            <h5>แผนการเรียน : วิศวกรรมซอฟต์แวร์ 2560</h5>
             <!-- if ระหว่าง admin / อจ / นศ  -->
 
-<input type="text" placeholder="รหัสรายวิชา">
 
- <select class="" id="inputGroupSelect01">
-        <option selected>ภาคเรียน</option>
+<form action="./AddEditProgram.php" method="POST">
+                <!-- รหัสวิชา  -->
+                <div class="form-group">
+                    <label for="subCode"
+                        class="col-sm-4 col-form-label col-form-label-sm font-weight-bold">รหัสวิชา :</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control form-control-sm" id="subCode" name="subCode" value="">
+                    </div>
+                </div>
+
+                                <!-- ชื่อวิชา  -->
+                                <div class="form-group">
+                    <label for="subName"
+                        class="col-sm-4 col-form-label col-form-label-sm font-weight-bold">ชื่อวิชา :</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control form-control-sm" id="subName" value="">
+                    </div>
+                </div>
+
+                                     <!-- กลุ่มวิชา  -->
+                                     <div class="form-group">
+                    <label for="secName"
+                        class="col-sm-4 col-form-label col-form-label-sm font-weight-bold">กลุ่มวิชา :</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control form-control-sm" id="secName" value="">
+                    </div>
+                </div>
+
+                                     <!-- รหัสอาจารย์  -->
+                                     <div class="form-group">
+                    <label for="TeacName"
+                        class="col-sm-4 col-form-label col-form-label-sm font-weight-bold">รหัสอาจารย์ผู้สอน :</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control form-control-sm" id="TeacName" value="">
+                    </div>
+                </div>
+
+                                     <!-- คาบเรียน  -->
+                                     <div class="form-group">
+                    <label for="cosTime"
+                        class="col-sm-4 col-form-label col-form-label-sm font-weight-bold">คาบเรียน :</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control form-control-sm" id="cosTime" value="">
+                        <small>เช่น จ(1-4), อ(6-10)</small>
+                    </div>
+                </div>
+                                                     <!-- ห้องเรียน  -->
+                                                     <div class="form-group">
+                    <label for="cosRoom"
+                        class="col-sm-4 col-form-label col-form-label-sm font-weight-bold">ห้องเรียน :</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control form-control-sm" id="cosRoom"  value="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                <select class="col-sm-3 col-form-label col-form-label-sm ml-3" id="inputGroupSelect01">
+        <option selected>เลือกภาคเรียน</option>
         <option value="1">1/2560</option>
         <option value="2">2/2560</option>
         <option value="3">1/2561</option>
         <option value="3">2/2561</option>
+        <option value="3">1/2562</option>
+        <option value="3">2/2562</option>
+        <option value="3">1/2563</option>
+        <option value="3">2/2563</option>
       </select>
- <button>เพิ่มรายวิชา</button>
+ <button type="submit" name="Submit">เพิ่มรายวิชา</button>
+                </div>           
+</form>
 
  <table class="table table-bordered mt-3">
         <thead>
           <tr>
             <th scope="col">รหัสวิชา</th>
             <th scope="col">ชื่อวิชา</th>
-            <th scope="col">หน่วยกิต</th>
             <th scope="col">กลุ่มวิชา</th>
             <th scope="col">อาจารย์ผู้สอน</th>
             <th scope="col">คาบเรียน</th>
             <th scope="col">ห้องเรียน</th>
-            <!-- if ระหว่าง admin / อจ / นศ  -->
             <th scope="col">แก้ไข</th>
             <th scope="col">ลบ</th>
           </tr>
         </thead>
         <tbody>
             <th colspan="9">ภาคเรียนที่ 1/2560</th>
+            <?php 
+            $sql_1_2560 = "SELECT DISTINCT course_tb.Sub_code,subject_tb.Sub_name,
+            sect_tb.Sect_Name,teacher_tb.Teach_Pname,teacher_tb.Teach_Fname,
+            teacher_tb.Teach_Lname,course_tb.Cos_Time,course_tb.Cos_Room FROM course_tb
+            INNER JOIN subject_tb 
+             ON course_tb.Sub_code = subject_tb.Sub_code
+             INNER JOIN sect_tb 
+              ON course_tb.Sect_code = sect_tb.Sect_code
+             INNER JOIN teacher_tb
+            ON course_tb.Teach_code = teacher_tb.Teach_code WHERE `Cos_term`= '1/2560'";
+            $query_1_2560 = $conn->query($sql_1_2560);
+            while($result_1_2560  = $query_1_2560->fetch_assoc())  {?>
             <tr>
-            <td scope="row">9011103</td>
-            <td>วิศวกรรมซอฟต์แวร์ 2560</td>
-            <td>3(3-0-6)</td>
-            <td>พื้นฐานภาษา</td>
-            <td>ไพจิตร</td>
-            <td>จ1-4</td>
-            <td>39402</td>
+            <td scope="row"><?php echo $result_1_2560['Sub_code'] ?></td>
+            <td><?php echo $result_1_2560['Sub_name'] ?></td>
+            <td><?php echo $result_1_2560['Sect_Name'] ?></td>
+            <td><?php echo $result_1_2560['Teach_Pname']." ".$result_1_2560['Teach_Fname']." ".$result_1_2560['Teach_Lname'] ?></td>
+            <td><?php echo $result_1_2560['Cos_Time'] ?></td>
+            <td><?php echo $result_1_2560['Cos_Room'] ?></td>
             <td><button>แก้ไข</button></td>
             <td><button>ลบ</button></td>
           </tr>
-          <tr>
-            <td scope="row">9011202</td>
-            <td>วิศวกรรมซอฟต์แวร์ 2562</td>
-            <td>3(3-0-6)</td>
-            <td> เอกบังคับ</td>
-            <td>ไพจิตร</td>
-            <td>จ6-9</td>
-            <td>39402</td>
-            <td><button>แก้ไข</button></td>
-            <td><button>ลบ</button></td>
-          </tr>
+            <?php } ?>
+            <tr>
+            <th colspan="9">ภาคเรียนที่ 2/2560</th>
+            </tr>
           
-          <th colspan="9">ภาคเรียนที่ 2/2560</th>
-          <tr>
-          <td scope="row">9011103</td>
-          <td>วิศวกรรมซอฟต์แวร์ 2560</td>
-          <td>3(3-0-6)</td>
-          <td>พื้นฐานภาษา</td>
-          <td>ไพจิตร</td>
-            <td>ฤ1-4</td>
-            <td>39403</td>
-            <td><button>แก้ไข</button></td>
-            <td><button>ลบ</button></td>
-        </tr>
-        <tr>
-          <td scope="row">9011202</td>
-          <td>วิศวกรรมซอฟต์แวร์ 2562</td>
-          <td>3(3-0-6)</td>
-          <td> เอกบังคับ</td>
-          <td>ไพจิตร</td>
-            <td>พฤ2-4</td>
-            <td>39401</td>
-            <td><button>แก้ไข</button></td>
-            <td><button>ลบ</button></td>
-        </tr>
+
+
         <tr>
         <th colspan="9">ภาคเรียนที่ 1/2561</th>
     </tr>

@@ -1,3 +1,11 @@
+<?php
+session_start();
+include_once('../../../model/connect.php');
+
+$sql = "SELECT * FROM course_tb";
+$query = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -6,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>เแก้ไขรายวิชาแผนการเรียน</title>
+    <title>จัดการแผนการเรียน</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -33,8 +41,8 @@
             <img class=" circle-img mt-4"
                 src="https://scontent.fbkk13-1.fna.fbcdn.net/v/t1.0-9/62071969_10216624784104470_275687937776025600_n.jpg?_nc_cat=108&_nc_eui2=AeFlWjrNsKSDZAOkhDiO8Sh9gK_6MxCkO4I7Q7q-kDWjlvHgaQxXXnd_Kdgzvpf12-V57NUXyBmP9tQiXiQDK7h_oUO2uTgBIMIajS4DEgl9rw&_nc_oc=AQnPsBYrLEFJd65Nx-49Wa0az84w5sFxnLpeeeT6v3CGiW6Ct0XMM4l0zk2c3dPGwd8&_nc_ht=scontent.fbkk13-1.fna&oh=4de81c57afef203ee9addf36f5353172&oe=5E0D477F"
                 alt="">
-            <p class="text-center text-light mt-3 setfont">มารุตเทพ ร่มโพธิ์</p>
-            <p class="text-center text-light setfont">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
+            <p class="text-center text-light mt-3">มารุตเทพ ร่มโพธิ์</p>
+            <p class="text-center text-light">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
             <ul class="list-unstyled components pl-2">
                 <li>
                     <a href="/SE_System/view/profile/EditProfile.html">ข้อมูลส่วนตัว</a>
@@ -60,6 +68,7 @@
                 <li>
                     <a href="/SE_System/logout.php" class="download">ออกจากระบบ</a>
                 </li>
+
             </ul>
         </nav>
 
@@ -80,72 +89,33 @@
                     </button>
                 </div>
             </nav>
-            <h3>รายวิชาแผนการเรียน [แก้ไข]</h3>
-            <hr>
-            <form>
-                <!-- รหัสวิชา  -->
-                <div class="form-group row">
-                    <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">รหัสวิชา:</label>
-                    <div class="col-sm-5">
-                        <input type="name" class="form-control form-control-sm" id="colFormLabelSm">
-                    </div>
-                </div>
-                <!-- ชื่อวิชา  -->
-                <div class="form-group row">
-                    <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ชื่อวิชา :
-                    </label>
-                    <div class="col-sm-5">
-                        <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm">
-                    </div>
-                </div>
-                <!-- หน่วยกิต -->
-                <div class="form-group row">
-                    <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">หน่วยกิต :
-                    </label>
-                    <div class="col-sm-5">
-                        <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm">
-                    </div>
-                </div>
-                <!-- อาจารย์ผู้สอน -->
-                <div class="form-group row">
-                    <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">อาจารย์ผู้สอน :
-                    </label>
-                    <div class="col-sm-5">
-                        <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm" >
-                    </div>
-                </div>
+            <h3>จัดการแผนการเรียน</h3>
+<button class="btn btn-success btn-sm m-1">+ แผนการเรียน</button> 
+<input type="text">
+<button class="btn btn-secondary btn-sm m-1">ค้นหา</button> 
+            <table class="table table-bordered mt-3">
+                    <thead>
+                      <tr>
+                        <th scope="col">รหัส</th>
+                        <th scope="col">แผนการเรียน</th>
+                        <th scope="col">แก้ไข</th>
+                        <th scope="col">ลบ</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <?php while($result = $query->fetch_assoc())  {?>
+                        <tr>
+                        <td scope="row"><?php echo ($result['Cos_code']); ?></td>
+                        <td><?php echo ($result['Cos_name']); ?></td>
+                        <td><a class="btn btn-sm btn-primary" href="./EdPrograms.php?ID=<?php echo $result['Cos_code'];?>">แก้ไข</a></td>
+                        <td><button>ลบ</button></td>
+                      </tr>
+                      <?php }?>
+                      
+                      
+                    </tbody>
+                  </table>
 
-                <!-- คาบเรียน -->
-                <div class="form-group row">
-                    <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">คาบเรียน :
-                    </label>
-                    <div class="col-sm-5">
-                        <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm" >
-                    </div>
-                </div>
-
-                <!-- ห้องเรียน -->
-                <div class="form-group row">
-                    <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ห้องเรียน :
-                    </label>
-                    <div class="col-sm-5">
-                        <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm" >
-                    </div>
-                </div>
-
-
-
-            </form>
-
-            <div class="row">
-                <button class="btn btn-sm btn-primary mx-auto col-2">บันทึก</button>
-            </div>
 
         </div>
 

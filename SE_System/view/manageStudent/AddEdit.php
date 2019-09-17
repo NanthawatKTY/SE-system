@@ -23,6 +23,8 @@
         crossorigin="anonymous"></script>
 </head>
 
+C:/xampp/htdocs/SE/SE-system/SE_System/view/manageStudent/AddEdit.php
+
 <body class="setfont">
     <div class="wrapper">
         <!-- Sidebar  -->
