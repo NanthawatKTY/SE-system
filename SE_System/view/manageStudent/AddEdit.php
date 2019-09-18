@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../../../model/connect.php');
+include_once('../../model/connect.php');
 $sql = "SELECT * FROM student_tb";
 $query = $conn->query($sql);
 $result = $query->fetch_assoc()
@@ -131,7 +131,8 @@ $result = $query->fetch_assoc()
                     <div class="col-sm-5">
                         <input type="text" name="txtLname" class="form-control form-control-sm" id="colFormLabelSm"
                             value="<?php echo $value['Std_Fname'];?>" require></div>
-                    </div>
+                    <?php }  ?>
+                </div>
                 </div>
                 <!-- วันเดือนปีเกิด -->
                 <div class="form-group row">
@@ -141,7 +142,7 @@ $result = $query->fetch_assoc()
                     <div class="col-sm-5">
                         <input type="text" name="txtbirth" class="form-control form-control-sm" id="colFormLabelSm"
                             value="<?php echo $result['Std_Birth']?>" require></div>
-                    <?php else{  ?>
+                    <?php }else{  ?>
                         <label for="colFormLabelSm"
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">วันเกิด : </label>
                     <div class="col-sm-5">
@@ -156,7 +157,7 @@ $result = $query->fetch_assoc()
                     <div class="col-sm-5">
                         <input type="text" name="txtcard" class="form-control form-control-sm" id="colFormLabelSm"
                             value="<?php echo $result['Std_Card']?>" require></div>
-                    <?php else{  ?>
+                    <?php} else{  ?>
                         <label for="colFormLabelSm"
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">เลขที่บัตรประจำตัวประชาชน : </label>
                     <div class="col-sm-5">
@@ -171,7 +172,7 @@ $result = $query->fetch_assoc()
                     <div class="col-sm-5">
                         <input type="text" name="txtcode" class="form-control form-control-sm" id="colFormLabelSm"
                             value="<?php echo $result['Std_Code']?>" require></div>
-                    <?php else{  ?>
+                    <?php} else{  ?>
                         <label for="colFormLabelSm"
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">รหัสนักศึกษา : </label>
                     <div class="col-sm-5">
@@ -186,7 +187,7 @@ $result = $query->fetch_assoc()
                     <div class="col-sm-5">
                         <input type="text" name="txtmajor" class="form-control form-control-sm" id="colFormLabelSm"
                             value="<?php echo $result['Std_Major']?>" require></div>
-                    <?php else{  ?>
+                    <?php }else{  ?>
                         <label for="colFormLabelSm"
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">สาขาวิชา : </label>
                     <div class="col-sm-5">
@@ -201,7 +202,7 @@ $result = $query->fetch_assoc()
                     <div class="col-sm-5">
                         <input type="text" name="txtfac" class="form-control form-control-sm" id="colFormLabelSm"
                             value="<?php echo $result['Std_Faculty']?>" require></div>
-                    <?php else{  ?>
+                    <?php }else{  ?>
                         <label for="colFormLabelSm"
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">คณะ : </label>
                     <div class="col-sm-5">

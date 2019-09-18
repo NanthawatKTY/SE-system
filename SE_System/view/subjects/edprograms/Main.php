@@ -2,7 +2,7 @@
 session_start();
 include_once('../../../model/connect.php');
 
-$sql = "SELECT * FROM course_tb";
+$sql = "SELECT DISTINCT Cos_code, Cos_name FROM coursename_tb";
 $query = $conn->query($sql);
 ?>
 

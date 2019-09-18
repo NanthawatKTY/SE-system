@@ -2,11 +2,38 @@
 session_start();
 include_once('../../../model/connect.php');
 error_reporting(0);
-$_SESSION['IdEditProgram'] = $_GET["ID"];
-$sql = "SELECT * FROM `course_tb` WHERE `Cos_code`= '".$_SESSION['IdEditProgram']."'";
-$query = $conn->query($sql);
 
+if($_GET["ID"]){
+    $_SESSION['IdEditProgram'] = $_GET["ID"];
+}
+else{
+    $_SESSION['IdEditProgram'] = $_SESSION['IdEditProgram'];
+}
+
+
+$sql = "SELECT course_tb.Cos_code, coursename_tb.Cos_name, course_tb.Cos_term ,course_tb.Sub_Code ,course_tb.Teach_code, 
+                course_tb.Sect_code, course_tb.Cos_Time, course_tb.Cos_Room 
+
+FROM course_tb
+INNER JOIN coursename_tb ON course_tb.Cos_code = coursename_tb.Cos_code
+WHERE coursename_tb.Cos_code = '".$_SESSION['IdEditProgram']."'";
+$query = $conn->query($sql);
+$result = $query->FETCH_ASSOC();
+
+$sqlEdit = "SELECT DISTINCT course_tb.Cos_id,course_tb.Cos_code,course_tb.Sub_code,subject_tb.Sub_name,
+sect_tb.Sect_code,sect_tb.Sect_Name,teacher_tb.Teach_code,teacher_tb.Teach_Pname,teacher_tb.Teach_Fname,
+teacher_tb.Teach_Lname,course_tb.Cos_Time,course_tb.Cos_Room,course_tb.Cos_term FROM course_tb
+INNER JOIN subject_tb 
+ ON course_tb.Sub_code = subject_tb.Sub_code
+ INNER JOIN sect_tb 
+  ON course_tb.Sect_code = sect_tb.Sect_code
+ INNER JOIN teacher_tb
+ON course_tb.Teach_code = teacher_tb.Teach_code 
+WHERE Cos_id='".$_GET['CosId']."' ";
+$queryEdit = $conn->query($sqlEdit);
+$resultEdit = $queryEdit->FETCH_ASSOC();
 ?>
+
 
 
 <!DOCTYPE html>
@@ -92,27 +119,32 @@ $query = $conn->query($sql);
                     </button>
                 </div>
             </nav>
+            <a class="btn btn-sm btn-secondary m-1" href="./Main.php"> < กลับหน้าเดิม</a>
             <h3>จัดการแผนการเรียน / แผนการเรียน</h3> 
-            <h5>แผนการเรียน : วิศวกรรมซอฟต์แวร์ 2560</h5>
+            <h5>แผนการเรียน : <?php echo $result['Cos_name'] ?></h5>
             <!-- if ระหว่าง admin / อจ / นศ  -->
 
 
 <form action="./AddEditProgram.php" method="POST">
-                <!-- รหัสวิชา  -->
+                <!-- เลือกวิชา  -->
                 <div class="form-group">
                     <label for="subCode"
-                        class="col-sm-4 col-form-label col-form-label-sm font-weight-bold">รหัสวิชา :</label>
+                        class="col-sm-4 col-form-label col-form-label-sm font-weight-bold">เลือกวิชา :</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control form-control-sm" id="subCode" name="subCode" value="">
-                    </div>
-                </div>
+                    <select name="subCode" class="form-control col-form-label col-form-label-sm" id="inputGroupSelect01" required>
+<option <?php if($_GET['CosId']){ ?>
+    value="<?php echo $resultEdit['Sub_code'] ?>"
+<?php  } ?> selected><?php if($_GET['CosId']){ echo $resultEdit['Sub_code']." ". $resultEdit['Sub_name']." [ค่าเดิม]";
+}else { echo "เลือกวิชา";}?> 
+</option>
 
-                                <!-- ชื่อวิชา  -->
-                                <div class="form-group">
-                    <label for="subName"
-                        class="col-sm-4 col-form-label col-form-label-sm font-weight-bold">ชื่อวิชา :</label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control form-control-sm" id="subName" value="">
+<?php  
+$sqlSubject = "SELECT * FROM `subject_tb`";
+$querySubject = $conn->query($sqlSubject);
+while($rowSubject = $querySubject->fetch_assoc()){ ?>
+<option value="<?php echo $rowSubject['Sub_code'] ?>" ><?php echo $rowSubject['Sub_code'] ." ". $rowSubject['Sub_Name']?></option>
+<?php } ?>
+      </select>
                     </div>
                 </div>
 
@@ -121,7 +153,19 @@ $query = $conn->query($sql);
                     <label for="secName"
                         class="col-sm-4 col-form-label col-form-label-sm font-weight-bold">กลุ่มวิชา :</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control form-control-sm" id="secName" value="">
+                    <select name="secName" class="form-control col-form-label col-form-label-sm" id="inputGroupSelect01" required>
+                    <option <?php if($_GET['CosId']){ ?>
+    value="<?php echo $resultEdit['Sect_code'] ?>"
+<?php  } ?> selected><?php if($_GET['CosId']){ echo $resultEdit['Sect_code']." ". $resultEdit['Sect_Name']." [ค่าเดิม]";
+}else { echo "เลือกกลุ่มวิชา";}?> 
+</option>
+<?php  
+$sqlSec = "SELECT * FROM `sect_tb`";
+$querySec = $conn->query($sqlSec);
+while($rowSec = $querySec->fetch_assoc()){ ?>
+<option value="<?php echo $rowSec['Sect_code'] ?>" ><?php echo $rowSec['Sect_code'] ." ". $rowSec['Sect_Name']?></option>
+<?php } ?>
+      </select>
                     </div>
                 </div>
 
@@ -130,7 +174,20 @@ $query = $conn->query($sql);
                     <label for="TeacName"
                         class="col-sm-4 col-form-label col-form-label-sm font-weight-bold">รหัสอาจารย์ผู้สอน :</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control form-control-sm" id="TeacName" value="">
+                    <select name="TeacName" class="form-control col-form-label col-form-label-sm" id="inputGroupSelect01" required>
+                    <option <?php if($_GET['CosId']){ ?>
+    value="<?php echo $resultEdit['Teach_code'] ?>"
+<?php  } ?> selected><?php if($_GET['CosId']){ echo $resultEdit['Teach_code']." ".$resultEdit['Teach_Pname']." ".$resultEdit['Teach_Fname']." ".$resultEdit['Teach_Lname']." [ค่าเดิม]";
+}else { echo "เลือกอาจารย์";}?> 
+</option>
+<?php  
+$sqlTeacher = "SELECT * FROM `teacher_tb`";
+$queryTeacher = $conn->query($sqlTeacher);
+while($rowTeacher = $queryTeacher->fetch_assoc()){ ?>
+<option value="<?php echo $rowTeacher['Teach_code'] ?>" ><?php echo $rowTeacher['Teach_code'] ." ". $rowTeacher['Teach_Pname']." ".
+$rowTeacher['Teach_Fname'] ." ". $rowTeacher['Teach_Lname']?></option>
+<?php } ?>
+      </select>
                     </div>
                 </div>
 
@@ -139,7 +196,9 @@ $query = $conn->query($sql);
                     <label for="cosTime"
                         class="col-sm-4 col-form-label col-form-label-sm font-weight-bold">คาบเรียน :</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control form-control-sm" id="cosTime" value="">
+                        <input type="text" class="form-control form-control-sm" id="cosTime" name="cosTime" 
+                        <?php if($_GET['CosId']){ ?>value="<?php echo $resultEdit['Cos_Time']?>" <?php }
+                        else{ ?> <?php } ?> required>
                         <small>เช่น จ(1-4), อ(6-10)</small>
                     </div>
                 </div>
@@ -148,26 +207,51 @@ $query = $conn->query($sql);
                     <label for="cosRoom"
                         class="col-sm-4 col-form-label col-form-label-sm font-weight-bold">ห้องเรียน :</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control form-control-sm" id="cosRoom"  value="">
+                        <input type="text" class="form-control form-control-sm" id="cosRoom" name="cosRoom" 
+                        <?php if($_GET['CosId']){ ?>value="<?php echo $resultEdit['Cos_Room']?>" <?php }
+                        else{ ?> <?php } ?> required>
+                        
                     </div>
                 </div>
 
                 <div class="form-group">
-                <select class="col-sm-3 col-form-label col-form-label-sm ml-3" id="inputGroupSelect01">
-        <option selected>เลือกภาคเรียน</option>
-        <option value="1">1/2560</option>
-        <option value="2">2/2560</option>
-        <option value="3">1/2561</option>
-        <option value="3">2/2561</option>
-        <option value="3">1/2562</option>
-        <option value="3">2/2562</option>
-        <option value="3">1/2563</option>
-        <option value="3">2/2563</option>
+                <select name="cosTerm" class="col-sm-3 col-form-label col-form-label-sm ml-3" id="inputGroupSelect01" required>
+                <option <?php if($_GET['CosId']){ ?>
+    value="<?php echo $resultEdit['Cos_term'] ?>"
+<?php  } ?> selected><?php if($_GET['CosId']){ echo $resultEdit['Cos_term']." [ค่าเดิม]";
+}else { echo "เลือกภาคเรียน";}?> 
+</option>
+        <option value="1/2560">1/2560</option>
+        <option value="2/2560">2/2560</option>
+        <option value="1/2561">1/2561</option>
+        <option value="2/2561">2/2561</option>
+        <option value="1/2562">1/2562</option>
+        <option value="2/2562">2/2562</option>
+        <option value="1/2563">1/2563</option>
+        <option value="2/2563">2/2563</option>
       </select>
- <button type="submit" name="Submit">เพิ่มรายวิชา</button>
-                </div>           
+      <?php if($_GET['CosId']){ 
+          $_SESSION['EditProgream'] = $_GET['CosId'];?>
+<input class="btn btn-sm" type="submit" value="แก้ไขวิชา" name="Edit">
+<a class="btn btn-danger btn-sm" href="./ref.php">ยกเลิก</a>
+      <?php }else{?>
+        <input class="btn btn-sm btn-success" type="submit" value="เพิ่มวิชา" name="add">
+        <?php }?>
+</div>     
+                      
 </form>
 
+<?php if($_GET['susccess'] == 1){ ?>
+    <div class="alert alert-success" role="alert">
+  สำเร็จ
+</div>
+
+<?php }else if($_GET['susccess'] == 2) { ?>
+    <div class="alert alert-danger" role="alert">
+  มีบางอย่างผิดพลาด กรุณาตรวจสอบ
+</div> <?php } ?>
+
+<form>
  <table class="table table-bordered mt-3">
         <thead>
           <tr>
@@ -184,7 +268,7 @@ $query = $conn->query($sql);
         <tbody>
             <th colspan="9">ภาคเรียนที่ 1/2560</th>
             <?php 
-            $sql_1_2560 = "SELECT DISTINCT course_tb.Sub_code,subject_tb.Sub_name,
+            $sql_1_2560 = "SELECT DISTINCT course_tb.Cos_id,course_tb.Cos_code,course_tb.Sub_code,subject_tb.Sub_name,
             sect_tb.Sect_Name,teacher_tb.Teach_Pname,teacher_tb.Teach_Fname,
             teacher_tb.Teach_Lname,course_tb.Cos_Time,course_tb.Cos_Room FROM course_tb
             INNER JOIN subject_tb 
@@ -192,9 +276,14 @@ $query = $conn->query($sql);
              INNER JOIN sect_tb 
               ON course_tb.Sect_code = sect_tb.Sect_code
              INNER JOIN teacher_tb
-            ON course_tb.Teach_code = teacher_tb.Teach_code WHERE `Cos_term`= '1/2560'";
+            ON course_tb.Teach_code = teacher_tb.Teach_code 
+            WHERE `Cos_term`= '1/2560' AND Cos_code='".$_SESSION['IdEditProgram']."' ";
             $query_1_2560 = $conn->query($sql_1_2560);
-            while($result_1_2560  = $query_1_2560->fetch_assoc())  {?>
+             if($query_1_2560->num_rows == 0){ ?>
+                <tr>
+                <td class="text-center" colspan="9">--- ไม่พบข้อมูล ---</td> <?php } ?>
+                </tr>
+            <?php while($result_1_2560  = $query_1_2560->fetch_assoc())  {?>
             <tr>
             <td scope="row"><?php echo $result_1_2560['Sub_code'] ?></td>
             <td><?php echo $result_1_2560['Sub_name'] ?></td>
@@ -202,38 +291,233 @@ $query = $conn->query($sql);
             <td><?php echo $result_1_2560['Teach_Pname']." ".$result_1_2560['Teach_Fname']." ".$result_1_2560['Teach_Lname'] ?></td>
             <td><?php echo $result_1_2560['Cos_Time'] ?></td>
             <td><?php echo $result_1_2560['Cos_Room'] ?></td>
-            <td><button>แก้ไข</button></td>
-            <td><button>ลบ</button></td>
+            <td><a class="btn btn-sm btn-primary" href="?CosId=<?php echo $result_1_2560['Cos_id']?>">แก้ไข</a></td>
+            <td><a class="btn btn-sm btn-danger" href="JavaScript:if(confirm('Confirm Delete?')== true){window.location='DelProgram.php?ID=<?php echo $result_1_2560['Cos_id'];?>';}">ลบ</a></td>
           </tr>
             <?php } ?>
             <tr>
             <th colspan="9">ภาคเรียนที่ 2/2560</th>
             </tr>
-          
-
-
         <tr>
+        <?php 
+            $sql_2_2560 = "SELECT DISTINCT course_tb.Cos_id,course_tb.Cos_code,course_tb.Sub_code,subject_tb.Sub_name,
+            sect_tb.Sect_Name,teacher_tb.Teach_Pname,teacher_tb.Teach_Fname,
+            teacher_tb.Teach_Lname,course_tb.Cos_Time,course_tb.Cos_Room FROM course_tb
+            INNER JOIN subject_tb 
+             ON course_tb.Sub_code = subject_tb.Sub_code
+             INNER JOIN sect_tb 
+              ON course_tb.Sect_code = sect_tb.Sect_code
+             INNER JOIN teacher_tb
+            ON course_tb.Teach_code = teacher_tb.Teach_code 
+            WHERE `Cos_term`= '2/2560' AND Cos_code='".$_SESSION['IdEditProgram']."' ";
+            $query_2_2560 = $conn->query($sql_2_2560);
+            if($query_2_2560->num_rows == 0){ ?>
+                <tr>
+                <td class="text-center" colspan="9">--- ไม่พบข้อมูล ---</td> <?php } 
+            while($result_2_2560  = $query_2_2560->fetch_assoc())  {?>
+            <tr>
+            <td scope="row"><?php echo $result_2_2560['Sub_code'] ?></td>
+            <td><?php echo $result_2_2560['Sub_name'] ?></td>
+            <td><?php echo $result_2_2560['Sect_Name'] ?></td>
+            <td><?php echo $result_2_2560['Teach_Pname']." ".$result_2_2560['Teach_Fname']." ".$result_2_2560['Teach_Lname'] ?></td>
+            <td><?php echo $result_2_2560['Cos_Time'] ?></td>
+            <td><?php echo $result_2_2560['Cos_Room'] ?></td>
+            <td><a class="btn btn-sm btn-primary" href="?CosId=<?php echo $result_2_2560['Cos_id']?>">แก้ไข</a></td>
+            <td><a class="btn btn-sm btn-danger" href="JavaScript:if(confirm('Confirm Delete?')== true){window.location='DelProgram.php?ID=<?php echo $result_2_2560['Cos_id'];?>';}">ลบ</a></td>
+          </tr>
+            <?php } ?>
+    
+    <tr>
         <th colspan="9">ภาคเรียนที่ 1/2561</th>
-    </tr>
+          <?php 
+            $sql_1_2561 = "SELECT DISTINCT course_tb.Cos_id,course_tb.Cos_code,course_tb.Sub_code,subject_tb.Sub_name,
+            sect_tb.Sect_Name,teacher_tb.Teach_Pname,teacher_tb.Teach_Fname,
+            teacher_tb.Teach_Lname,course_tb.Cos_Time,course_tb.Cos_Room FROM course_tb
+            INNER JOIN subject_tb 
+             ON course_tb.Sub_code = subject_tb.Sub_code
+             INNER JOIN sect_tb 
+              ON course_tb.Sect_code = sect_tb.Sect_code
+             INNER JOIN teacher_tb
+            ON course_tb.Teach_code = teacher_tb.Teach_code 
+            WHERE `Cos_term`= '1/2561' AND Cos_code='".$_SESSION['IdEditProgram']."' ";
+            $query_1_2561 = $conn->query($sql_1_2561);
+            if($query_1_2561->num_rows == 0){ ?>
+                <tr>
+                <td class="text-center" colspan="9">--- ไม่พบข้อมูล ---</td> <?php } 
+            while($result_1_2561  = $query_1_2561->fetch_assoc())  {?>
+            <tr>
+            <td scope="row"><?php echo $result_1_2561['Sub_code'] ?></td>
+            <td><?php echo $result_1_2561['Sub_name'] ?></td>
+            <td><?php echo $result_1_2561['Sect_Name'] ?></td>
+            <td><?php echo $result_1_2561['Teach_Pname']." ".$result_1_2561['Teach_Fname']." ".$result_1_2561['Teach_Lname'] ?></td>
+            <td><?php echo $result_1_2561['Cos_Time'] ?></td>
+            <td><?php echo $result_1_2561['Cos_Room'] ?></td>
+            <td><a class="btn btn-sm btn-primary" href="?CosId=<?php echo $result_1_2561['Cos_id']?>">แก้ไข</a></td>
+            <td><a class="btn btn-sm btn-danger" href="JavaScript:if(confirm('Confirm Delete?')== true){window.location='DelProgram.php?ID=<?php echo $result_1_2561['Cos_id'];?>';}">ลบ</a></td>
+          </tr>
+            <?php } ?>
     <tr>
         <th colspan="9">ภาคเรียนที่ 2/2561</th>
-    </tr>
+        <?php 
+            $sql_2_2561 = "SELECT DISTINCT course_tb.Cos_id,course_tb.Cos_code,course_tb.Sub_code,subject_tb.Sub_name,
+            sect_tb.Sect_Name,teacher_tb.Teach_Pname,teacher_tb.Teach_Fname,
+            teacher_tb.Teach_Lname,course_tb.Cos_Time,course_tb.Cos_Room FROM course_tb
+            INNER JOIN subject_tb 
+             ON course_tb.Sub_code = subject_tb.Sub_code
+             INNER JOIN sect_tb 
+              ON course_tb.Sect_code = sect_tb.Sect_code
+             INNER JOIN teacher_tb
+            ON course_tb.Teach_code = teacher_tb.Teach_code 
+            WHERE `Cos_term`= '2/2561' AND Cos_code='".$_SESSION['IdEditProgram']."' ";
+            $query_2_2561 = $conn->query($sql_2_2561);
+            if($query_2_2561->num_rows == 0){ ?>
+                <tr>
+                <td class="text-center" colspan="9">--- ไม่พบข้อมูล ---</td> <?php } 
+            while($result_2_2561  = $query_2_2561->fetch_assoc())  {?>
+            <tr>
+            <td scope="row"><?php echo $result_2_2561['Sub_code'] ?></td>
+            <td><?php echo $result_2_2561['Sub_name'] ?></td>
+            <td><?php echo $result_2_2561['Sect_Name'] ?></td>
+            <td><?php echo $result_2_2561['Teach_Pname']." ".$result_2_2561['Teach_Fname']." ".$result_2_2561['Teach_Lname'] ?></td>
+            <td><?php echo $result_2_2561['Cos_Time'] ?></td>
+            <td><?php echo $result_2_2561['Cos_Room'] ?></td>
+            <td><a class="btn btn-sm btn-primary" href="?CosId=<?php echo $result_2_2561['Cos_id']?>">แก้ไข</a></td>
+            <td><a class="btn btn-sm btn-danger" href="JavaScript:if(confirm('Confirm Delete?')== true){window.location='DelProgram.php?ID=<?php echo $result_2_2561['Cos_id'];?>';}">ลบ</a></td>
+          </tr>
+            <?php } ?>
     <tr>
         <th colspan="9">ภาคเรียนที่ 1/2562</th>
-    </tr>
+        <?php 
+            $sql_1_2562 = "SELECT DISTINCT course_tb.Cos_id,course_tb.Cos_code,course_tb.Sub_code,subject_tb.Sub_name,
+            sect_tb.Sect_Name,teacher_tb.Teach_Pname,teacher_tb.Teach_Fname,
+            teacher_tb.Teach_Lname,course_tb.Cos_Time,course_tb.Cos_Room FROM course_tb
+            INNER JOIN subject_tb 
+             ON course_tb.Sub_code = subject_tb.Sub_code
+             INNER JOIN sect_tb 
+              ON course_tb.Sect_code = sect_tb.Sect_code
+             INNER JOIN teacher_tb
+            ON course_tb.Teach_code = teacher_tb.Teach_code 
+            WHERE `Cos_term`= '1/2562' AND Cos_code='".$_SESSION['IdEditProgram']."' ";
+            $query_1_2562 = $conn->query($sql_1_2562);
+             
+if($query_1_2562->num_rows == 0){ ?>
+<tr>
+<td class="text-center" colspan="9">--- ไม่พบข้อมูล ---</td> <?php } ?>
+</tr>
+            <?php
+            while($result_1_2562  = $query_1_2562->fetch_assoc())  {?>
+            <tr>
+            <td scope="row"><?php echo $result_1_2562['Sub_code'] ?></td>
+            <td><?php echo $result_1_2562['Sub_name'] ?></td>
+            <td><?php echo $result_1_2562['Sect_Name'] ?></td>
+            <td><?php echo $result_1_2562['Teach_Pname']." ".$result_1_2562['Teach_Fname']." ".$result_1_2562['Teach_Lname'] ?></td>
+            <td><?php echo $result_1_2562['Cos_Time'] ?></td>
+            <td><?php echo $result_1_2562['Cos_Room'] ?></td>
+            <td><a class="btn btn-sm btn-primary" href="?CosId=<?php echo $result_1_2562['Cos_id']?>">แก้ไข</a></td>
+            <td><a class="btn btn-sm btn-danger" href="JavaScript:if(confirm('Confirm Delete?')== true){window.location='DelProgram.php?ID=<?php echo $result_1_2562['Cos_id'];?>';}">ลบ</a></td>
+          </tr>
+            <?php } ?>
     <tr>
         <th colspan="9">ภาคเรียนที่ 2/2562</th>
-    </tr>
+        <?php 
+            $sql_2_2562 = "SELECT DISTINCT course_tb.Cos_id,course_tb.Cos_code,course_tb.Sub_code,subject_tb.Sub_name,
+            sect_tb.Sect_Name,teacher_tb.Teach_Pname,teacher_tb.Teach_Fname,
+            teacher_tb.Teach_Lname,course_tb.Cos_Time,course_tb.Cos_Room FROM course_tb
+            INNER JOIN subject_tb 
+             ON course_tb.Sub_code = subject_tb.Sub_code
+             INNER JOIN sect_tb 
+              ON course_tb.Sect_code = sect_tb.Sect_code
+             INNER JOIN teacher_tb
+            ON course_tb.Teach_code = teacher_tb.Teach_code 
+            WHERE `Cos_term`= '2/2562' AND Cos_code='".$_SESSION['IdEditProgram']."' ";
+            $query_2_2562 = $conn->query($sql_2_2562);
+             
+if($query_2_2562->num_rows == 0){ ?>
+<tr>
+<td class="text-center" colspan="9">--- ไม่พบข้อมูล ---</td> <?php } ?>
+</tr>
+            <?php
+            while($result_2_2562  = $query_2_2562->fetch_assoc())  {?>
+            <tr>
+            <td scope="row"><?php echo $result_2_2562['Sub_code'] ?></td>
+            <td><?php echo $result_2_2562['Sub_name'] ?></td>
+            <td><?php echo $result_2_2562['Sect_Name'] ?></td>
+            <td><?php echo $result_2_2562['Teach_Pname']." ".$result_2_2562['Teach_Fname']." ".$result_2_2562['Teach_Lname'] ?></td>
+            <td><?php echo $result_2_2562['Cos_Time'] ?></td>
+            <td><?php echo $result_2_2562['Cos_Room'] ?></td>
+            <td><a class="btn btn-sm btn-primary" href="?CosId=<?php echo $result_2_2562['Cos_id']?>">แก้ไข</a></td>
+            <td><a class="btn btn-sm btn-danger" href="JavaScript:if(confirm('Confirm Delete?')== true){window.location='DelProgram.php?ID=<?php echo $result_2_2562['Cos_id'];?>';}">ลบ</a></td>
+          </tr>
+            <?php } ?>
     <tr>
         <th colspan="9">ภาคเรียนที่ 1/2563</th>
-    </tr>
-    <tr>
+        <?php 
+            $sql_1_2563 = "SELECT DISTINCT course_tb.Cos_id,course_tb.Cos_code,course_tb.Sub_code,subject_tb.Sub_name,
+            sect_tb.Sect_Name,teacher_tb.Teach_Pname,teacher_tb.Teach_Fname,
+            teacher_tb.Teach_Lname,course_tb.Cos_Time,course_tb.Cos_Room FROM course_tb
+            INNER JOIN subject_tb 
+             ON course_tb.Sub_code = subject_tb.Sub_code
+             INNER JOIN sect_tb 
+              ON course_tb.Sect_code = sect_tb.Sect_code
+             INNER JOIN teacher_tb
+            ON course_tb.Teach_code = teacher_tb.Teach_code 
+            WHERE `Cos_term`= '1/2563' AND Cos_code='".$_SESSION['IdEditProgram']."' ";
+            $query_1_2563 = $conn->query($sql_1_2563);
+             
+if($query_1_2563->num_rows == 0){ ?>
+<tr>
+<td class="text-center" colspan="9">--- ไม่พบข้อมูล ---</td> <?php } ?>
+</tr>
+            <?php
+            while($result_1_2563  = $query_1_2563->fetch_assoc())  {?>
+            <tr>
+            <td scope="row"><?php echo $result_1_2563['Sub_code'] ?></td>
+            <td><?php echo $result_1_2563['Sub_name'] ?></td>
+            <td><?php echo $result_1_2563['Sect_Name'] ?></td>
+            <td><?php echo $result_1_2563['Teach_Pname']." ".$result_1_2563['Teach_Fname']." ".$result_1_2563['Teach_Lname'] ?></td>
+            <td><?php echo $result_1_2563['Cos_Time'] ?></td>
+            <td><?php echo $result_1_2563['Cos_Room'] ?></td>
+            <td><a class="btn btn-sm btn-primary" href="?CosId=<?php echo $result_1_2563['Cos_id']?>">แก้ไข</a></td>
+            <td><a class="btn btn-sm btn-danger" href="JavaScript:if(confirm('Confirm Delete?')== true){window.location='DelProgram.php?ID=<?php echo $result_1_2563['Cos_id'];?>';}">ลบ</a></td>
+          </tr>
+            <?php } ?>
+
+            <tr>
         <th colspan="9">ภาคเรียนที่ 2/2563</th>
-    </tr>
+        <?php 
+            $sql_2_2563 = "SELECT DISTINCT course_tb.Cos_id,course_tb.Cos_code,course_tb.Sub_code,subject_tb.Sub_name,
+            sect_tb.Sect_Name,teacher_tb.Teach_Pname,teacher_tb.Teach_Fname,
+            teacher_tb.Teach_Lname,course_tb.Cos_Time,course_tb.Cos_Room FROM course_tb
+            INNER JOIN subject_tb 
+             ON course_tb.Sub_code = subject_tb.Sub_code
+             INNER JOIN sect_tb 
+              ON course_tb.Sect_code = sect_tb.Sect_code
+             INNER JOIN teacher_tb
+            ON course_tb.Teach_code = teacher_tb.Teach_code 
+            WHERE `Cos_term`= '2/2563' AND Cos_code='".$_SESSION['IdEditProgram']."' ";
+            $query_2_2563 = $conn->query($sql_2_2563);
+             
+if($query_2_2563->num_rows == 0){ ?>
+<tr>
+<td class="text-center" colspan="9">--- ไม่พบข้อมูล ---</td> <?php } ?>
+</tr>
+            <?php
+            while($result_2_2563  = $query_2_2563->fetch_assoc())  {?>
+            <tr>
+            <td scope="row"><?php echo $result_2_2563['Sub_code'] ?></td>
+            <td><?php echo $result_2_2563['Sub_name'] ?></td>
+            <td><?php echo $result_2_2563['Sect_Name'] ?></td>
+            <td><?php echo $result_2_2563['Teach_Pname']." ".$result_2_2563['Teach_Fname']." ".$result_2_2563['Teach_Lname'] ?></td>
+            <td><?php echo $result_2_2563['Cos_Time'] ?></td>
+            <td><?php echo $result_2_2563['Cos_Room'] ?></td>
+            <td><a class="btn btn-sm btn-primary" href="?CosId=<?php echo $result_2_2563['Cos_id']?>">แก้ไข</a></td>
+            <td><a class="btn btn-sm btn-danger" href="JavaScript:if(confirm('Confirm Delete?')== true){window.location='DelProgram.php?ID=<?php echo $result_2_2563['Cos_id'];?>';}">ลบ</a></td>
+          </tr>
+            <?php } ?>
 
         </tbody>
       </table>
-
+      </form>
 
 
         </div>
