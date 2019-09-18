@@ -87,7 +87,7 @@ $query = $conn->query($sql);
                 </div>
             </nav>
             <h3>จัดการนักศึกษา</h3>
-<button class="btn btn-success btn-sm m-1"><a href="./AddEdit.php"> + เพิ่มนักศึกษา</a></button> 
+<button class="btn btn-success btn-sm m-1"><a href="\SE-system\SE_System\view\manageStudent\AddEdit.php"> + เพิ่มนักศึกษา</a></button> 
 <input type="text" placeholder="รหัสนักศึกษา/ชื่อ - นามสกุล">
 <button class="btn btn-secondary btn-sm m-1">ค้นหา</button> 
             <table class="table table-bordered mt-3">
@@ -110,8 +110,8 @@ $query = $conn->query($sql);
                               <td><?php echo $result['Std_Pname'].$result['Std_Fname']." ".$result['Std_Lname']; ?></td>
                               <td><?php echo $result['Std_Major']; ?></td>
                               <td><?php echo $result['Std_Faculty']; ?></td>
-                              <td><a class="btn btn-dark btn-sm" href="./AddEdit.php?Std_id=<?php echo $result['Std_id']; ?>">แก้ไข</a></td>
-                              <td><a class="btn btn-danger btn-sm" href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='\SE_System\control\Teacher\del_tch.php?id=<?php echo $result["Std_id"];?>';}">ลบ</a></td>
+                              <td><a class="btn btn-dark btn-sm" href="./AddEdit.php?$id=<?php echo $result['Std_id']; ?>">แก้ไข</a></td>
+                              <td><a class="btn btn-danger btn-sm" href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='\SE_System\control\student\del_std.php ?$id=<?php echo $result["Std_id"];?>';}">ลบ</a></td>
                             </tr>
                             <?php } ?>
                           </tbody>

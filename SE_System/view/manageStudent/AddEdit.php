@@ -1,9 +1,11 @@
 <?php
 session_start();
 include_once('../../model/connect.php');
+//$id = $_GET['Std_id'];
 $sql = "SELECT * FROM student_tb";
 $query = $conn->query($sql);
 $result = $query->fetch_assoc()
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -90,135 +92,94 @@ $result = $query->fetch_assoc()
             <h3>เพิ่ม/แก้ไข ข้อมูลส่วนตัวนักศึกษา</h3>
             <hr>
             <form>
-                <!-- ชื่อขึ้นต้น--ชื่อ--นามสกุล  -->
-                <div class="form-group row">
-                <?php if($_GET['Std_id']){   ?>
-                    <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ชื่อขึ้นต้น
-                        :</label>
-                    <div class="col-sm-5">     
-                        <input type="text" name="txtPname" class="form-control form-control-sm" id="colFormLabelSm"
-                            value="<?php echo $result['Std_Pname'];?>" require></div>
-                    <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ชื่อ
-                        :</label>
-                    <div class="col-sm-5">
-                        <input type="text" name="txtFname" class="form-control form-control-sm" id="colFormLabelSm"
-                            value="<?php echo $value['Std_Fname'];?>" require></div>
-                    <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">นามสกุล
-                        :</label>
-                    <div class="col-sm-5">
-                        <input type="text" name="txtLname" class="form-control form-control-sm" id="colFormLabelSm"
-                            value="<?php echo $value['Std_Fname'];?>" require></div>
-                <?php }
-                        else{ ?>
-                    <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ชื่อขึ้นต้น
-                        :</label>
-                    <div class="col-sm-5">     
-                        <input type="text" name="txtPname" class="form-control form-control-sm" id="colFormLabelSm"
-                            value="<?php echo $result['Std_Pname'];?>" require></div>
-                    <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ชื่อ
-                        :</label>
-                    <div class="col-sm-5">
-                        <input type="text" name="txtFname" class="form-control form-control-sm" id="colFormLabelSm"
-                            value="<?php echo $value['Std_Fname'];?>" require></div>
-                    <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">นามสกุล
-                        :</label>
-                    <div class="col-sm-5">
-                        <input type="text" name="txtLname" class="form-control form-control-sm" id="colFormLabelSm"
-                            value="<?php echo $value['Std_Fname'];?>" require></div>
-                    <?php }  ?>
-                </div>
-                </div>
-                <!-- วันเดือนปีเกิด -->
-                <div class="form-group row">
-                    <?php if($_GET['Std_id']) { ?>
-                    <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">วันเกิด : </label>
-                    <div class="col-sm-5">
-                        <input type="text" name="txtbirth" class="form-control form-control-sm" id="colFormLabelSm"
-                            value="<?php echo $result['Std_Birth']?>" require></div>
-                    <?php }else{  ?>
-                        <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">วันเกิด : </label>
-                    <div class="col-sm-5">
-                        <input type="text" name="txtbirth" class="form-control form-control-sm" id="colFormLabelSm"
-                            placeholder="Please Input Text" require></div>
-                    <?php }  ?></div>
-                <!-- เลขที่บัตรประจำตัวประชาชน -->
-                <div class="form-group row">
-                    <?php if($_GET['Std_id']) { ?>
-                    <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">เลขที่บัตรประจำตัวประชาชน : </label>
-                    <div class="col-sm-5">
-                        <input type="text" name="txtcard" class="form-control form-control-sm" id="colFormLabelSm"
-                            value="<?php echo $result['Std_Card']?>" require></div>
-                    <?php} else{  ?>
-                        <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">เลขที่บัตรประจำตัวประชาชน : </label>
-                    <div class="col-sm-5">
-                        <input type="text" name="txtcard" class="form-control form-control-sm" id="colFormLabelSm"
-                            placeholder="Please Input Text" require></div>
-                    <?php }  ?></div>
                 <!-- รหัสนักศึกษา -->
                 <div class="form-group row">
-                    <?php if($_GET['Std_id']) { ?>
+        
                     <label for="colFormLabelSm"
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">รหัสนักศึกษา : </label>
                     <div class="col-sm-5">
                         <input type="text" name="txtcode" class="form-control form-control-sm" id="colFormLabelSm"
-                            value="<?php echo $result['Std_Code']?>" require></div>
-                    <?php} else{  ?>
-                        <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">รหัสนักศึกษา : </label>
+                            value="<?php //echo $result['Std_Code']?>" require></div>
+                </div>
+                <!-- ชื่อขึ้นต้น--ชื่อ--นามสกุล  -->
+                <div class="form-group row">
+                    <label for="colFormLabelSm"
+                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ชื่อขึ้นต้น
+                        :</label>
+                    <div class="col-sm-5">     
+                        <input type="text" name="txtPname" class="form-control form-control-sm" id="colFormLabelSm"
+                            value="<?php //echo $result['Std_Pname'];?>" require></div>
+                    <label for="colFormLabelSm"
+                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ชื่อ
+                        :</label>
                     <div class="col-sm-5">
-                        <input type="text" name="txtcode" class="form-control form-control-sm" id="colFormLabelSm"
-                            placeholder="Please Input Text" require></div>
-                    <?php }  ?></div>
+                        <input type="text" name="txtFname" class="form-control form-control-sm" id="colFormLabelSm"
+                            value="<?php //echo $result['Std_Fname'];?>" require></div>
+                    <label for="colFormLabelSm"
+                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">นามสกุล
+                        :</label>
+                    <div class="col-sm-5">
+                        <input type="text" name="txtLname" class="form-control form-control-sm" id="colFormLabelSm"
+                            value="<?php //echo $result['Std_Lname'];?>" require></div>
+                </div>
+                <!-- เบอร์โทร -->
+                <div class="form-group row">
+        
+                    <label for="colFormLabelSm"
+                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">เบอร์โทร : </label>
+                    <div class="col-sm-5">
+                        <input type="text" name="txttel" class="form-control form-control-sm" id="colFormLabelSm"
+                            value="<?php //echo $result['Std_Tel']?>" require></div>
+                    </div>
+                <!-- ที่อยู่ -->
+                <div class="form-group row">
+                    <label for="colFormLabelSm"
+                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ที่อยู่ : </label>
+                    <div class="col-sm-5">
+                        <input type="text" name="txtbadd" class="form-control form-control-sm" id="colFormLabelSm"
+                            value="<?php //echo $result['Std_Add']?>" require></div>
+                    </div>
+                <!-- วันเดือนปีเกิด -->
+                <div class="form-group row">
+        
+                    <label for="colFormLabelSm"
+                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">วันเกิด : </label>
+                    <div class="col-sm-5">
+                        <input type="text" name="txtbirth" class="form-control form-control-sm" id="colFormLabelSm"
+                            value="<?php //echo $result['Std_Birth']?>" require></div>
+                    </div>
+                <!-- เลขที่บัตรประจำตัวประชาชน -->
+                <div class="form-group row">
+        
+                    <label for="colFormLabelSm"
+                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">เลขที่บัตรประจำตัวประชาชน : </label>
+                    <div class="col-sm-5">
+                        <input type="text" name="txtcard" class="form-control form-control-sm" id="colFormLabelSm"
+                            value="<?php //echo $result['Std_Card']?>" require></div>
+                </div>
                 <!-- สาขาวิชา -->
                 <div class="form-group row">
-                    <?php if($_GET['Std_id']) { ?>
+        
                     <label for="colFormLabelSm"
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">สาขาวิชา : </label>
                     <div class="col-sm-5">
                         <input type="text" name="txtmajor" class="form-control form-control-sm" id="colFormLabelSm"
-                            value="<?php echo $result['Std_Major']?>" require></div>
-                    <?php }else{  ?>
-                        <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">สาขาวิชา : </label>
-                    <div class="col-sm-5">
-                        <input type="text" name="txtmajor" class="form-control form-control-sm" id="colFormLabelSm"
-                            placeholder="Please Input Text" require></div>
-                    <?php }  ?></div>
+                            value="<?php //echo $result['Std_Major']?>" require></div>
+                </div>
                 <!-- คณะ -->
                 <div class="form-group row">
-                    <?php if($_GET['Std_id']) { ?>
+        
                     <label for="colFormLabelSm"
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">คณะ : </label>
                     <div class="col-sm-5">
                         <input type="text" name="txtfac" class="form-control form-control-sm" id="colFormLabelSm"
-                            value="<?php echo $result['Std_Faculty']?>" require></div>
-                    <?php }else{  ?>
-                        <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">คณะ : </label>
-                    <div class="col-sm-5">
-                        <input type="text" name="txtfac" class="form-control form-control-sm" id="colFormLabelSm"
-                            placeholder="Please Input Text" require></div>
-                    <?php }  ?></div>         
+                            value="<?php //echo $result['Std_Faculty']?>" require></div>
+                </div>         
             <div class="row">
-            <?php if($_GET['Std_id']) { ?>
+
                 <button class="btn btn-sm btn-primary mx-auto col-2"><a
-                        href="/SE_System/control/student/save_edit_std.php" >บันทึก</a></button>
+                        href="/SE_System/view/manageStudent/AddEdit.php">บันทึก</a></button>
             </div>
-            <?php }else{  ?>
-                <button class="btn btn-sm btn-primary mx-auto col-2"><a 
-                        href="SE_System\control\student\save_add_std.php" >เพิ่ม เสร็จสิ้น</a></button>
-            </div>
-            <?php }?>
         </div>
 
         <!-- jQuery CDN - Slim version (=without AJAX) -->
