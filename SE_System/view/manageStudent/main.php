@@ -1,6 +1,7 @@
 <?php
-include_once('connect.php');
-$sql = "SELECT * FROM student_tb";
+session_start();
+include_once('../../../model/connect.php');
+$sql = "SELECT * FROM course_tb";
 $query = $conn->query($sql);
 ?>
 <!DOCTYPE html>
@@ -106,10 +107,10 @@ $query = $conn->query($sql);
                             <tr>
                             <?php while($result = $query->fetch_assoc()){ ?>
                               <td><?php echo $result['Std_Code']; ?></td>
-                              <td><?php echo $result['Std_Pname','Std_Fname',Std_Lname]; ?></td>
+                              <td><?php echo $result['Std_Pname'.'Std_Fname'.'Std_Lname']; ?></td>
                               <td><?php echo $result['Std_Maojr']; ?></td>
                               <td><?php echo $result['Std_Faculty']; ?></td>
-                              <td><a class="btn btn-dark btn-sm" href="/SE_System/view/manageStudent/AddEdit.html echo $result['Std_id']; ?>">แก้ไข</a></td>
+                              <td><a class="btn btn-dark btn-sm" href="/SE_System/view/manageStudent/AddEdit.php?id=<?php echo $result['Std_id']; ?>">แก้ไข</a></td>
                               <td><a class="btn btn-danger btn-sm" href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='\SE_System\control\Teacher\del_tch.php?id=<?php echo $result["Std_id"];?>';}">ลบ</a></td>
                             </tr>
                             <?php } ?>

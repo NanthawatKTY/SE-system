@@ -6,13 +6,13 @@ $query = $conn->query($sql);
 if($query){
     echo "<script>";
     echo "alert('ลบข้อมูลเรียบร้อยแล้ว');";
-    echo "window.location='student.php';";
+    echo "window.location='main.php';";
     echo "</script>";
 }
 else{
     echo "<script>";
-    echo "alert('ERROR')";
-    echo "window.location='student.php';";
+    echo "alert('ไม่สามารถลบข้อมูลได้')";
+    echo "window.location='main.php';";
     echo "</script>";
 }
 
