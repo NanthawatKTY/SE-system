@@ -120,7 +120,7 @@ $resultEdit = $queryEdit->FETCH_ASSOC();
                 </div>
             </nav>
             <a class="btn btn-sm btn-secondary m-1" href="./Main.php"> < กลับหน้าเดิม</a>
-            <h3>จัดการแผนการเรียน / แผนการเรียน</h3> 
+            <h3>จัดการวิชาแผนการเรียน</h3> 
             <h5>แผนการเรียน : <?php echo $result['Cos_name'] ?></h5>
             <!-- if ระหว่าง admin / อจ / นศ  -->
 

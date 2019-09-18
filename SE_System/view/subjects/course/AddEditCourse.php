@@ -2,8 +2,9 @@
 session_start();
 include_once('../../../model/connect.php');
 error_reporting(0);
-$sql = "SELECT DISTINCT Cos_code, Cos_name FROM coursename_tb";
+$sql =  "SELECT * FROM `coursename_tb` WHERE Cos_code = '".$_GET['CosCode']."'";
 $query = $conn->query($sql);
+$result = $query->FETCH_ASSOC();
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +15,7 @@ $query = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>จัดการแผนการเรียน</title>
+    <title>เพิ่ม/แก้ไข แผนการเรียน</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -41,8 +42,8 @@ $query = $conn->query($sql);
             <img class=" circle-img mt-4"
                 src="https://scontent.fbkk13-1.fna.fbcdn.net/v/t1.0-9/62071969_10216624784104470_275687937776025600_n.jpg?_nc_cat=108&_nc_eui2=AeFlWjrNsKSDZAOkhDiO8Sh9gK_6MxCkO4I7Q7q-kDWjlvHgaQxXXnd_Kdgzvpf12-V57NUXyBmP9tQiXiQDK7h_oUO2uTgBIMIajS4DEgl9rw&_nc_oc=AQnPsBYrLEFJd65Nx-49Wa0az84w5sFxnLpeeeT6v3CGiW6Ct0XMM4l0zk2c3dPGwd8&_nc_ht=scontent.fbkk13-1.fna&oh=4de81c57afef203ee9addf36f5353172&oe=5E0D477F"
                 alt="">
-            <p class="text-center text-light mt-3">มารุตเทพ ร่มโพธิ์</p>
-            <p class="text-center text-light">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
+            <p class="text-center text-light mt-3 setfont">มารุตเทพ ร่มโพธิ์</p>
+            <p class="text-center text-light setfont">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
             <ul class="list-unstyled components pl-2">
                 <li>
                     <a href="/SE_System/view/profile/EditProfile.html">ข้อมูลส่วนตัว</a>
@@ -63,10 +64,10 @@ $query = $conn->query($sql);
 
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="/SE_System/index.html" class="article">กลับเมนูหลัก</a>
+                    <a href="../../index.html" class="article">กลับเมนูหลัก</a>
                 </li>
                 <li>
-                    <a href="/SE_System/logout.php" class="download">ออกจากระบบ</a>
+                    <a href="../../control/login/logout.php" class="download">ออกจากระบบ</a>
                 </li>
 
             </ul>
@@ -89,44 +90,37 @@ $query = $conn->query($sql);
                     </button>
                 </div>
             </nav>
-            <h3>จัดการแผนการเรียน</h3>
-<a href="../course/AddEditCourse.php" class="btn btn-success btn-sm m-1">+ แผนการเรียน</a> 
+            <a class="btn btn-sm btn-secondary m-1" href="../edprograms/Main.php"> < กลับหน้าเดิม</a>
+<h3><?php if($_GET['CosCode']) { ?> แผนการเรียน[แก้ไข] <?php } else{ ?> แผนการเรียน[เพิ่ม] <?php } ?></h3>
+            <hr>
+            <form action="../../../control/course/AddEditCourse.php" method="POST">
+                <!-- รหัสแผนการเรียน  -->
+                <div class="form-group row">
+                    <label for="courseCode"
+                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">รหัสแผนการเรียน
+                        :</label>
+                    <div class="col-sm-5">
+                        <input type="name" class="form-control form-control-sm" name="courseCode" id="courseCode" disabled
+                        <?php if($_GET['CosCode']){ ?> value="<?php echo $result['Cos_code'] ?>" <?php }else{} ?> >
+                    </div>
+                </div>
+                <!-- ชื่อแผนการเรียน  -->
+                <div class="form-group row">
+                    <label for="courseName"
+                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ชื่อแผนการเรียน : </label>
+                    <div class="col-sm-5">
+                        <input type="bbb" class="form-control form-control-sm" name="courseName" id="courseName" required
+                        <?php if($_GET['CosCode']){ ?> value="<?php echo $result['Cos_name'] ?>" <?php }else{} ?> >
+                    </div>
+                </div>
 
-<?php if($_GET['susccess'] == 1){ ?>
-    <div class="alert alert-success" role="alert">
-  สำเร็จ
-</div>
+                <div class="row">
+                        <button name="edit" <?php if($_GET['CosCode']) { ?> value="<?php echo $_GET['CosCode']; ?>" <?php } else{ ?> value="add" <?php } ?>  type="submit" class="btn btn-sm btn-primary mx-auto col-2">
+                            <?php if($_GET['CosCode']) { ?> แก้ไข <?php } else{ ?> บันทึก <?php } ?></button>
+                    </div>
+            </form>
 
-<?php }else if($_GET['susccess'] == 2) { ?>
-    <div class="alert alert-danger" role="alert">
-  มีบางอย่างผิดพลาด กรุณาตรวจสอบ
-</div> <?php } ?>
-
-            <table class="table table-bordered mt-3">
-                    <thead>
-                      <tr>
-                        <th scope="col">รหัส</th>
-                        <th scope="col">แผนการเรียน</th>
-                        <th scope="col">จัดการ</th>
-                        <th scope="col">แก้ไข</th>
-                        <th scope="col">ลบ</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <?php while($result = $query->fetch_assoc())  {?>
-                        <tr>
-                        <td scope="row"><?php echo ($result['Cos_code']); ?></td>
-                        <td><?php echo ($result['Cos_name']); ?></td>
-                        <td><a class="btn btn-sm btn-outline-primary" href="./EdPrograms.php?ID=<?php echo $result['Cos_code'];?>">จัดการ</a></td>
-                        <td><a class="btn btn-sm btn-primary" href="../course/AddEditCourse.php?CosCode=<?php echo $result['Cos_code']?>">แก้ไข</a></td>
-                        <td><a class="btn btn-sm btn-danger" href="JavaScript:if(confirm('Confirm Delete?')== true){window.location='../../../control/course/DelCourse.php?ID=<?php echo $result['Cos_code'];?>';}">ลบ</a></td>
-                      </tr>
-                      <?php }?>
-                      
-                      
-                    </tbody>
-                  </table>
-
+            
 
         </div>
 
