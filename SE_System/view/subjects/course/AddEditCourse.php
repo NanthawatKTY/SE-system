@@ -100,7 +100,8 @@ $result = $query->FETCH_ASSOC();
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">รหัสแผนการเรียน
                         :</label>
                     <div class="col-sm-5">
-                        <input type="name" class="form-control form-control-sm" name="courseCode" id="courseCode" disabled
+                        <input type="name" class="form-control form-control-sm" name="courseCode" id="courseCode" 
+                        <?php if($_GET['CosCode']) { ?> disabled <?php } else{  } ?> 
                         <?php if($_GET['CosCode']){ ?> value="<?php echo $result['Cos_code'] ?>" <?php }else{} ?> >
                     </div>
                 </div>
