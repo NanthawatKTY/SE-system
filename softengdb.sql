@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 18, 2019 at 04:27 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Generation Time: Sep 19, 2019 at 10:11 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -100,7 +100,7 @@ CREATE TABLE `grade_tb` (
 --
 
 INSERT INTO `grade_tb` (`Grad_id`, `Grad_Term`, `Std_code`, `Sub_code`, `GPA`, `grade_font`) VALUES
-(1, '1/2561', '6012266011', '56936', '70', '');
+(1, '1/2561', '60122660134', '911103', '70', 'A');
 
 -- --------------------------------------------------------
 
@@ -122,7 +122,8 @@ CREATE TABLE `member_tb` (
 
 INSERT INTO `member_tb` (`Mem_id`, `Mem_user`, `Mem_pass`, `Type_id`, `Email`) VALUES
 (1, '60122660134', '123456', '3', 'eazy@gmail.com'),
-(2, 'admin', 'admin', '1', 'test@gmail.com');
+(2, 'admin', 'admin', '1', 'test@gmail.com'),
+(3, '50436', '251241', '2', 'namo@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -135,6 +136,13 @@ CREATE TABLE `register_tb` (
   `Std_code` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
   `Cos_code` varchar(11) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `register_tb`
+--
+
+INSERT INTO `register_tb` (`Reg_id`, `Std_code`, `Cos_code`) VALUES
+(1, '60122660134', '12345');
 
 -- --------------------------------------------------------
 
@@ -312,13 +320,13 @@ ALTER TABLE `grade_tb`
 -- AUTO_INCREMENT for table `member_tb`
 --
 ALTER TABLE `member_tb`
-  MODIFY `Mem_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Mem_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `register_tb`
 --
 ALTER TABLE `register_tb`
-  MODIFY `Reg_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Reg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `student_tb`
