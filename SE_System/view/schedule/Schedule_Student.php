@@ -1,8 +1,3 @@
-<?php
-session_start();
-include_once('../../model/connect.php');
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -10,9 +5,9 @@ include_once('../../model/connect.php');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <title>จัดการผลการเรียน</title>
-
+    
+    <title>ข้อมูลส่วนตัวนักศึกษา</title>
+ 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -38,14 +33,14 @@ include_once('../../model/connect.php');
             <img class=" circle-img mt-4"
                 src="https://scontent.fbkk13-1.fna.fbcdn.net/v/t1.0-9/62071969_10216624784104470_275687937776025600_n.jpg?_nc_cat=108&_nc_eui2=AeFlWjrNsKSDZAOkhDiO8Sh9gK_6MxCkO4I7Q7q-kDWjlvHgaQxXXnd_Kdgzvpf12-V57NUXyBmP9tQiXiQDK7h_oUO2uTgBIMIajS4DEgl9rw&_nc_oc=AQnPsBYrLEFJd65Nx-49Wa0az84w5sFxnLpeeeT6v3CGiW6Ct0XMM4l0zk2c3dPGwd8&_nc_ht=scontent.fbkk13-1.fna&oh=4de81c57afef203ee9addf36f5353172&oe=5E0D477F"
                 alt="">
-            <p class="text-center text-light mt-3">มารุตเทพ ร่มโพธิ์</p>
-            <p class="text-center text-light">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
+            <p class="text-center text-light mt-3 setfont">มารุตเทพ ร่มโพธิ์</p>
+            <p class="text-center text-light setfont">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
             <ul class="list-unstyled components pl-2">
                 <li>
                     <a href="/SE_System/view/profile/EditProfile.html">ข้อมูลส่วนตัว</a>
                 </li>
                 <li>
-                    <a href="/SE_System/view/grade/gradeStudent.html">ผลการเรียน</a>
+                    <a href="../grade/GradeMain.php">ผลการเรียน</a>
                 </li>
                 <li>
                     <a href="/SE_System/Edittranscript2.php">แผนการเรียน</a>
@@ -57,10 +52,10 @@ include_once('../../model/connect.php');
                     <a href="/SE_System/view/schedule/editSchedule.html">ตารางสอน</a>
                 </li>
             </ul>
-
+            
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="/SE_System/index.html" class="article">กลับเมนูหลัก</a>
+                    <a href="../../index.html" class="article">กลับเมนูหลัก</a>
                 </li>
                 <li>
                     <a href="../../control/login/logout.php" class="download">ออกจากระบบ</a>
@@ -86,88 +81,29 @@ include_once('../../model/connect.php');
                     </button>
                 </div>
             </nav>
-            <h3>จัดการผลการเรียน</h3>
-
-
-            <table class="table table-bordered mt-3">
-                    <thead>
-                      <tr>
-                        <th scope="col"><div  align="center">รหัส</th></div>
-                        <th scope="col"><div  align="center">ชื่อ - นามสกุล</th></div>
-                        <th scope="col"><div  align="center">คะแนน</th></div>
-                        <th scope="col"><div  align="center">เกรด</th></div>
-                        <th scope="col"><div  align="center">แก้ไข</th></div>
-                        <th scope="col"><div  align="center">เพิ่มเกรด</th></div>
-                      </tr>
-                    </thead>
-                    
-<!-- 
-                      <tr>
-                            <td scope="row">60122660103</td>
-                            <td>นาย เกิดมาทำไม ไม่รู้เหมือนกัน</td>
-                            <td>80</td>
-                            <td>A</td>
-                            <td><button>แก้ไข</button></td>
-                          </tr> -->
-    <?php
-        
-        // $ID = $_GET['ID'];
-        // $_SESSION['ID'] = $ID;
-        // $sql = "SELECT register_tb.Sub_code, register_tb.Std_code, grade_tb.GPA, student_tb.Std_Fname, student_tb.Std_Lname, subject_tb.Sub_Name
-        // FROM (((register_tb
-        // INNER JOIN subject_tb ON register_tb.Sub_code = subject_tb.Sub_code)
-        // INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_code) 
-        // INNER JOIN grade_tb ON register_tb.Std_code = grade_tb.Std_code)          
-        // WHERE subject_tb.Sub_code='".$_SESSION['ID']."'" ;
-
-        $ID = $_GET['ID'];
-        $_SESSION['ID'] = $ID;
-        $sql = "SELECT DISTINCT register_tb.Cos_code,   course_tb.Sub_code, subject_tb.Sub_Name, register_tb.Std_code, student_tb.Std_Fname, student_tb.Std_Lname, subject_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font
-        FROM course_tb
-        INNER JOIN register_tb ON course_tb.Cos_code = register_tb.Cos_code
-        INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
-        INNER JOIN subject_tb ON course_tb.Sub_Code = subject_tb.Sub_code
-        INNER JOIN grade_tb ON register_tb.Std_code = grade_tb.Std_code
-        WHERE course_tb.Sub_Code = '".$_SESSION['ID']."'" ;
-
-
-    
-        $query1 = mysqli_query($conn, $sql);
-        $query2 = mysqli_query($conn, $sql);
-
-        $resultShow = mysqli_fetch_array($query1,MYSQLI_ASSOC);
-
-        echo $resultShow['Sub_code'];echo"&nbsp&nbsp";echo"-";echo"&nbsp&nbsp";echo $resultShow['Sub_Name'];
-        
-        while($result=mysqli_fetch_array($query2,MYSQLI_ASSOC))
-         
-        {
-            
-            error_reporting(0);
-            ?>
-            <tr>
-           
-           
-            <td><div align="center">
-            <?php echo $result['Std_code'];?></div></td>
-            <td><div align="center">
-            <?php echo $result['Std_Fname'];echo"&nbsp&nbsp";echo $result['Std_Lname'];?></div></td>
-            <td><div align="center">
-            <?php echo $result['GPA'];?></div></td>
-            <td><div align="center">
-            <?php echo $result['grade_font']; ?></div></td>
-            <td><div align="center">
-            <a class="btn btn-info" href ="./AddScore.php?SubCodeED=<?php echo $resultShow['Sub_code'];?>?StdCodeED=<?php echo $resultShow['Std_code'];?>">แก้ไข</a></td>
-            <td><div align="center">
-            <a class="btn btn-info" href ="./AddScore.php?SubCodeAdd=<?php echo $resultShow['Sub_code'];?>?StdCodeAdd=<?php echo $resultShow['Std_code'];?>">+ เพิ่มเกรด</a></td>
-            </tr>
-            <?php
-
-        
-      }
-    ?>
-                   
-                  </table>
+            <h3>ตรางเรียนนักศึกษา</h3>
+           <body>
+           <div class="container">
+			<br />
+			<br />
+			<br />
+			<h2 align="center">ค้นหาจาก  ชื่อ / รหัสวิชา /อาจาร์ผู้สอน </h2><br />
+			<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon">Search</span>
+					<input type="text" name="search_text" id="search_text" placeholder="ค้นหา" class="form-control" />
+				</div>
+			</div>
+			<br />
+			<div id="result"></div>
+		</div>
+		<div style="clear:both"></div>
+		<br />
+		
+		<br />
+		<br />
+		<br />
+           </body>
 
         </div>
 
@@ -183,6 +119,8 @@ include_once('../../model/connect.php');
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
             integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
             crossorigin="anonymous"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function () {
@@ -191,8 +129,36 @@ include_once('../../model/connect.php');
                 });
             });
         </script>
-
-
+        
+<script>
+$(document).ready(function(){
+	load_data();
+	function load_data(query)
+	{
+		$.ajax({
+			url:"../../model/schedule_student.php",
+			method:"post",
+			data:{query:query},
+			success:function(data)
+			{
+				$('#result').html(data);
+			}
+		});
+	}
+	
+	$('#search_text').keyup(function(){
+		var search = $(this).val();
+		if(search != '')
+		{
+			load_data(search);
+		}
+		else
+		{
+			load_data();			
+		}
+	});
+});
+</script>
 
 </body>
 

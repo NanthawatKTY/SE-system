@@ -9,34 +9,36 @@ $grade = $_POST['txtGrade'];
          print "เกรดที่ได้  : ไม่สามารถคิดเกรดได้ คะแนนเกิน".'<br>';   
       }
       else if (($grade>=79.5)&&($grade<=100)) {    
-         print "เกรดที่ได้  : A".'<br>';   
+         $gradeSum = "A";   
       }
        else if (($grade>=74.5)&&($grade<=79.4)) {    
-         print "เกรดที่ได้  : B+".'<br>';   
+         $gradeSum = "B+";   
       }
        else if (($grade>=69.5)&&($grade<=74.4)) {       
-         print "เกรดที่ได้  : B".'<br>';   
+         $gradeSum = "B";    
       }
        else if (($grade>=64.5)&&($grade<=69.4)) {
-            print "เกรดที่ได้  : C+".'<br>';   
+         $gradeSum = "C+";    
       }
        else if (($grade>=59.5)&&($grade<=64.4)) {    
-         print "เกรดที่ได้  : C".'<br>';   
+         $gradeSum = "C";   
       }
        else if (($grade>=54.5)&&($grade=59.4)) {            
-         print "เกรดที่ได้  : D+".'<br>';   
+         $gradeSum = "D+";    
       }
        else if (($grade>=49.5)&&($grade<=54.4)) {       
-         print "เกรดที่ได้  : D".'<br>';   
+         $gradeSum = "D";    
       }
        else if ($grade<=49.4) {       
-         print "เกรดที่ได้  : E หรือ F".'<br>';   
+         $gradeSum = "F";    
       }    
 
     $sql = "INSERT INTO grade_tb(Grad_Term, Std_code, Sub_code, GPA, grade_font)
-            VALUES('".$_POST['txtcode']."','".$_POST['txtPname']."','".$_POST['txtFname']."','".$_POST['txtGrade']."','".$_POST['txttel']."')";
+            VALUES('".$_POST['txtcode']."','".$_POST['txtPname']."','".$_POST['txtFname']."','".$_POST['txtGrade']."','".$gradeSum."')";
 
-$query = mysqli_query($link, $sql);
+$sql = "INSERT INTO `grade_tb`(`Grad_id`, `Grad_Term`, `Std_code`, `Sub_code`, `GPA`, `grade_font`) 
+VALUES ('',['Grad_Term'],['Std_code'],['Sub_code'],'".$_POST['txtGrade']."','".$gradeSum."')";
+$query = mysqli_query($conn, $sql);
 if($query)
 {
     echo"Insert Success";

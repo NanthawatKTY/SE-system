@@ -3,9 +3,15 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: Sep 17, 2019 at 08:54 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
+=======
+-- Generation Time: Sep 19, 2019 at 11:34 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
+>>>>>>> fc1520e6a61550c9777425629e917fa64e06fb71
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -67,7 +73,11 @@ CREATE TABLE `grade_tb` (
 --
 
 INSERT INTO `grade_tb` (`Grad_id`, `Grad_Term`, `Std_code`, `Sub_code`, `GPA`, `grade_font`) VALUES
+<<<<<<< HEAD
 (1, '1/2561', '60122660118', '5671101', '70', '');
+=======
+(1, '1/2561', '60122660134', '911103', '70', 'A');
+>>>>>>> fc1520e6a61550c9777425629e917fa64e06fb71
 
 -- --------------------------------------------------------
 
@@ -88,10 +98,16 @@ CREATE TABLE `member_tb` (
 --
 
 INSERT INTO `member_tb` (`Mem_id`, `Mem_user`, `Mem_pass`, `Type_id`, `Email`) VALUES
+<<<<<<< HEAD
 (1, '60122660134', '251241', '3', 'nanthawat.tae123@gmail.com'),
 (2, 'Admin', '123456789qwerty', '1', 'admin@gmail.com'),
 (3, '56975', '15111990', '2', 'weera_mu@teach.com'),
 (4, '48978', '123456789', '2', '48978@gmail.com');
+=======
+(1, '60122660134', '123456', '3', 'eazy@gmail.com'),
+(2, 'admin', 'admin', '1', 'test@gmail.com'),
+(3, '50436', '251241', '2', 'namo@gmail.com');
+>>>>>>> fc1520e6a61550c9777425629e917fa64e06fb71
 
 -- --------------------------------------------------------
 
@@ -110,9 +126,13 @@ CREATE TABLE `register_tb` (
 --
 
 INSERT INTO `register_tb` (`Reg_id`, `Std_code`, `Cos_code`) VALUES
+<<<<<<< HEAD
 (1, '60122660118', '12266'),
 (2, '60122660119', '12266'),
 (3, '60122660120', '12266');
+=======
+(1, '60122660134', '12345');
+>>>>>>> fc1520e6a61550c9777425629e917fa64e06fb71
 
 -- --------------------------------------------------------
 
@@ -319,13 +339,21 @@ ALTER TABLE `grade_tb`
 -- AUTO_INCREMENT for table `member_tb`
 --
 ALTER TABLE `member_tb`
+<<<<<<< HEAD
   MODIFY `Mem_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+=======
+  MODIFY `Mem_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+>>>>>>> fc1520e6a61550c9777425629e917fa64e06fb71
 
 --
 -- AUTO_INCREMENT for table `register_tb`
 --
 ALTER TABLE `register_tb`
+<<<<<<< HEAD
   MODIFY `Reg_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+=======
+  MODIFY `Reg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+>>>>>>> fc1520e6a61550c9777425629e917fa64e06fb71
 
 --
 -- AUTO_INCREMENT for table `student_tb`

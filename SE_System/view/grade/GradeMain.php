@@ -3,8 +3,13 @@ session_start();
 include_once('../../model/connect.php');
 
 
-$sql = "SELECT DISTINCT register_tb.Sub_code,subject_tb.Sub_Name FROM register_tb INNER JOIN subject_tb ON register_tb.Sub_code = subject_tb.Sub_code 
-WHERE register_tb.Teach_code = '".$_SESSION['Mem_user']."'";
+
+
+$sql = "SELECT DISTINCT course_tb.Sub_code, subject_tb.Sub_Name 
+FROM course_tb 
+INNER JOIN subject_tb 
+ON course_tb.Sub_code = subject_tb.Sub_code 
+WHERE course_tb.Teach_code = '".$_SESSION['Mem_user']."'";
 
 $query = mysqli_query($conn, $sql);
 $result = mysqli_fetch_array($query,MYSQLI_ASSOC);
@@ -117,8 +122,12 @@ $result = mysqli_fetch_array($query,MYSQLI_ASSOC);
                     
     <?php
         
-        $sql = "SELECT DISTINCT register_tb.Sub_code,subject_tb.Sub_Name FROM register_tb INNER JOIN subject_tb ON register_tb.Sub_code = subject_tb.Sub_code 
-        WHERE register_tb.Teach_code = '".$_SESSION['Mem_user']."'";
+
+        $sql = "SELECT DISTINCT course_tb.Sub_code, subject_tb.Sub_Name 
+        FROM course_tb 
+        INNER JOIN subject_tb 
+        ON course_tb.Sub_code = subject_tb.Sub_code 
+        WHERE course_tb.Teach_code = '".$_SESSION['Mem_user']."'";
 
         $query = mysqli_query($conn, $sql);
         while($result=mysqli_fetch_array($query,MYSQLI_ASSOC)) 
