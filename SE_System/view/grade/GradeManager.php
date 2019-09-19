@@ -1,14 +1,7 @@
 <?php
 session_start();
 include_once('../../model/connect.php');
-
-
-
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html>
@@ -164,9 +157,9 @@ include_once('../../model/connect.php');
             <td><div align="center">
             <?php echo $result['grade_font']; ?></div></td>
             <td><div align="center">
-            <a class="btn btn-info" href ="./AddScore.php">จัดการ</a></td>
+            <a class="btn btn-info" href ="./AddScore.php?SubCodeED=<?php echo $resultShow['Sub_code'];?>?StdCodeED=<?php echo $resultShow['Std_code'];?>">แก้ไข</a></td>
             <td><div align="center">
-            <a class="btn btn-info" href ="./AddScore.php">+ เพิ่มเกรด</a></td>
+            <a class="btn btn-info" href ="./AddScore.php?SubCodeAdd=<?php echo $resultShow['Sub_code'];?>?StdCodeAdd=<?php echo $resultShow['Std_code'];?>">+ เพิ่มเกรด</a></td>
             </tr>
             <?php
 

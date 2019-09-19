@@ -36,6 +36,8 @@ $grade = $_POST['txtGrade'];
     $sql = "INSERT INTO grade_tb(Grad_Term, Std_code, Sub_code, GPA, grade_font)
             VALUES('".$_POST['txtcode']."','".$_POST['txtPname']."','".$_POST['txtFname']."','".$_POST['txtGrade']."','".$gradeSum."')";
 
+$sql = "INSERT INTO `grade_tb`(`Grad_id`, `Grad_Term`, `Std_code`, `Sub_code`, `GPA`, `grade_font`) 
+VALUES ('',['Grad_Term'],['Std_code'],['Sub_code'],'".$_POST['txtGrade']."','".$gradeSum."')";
 $query = mysqli_query($conn, $sql);
 if($query)
 {
