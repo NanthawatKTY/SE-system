@@ -118,18 +118,30 @@ include_once('../../model/connect.php');
                           </tr> -->
     <?php
         
+        // $ID = $_GET['ID'];
+        // $_SESSION['ID'] = $ID;
+        // $sql = "SELECT register_tb.Sub_code, register_tb.Std_code, grade_tb.GPA, student_tb.Std_Fname, student_tb.Std_Lname, subject_tb.Sub_Name
+        // FROM (((register_tb
+        // INNER JOIN subject_tb ON register_tb.Sub_code = subject_tb.Sub_code)
+        // INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_code) 
+        // INNER JOIN grade_tb ON register_tb.Std_code = grade_tb.Std_code)          
+        // WHERE subject_tb.Sub_code='".$_SESSION['ID']."'" ;
+
         $ID = $_GET['ID'];
         $_SESSION['ID'] = $ID;
-        $sql = "SELECT register_tb.Sub_code, register_tb.Std_code, grade_tb.GPA, student_tb.Std_Fname, student_tb.Std_Lname, subject_tb.Sub_Name
-        FROM (((register_tb
-        INNER JOIN subject_tb ON register_tb.Sub_code = subject_tb.Sub_code)
-        INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_code) 
-        INNER JOIN grade_tb ON register_tb.Std_code = grade_tb.Std_code)          
-        WHERE subject_tb.Sub_code='".$_SESSION['ID']."'" ;
+        $sql = "SELECT register_tb.Cos_code,  register_tb.Std_code,student_tb.Std_Fname, student_tb.Std_Lname, course_tb.Sub_code, subject_tb.Sub_Name, grade_tb.GPA
+                FROM ((((course_tb
+                INNER JOIN register_tb ON course_tb.Cos_code = register_tb.Cos_code)
+                INNER JOIN subject_tb ON course_tb.Sub_code = subject_tb.Sub_code)
+                INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_code) 
+                INNER JOIN grade_tb ON register_tb.Std_code = grade_tb.Std_code)         
+                WHERE course_tb.Sub_code='".$_SESSION['ID']."'" ;
+
 
     
         $query = mysqli_query($conn, $sql);
         echo $_SESSION['Sub_code'];echo"&nbsp&nbsp";echo"-";echo"&nbsp&nbsp";echo $_SESSION['Sub_Name'];
+
 
         while($result=mysqli_fetch_array($query,MYSQLI_ASSOC)) 
         {
