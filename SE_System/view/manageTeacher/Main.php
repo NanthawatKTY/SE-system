@@ -1,3 +1,13 @@
+<?php
+session_start();
+include_once('../../model/connect.php');error_reporting(0);
+$_SESSION['Std_id'] = "";
+$id = $_GET['Std_id'];
+$_SESSION['Std_edit'] = $id;
+$sql = "SELECT * FROM teacher_tb";
+$query = $conn->query($sql);
+$result = $query->fetch_assoc()
+?>
 <!DOCTYPE html>
 <html>
 
@@ -6,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>เพิ่ม/แก้ไข ข้อมูลส่วนตัวบุคลากร</title>
+    <title>จัดการบุคลากร</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -22,7 +32,6 @@
         integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
         crossorigin="anonymous"></script>
 </head>
-
 <body class="setfont">
     <div class="wrapper">
         <!-- Sidebar  -->
@@ -33,8 +42,8 @@
             <img class=" circle-img mt-4"
                 src="https://scontent.fbkk13-1.fna.fbcdn.net/v/t1.0-9/62071969_10216624784104470_275687937776025600_n.jpg?_nc_cat=108&_nc_eui2=AeFlWjrNsKSDZAOkhDiO8Sh9gK_6MxCkO4I7Q7q-kDWjlvHgaQxXXnd_Kdgzvpf12-V57NUXyBmP9tQiXiQDK7h_oUO2uTgBIMIajS4DEgl9rw&_nc_oc=AQnPsBYrLEFJd65Nx-49Wa0az84w5sFxnLpeeeT6v3CGiW6Ct0XMM4l0zk2c3dPGwd8&_nc_ht=scontent.fbkk13-1.fna&oh=4de81c57afef203ee9addf36f5353172&oe=5E0D477F"
                 alt="">
-            <p class="text-center text-light mt-3 setfont">มารุตเทพ ร่มโพธิ์</p>
-            <p class="text-center text-light setfont">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
+            <p class="text-center text-light mt-3">มารุตเทพ ร่มโพธิ์</p>
+            <p class="text-center text-light">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
             <ul class="list-unstyled components pl-2">
                 <li>
                     <a href="/SE_System/view/profile/EditProfile.html">ข้อมูลส่วนตัว</a>
@@ -81,44 +90,37 @@
                     </button>
                 </div>
             </nav>
-            <h3>เพิ่ม/แก้ไข ข้อมูลส่วนตัวนักศึกษา</h3>
-            <hr>
-            <form>
-                <!-- ชื่อ-นามกสุล  -->
-                    <div class="form-group row">
-                      <label for="colFormLabelSm" class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ชื่อ - นามสกุล :</label>
-                      <div class="col-sm-5">
-                        <input type="name" class="form-control form-control-sm" id="colFormLabelSm" value="สมชาย ไม่ชอบสมหญิง">
-                      </div>
-                    </div>
-<!-- วันเกิด  -->
-                    <div class="form-group row">
-                            <label for="colFormLabelSm" class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">วันเกิด : </label>
-                            <div class="col-sm-5">
-                              <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm" value="22-05-1994">
-                            </div>
-                          </div>
-                          <!-- เลขที่บัตรประจำตัวประชาชน -->
-                          <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">เลขที่บัตรประจำตัวประชาชน : </label>
-                                <div class="col-sm-5">
-                                  <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm" value="1520100104758">
-                                </div>
-                              </div>
-                              <!-- รหัสบุคลากร -->
-                              <div class="form-group row">
-                                    <label for="colFormLabelSm" class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">รหัสบุคลากร : </label>
-                                    <div class="col-sm-5">
-                                      <input type="bbb" class="form-control form-control-sm" id="colFormLabelSm" value="60122660132">
-                                    </div>
-                                  </div>
+            <h3>จัดการบุคลากร</h3>
+<button class="btn btn-success btn-sm m-1"><a href="\SE-system\SE_System\view\manageStudent\AddEdit.php"> + เพิ่มนักศึกษา</a></button> 
+<input type="text" placeholder="รหัสนักศึกษา/ชื่อ - นามสกุล">
+<button class="btn btn-secondary btn-sm m-1">ค้นหา</button> 
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th scope="col">รหัสบุคลากร</th>
+                        <th scope="col">ชื่อ - นามสกุล</th>
+                        <th scope="col">สาขา</th>
+                        <th scope="col">คณะ</th>
+                        <th scope="col">แก้ไข</th>
+                        <th scope="col">ลบ</th>
+                      </tr>
+                    </thead>
+                    <tbody>
 
+                        <tbody>
+                            <tr>
+                            <?php while($result = $query->fetch_assoc()){ ?>
+                              <td><?php echo $result['Teach_code']; ?></td>
+                              <td><?php echo $result['Teach_Pname'].$result['Teach_Fname']." ".$result['Teach_Lname']; ?></td>
+                              <td><?php echo $result['Teach _Major']; ?></td>     
+                              <td><?php echo $result['Teach _Faculty']; ?></td>
+                              <td><a class="btn btn-dark btn-sm" href="./AddEdit.php?Std_id=<?php echo $result['Teach_id']; ?>">แก้ไข</a></td>
+                              <td><a class="btn btn-danger btn-sm" href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='../../control/student/del_std.php?Std_id=<?php echo $result["Teach_id"];?>';}">ลบ</a></td>
+                            </tr>
+                            <?php } ?>
+                          </tbody>
+                  </table>
 
-                  </form>
-
-<div class="row">
-        <button class="btn btn-sm btn-primary mx-auto col-2"><a href="/SE_System/control/Teacher/save_add_tch.php">บันทึก</a></button>
-</div>
 
         </div>
 

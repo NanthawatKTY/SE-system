@@ -1,10 +1,10 @@
 <?php
 session_start();
 include_once('../../model/connect.php');error_reporting(0);
-$_SESSION['Std_id'] = "";
-$id = $_GET['Std_id'];
-$_SESSION['Std_edit'] = $id;
-$sql = "SELECT * FROM student_tb";
+$_SESSION['Teach_id'] = "";
+$id = $_GET['Teach_id'];
+$_SESSION['Teach_edit'] = $id;
+$sql = "SELECT * FROM teacher_tb";
 $query = $conn->query($sql);
 $result = $query->fetch_assoc()
 ?>
