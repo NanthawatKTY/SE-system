@@ -31,7 +31,7 @@ echo '<script type="text/javascript">
     
 </script>';
 
-echo "<META HTTP-EQUIV='Refresh' CONTENT ='1;URL=./index.html'>";
+echo "<META HTTP-EQUIV='Refresh' CONTENT ='1;URL=../../index.html'>";
 }
 
 mysqli_close($link);

@@ -37,7 +37,7 @@
 
 
   <body> <center>  
-  <form  name="forgotpassword" method = "POST" action = "Check_forgot.php" class="form-signin col-3 mt-5">
+  <form  name="forgotpassword" method = "POST" action = "./control/login/Check_forgot.php" class="form-signin col-3 mt-5">
   <img class="mb-4" src="../testt/128x128.png" alt="" width="200" height="200">
   <h1 class="h3 mb-3 font-weight-normal"><font size="10" color="white">กรุณากรอกข้อมูลเพื่อยืนยัน</font></h1>
   <label for="Code" class="sr-only">รหัสนักศึกษา/อาจารย์</label>
