@@ -12,8 +12,7 @@ if(isset($_POST["query"]))
   OR Teach_Pname LIKE '%".$search."%' 
   OR Teach_Fname LIKE '%".$search."%' 
   OR Teach_Lname LIKE '%".$search."%' 
-  
- ";
+  ";
 }
 else
 {

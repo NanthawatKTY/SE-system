@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>ข้อมูลส่วนตัวนักศึกษา</title>
+    <title>รายวิชา</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -82,17 +82,18 @@
                 </div>
             </nav>
             
-            <h3>ข้อมูลส่วนตัว</h3>
+            <h3>ค้นหารายวิชา</h3>
            <body>
            <div class="container">
 			<br />
 			<br />
 			<br />
-			<h2 align="center">คำค้น (ชื่อ - นามสกุล / เลขประจำตำแหน่ง)</h2><br />
+			<h2 align="center">ค้นหารายวิชา</h2><br />
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon">Search &nbsp;</span>
-					<input type="text" name="search_text" id="search_text" placeholder="ค้นหา" class="form-control" />
+					<input type="text" name="search_text" id="search_text" 
+                    placeholder="คำที่สามารถค้นหาได้ -> (รหัสรายวิชา / ชื่อรายวิชา / หน่วยกิต) นะจร๊ะเข้าใจตรงกัน" class="form-control" />
 				</div>
 			</div>
 			<br />
@@ -137,7 +138,7 @@ $(document).ready(function(){
 	function load_data(query)
 	{
 		$.ajax({
-			url:"../../model/fetch_teacher.php",
+			url:"../../model/fetchSub.php",
 			method:"post",
 			data:{query:query},
 			success:function(data)
