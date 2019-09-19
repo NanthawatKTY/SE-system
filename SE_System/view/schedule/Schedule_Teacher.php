@@ -87,10 +87,9 @@
 			<br />
 			<br />
 			<br />
-			<h2 align="center">ค้นหาจาก ภาคเรียน / ชื่อวิชา / รหัสวิชา /อาจาร์ผู้สอน </h2><br />
+			<h2 align="center">ค้นหาจาก  ปีการศึกษา / รหัสวิชา /ชื่อวิชา/รหัสอาจารย์/อาจาร์ผู้สอน </h2><br />
 			<div class="form-group">
 				<div class="input-group">
-					
 					<input type="text" name="search_text" id="search_text" placeholder="ค้นหา" class="form-control" />
 				</div>
 			</div>
@@ -136,7 +135,7 @@ $(document).ready(function(){
 	function load_data(query)
 	{
 		$.ajax({
-			url:"../../model/schedule_student.php",
+			url:"../../model/schedule_Teacher.php",
 			method:"post",
 			data:{query:query},
 			success:function(data)
