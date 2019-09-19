@@ -1,10 +1,11 @@
 <?php
 session_start();
 include_once('../../model/connect.php');error_reporting(0);
+ู$id = "";
 $_SESSION['Teach_edit'] = "";
 $id = $_GET['Teach_id'];
 $_SESSION['Teach_edit'] = $id;
-$sql = "SELECT * FROM teacher_tb";
+$sql = "SELECT * FROM teacher_tb WHERE Teach_id = '$id'";
 $query = $conn->query($sql);
 $result = $query->fetch_assoc()
 ?>
