@@ -134,6 +134,8 @@ include_once('../../model/connect.php');
         $query2 = mysqli_query($conn, $sql);
         $resultShow = mysqli_fetch_array($query1,MYSQLI_ASSOC);
 
+        
+
             // สำหรับหน้าแก้ไข //
 
         // $sqlEditGrade = "SELECT DISTINCT grade_tb.Grad_id, register_tb.Cos_code, course_tb.Sub_code, subject_tb.Sub_Name, register_tb.Std_code, 
@@ -159,9 +161,7 @@ include_once('../../model/connect.php');
             
             error_reporting(0);
             ?>
-            <tr>
-           
-           
+            <tr>           
             <td><div align="center">
             <?php echo $result['Std_code'];?></div></td>
             <td><div align="center">
@@ -171,9 +171,9 @@ include_once('../../model/connect.php');
             <td><div align="center">
             <?php echo $result['grade_font']; ?></div></td>
             <td><div align="center">
-            <a class="btn btn-info" href ="./AddScore.php?GradID=<?php echo $resultShow['Grad_id'];?>">แก้ไข</a></td>
+            <a class="btn btn-info" href ="./AddScore.php?GradID=<?php echo $result['Grad_id']?>&SubCodeED=<?php echo $_SESSION['ID']?> ">แก้ไข</a></td>
             <td><div align="center">
-            <a class="btn btn-info" href ="./AddScore.php?SubCodeAdd=<?php echo $resultShow['Sub_code'];?>">+ เพิ่มเกรด</a></td>
+            <a class="btn btn-info" href ="./AddScore.php?SubCodeAdd=<?php echo $result['Sub_code'];?>">+ เพิ่มเกรด</a></td>
             </tr>
             <?php
 

@@ -1,6 +1,8 @@
 <?php
 session_start();
-include '../../model/connect.php';
+include_once('../../model/connect.php');
+$ID = $_GET['ID'];
+$_SESSION['ID'] = $ID;
 
 $grade = $_POST['txtGrade'];
    
@@ -33,21 +35,44 @@ $grade = $_POST['txtGrade'];
          $gradeSum = "F";    
       }    
 
-    $sql = "INSERT INTO grade_tb(Grad_Term, Std_code, Sub_code, GPA, grade_font)
-            VALUES('".$_POST['txtcode']."','".$_POST['txtPname']."','".$_POST['txtFname']."','".$_POST['txtGrade']."','".$gradeSum."')";
 
-$sql = "INSERT INTO `grade_tb`(`Grad_id`, `Grad_Term`, `Std_code`, `Sub_code`, `GPA`, `grade_font`) 
-VALUES ('',['Grad_Term'],['Std_code'],['Sub_code'],'".$_POST['txtGrade']."','".$gradeSum."')";
-$query = mysqli_query($conn, $sql);
+if($_SESSION['GradID'] != ""){
+
+   $sqlGradeEdit = "UPDATE `grade_tb` SET 
+   `GPA`='".$_POST[txtGrade]."', 'grade_font'='".$gradeSum."' 
+   WHERE Grad_id = '".$_SESSION['GradID']."'";
+// UPDATE `grade_tb` SET `GPA`= "70",`grade_font`= "B"WHERE `Grad_id` = "1"
+
+   $queryGradeEdit = $conn->query($sqlGradeEdit);
+
+   $_SESSION['GradID'] = '';
+   $ID = $_GET['ID'];
+   $_SESSION['ID'] = $ID;
+if($queryGradeEdit){
+   header("location: ../../view/grade/GradeManager.php?success=1");
+}
+else{
+   header("location: ../../view/grade/GradeManager.php?success=2");
+}
+}
+else{
+
+   $sqlAddGrade = "INSERT INTO `grade_tb`(`Grad_id`, `Grad_Term`, `Std_code`, `Sub_code`, `GPA`, `grade_font`) 
+   VALUES ('','".$_POST['txtGrade']."','".$gradeSum."')";
+   $queryAddGrade = mysqli_query($conn, $sqlAddGrade);
+
+
+
 if($query)
 {
     echo"Insert Success";
-    echo"<META HTTP-EQUIV='Refresh' CONTENT='2;URL=admin.php'>";
+    echo"<META HTTP-EQUIV='Refresh' CONTENT='2;URL=../../view/grade/GradeManager.php'>";
 }
 else
 {
     echo"Error , Insert Again";
-    echo"<META HTTP-EQUIV='Refresh' CONTENT='2;URL=admin.php'>";
+    echo"<META HTTP-EQUIV='Refresh' CONTENT='2;URL=../../view/grade/GradeManager.php'>";
 }
-mysqli_close($link);
+}
+mysqli_close($conn);
 ?>

@@ -93,10 +93,10 @@ include_once('../../model/connect.php');
 
            <?php 
            
-            // $subcodeED = $_GET['SubCodeED'];
-            // $_SESSION['SubCodeED'] = $subcodeED;
+            $subcodeED = $_GET['SubCodeED'];
+            $_SESSION['SubCodeED'] = $subcodeED;
 
-        
+            
 
             $sqlED = "SELECT DISTINCT register_tb.Cos_code,   course_tb.Sub_Code, subject_tb.Sub_Name, register_tb.Std_code, 
             student_tb.Std_Pname,student_tb.Std_Fname, student_tb.Std_Lname, subject_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font
@@ -107,34 +107,41 @@ include_once('../../model/connect.php');
             INNER JOIN grade_tb ON register_tb.Std_code = grade_tb.Std_code
             WHERE course_tb.Sub_Code = '".$_SESSION['SubCodeED']."'" ;
 
-
             $queryED = mysqli_query($conn, $sqlED);
             $resultShowED = mysqli_fetch_array($queryED,MYSQLI_ASSOC);
+
+            echo $_SESSION['SubCodeED']." - ".$resultShowED['Sub_Name'];
        
             $GradIDED = $_GET['GradID'];
             $_SESSION['GradID'] = $GradIDED;
-            $sqlEditGrade = "SELECT grade_tb.Grad_id, grade_tb.Grad_Term, grade_tb.Std_code, grade_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font
+            $sqlEditGrade = "SELECT grade_tb.Grad_id, grade_tb.Grad_Term, grade_tb.Std_code, grade_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font, 
+            student_tb.Std_Pname, student_tb.Std_Fname, student_tb.Std_Lname
+
             FROM grade_tb
-            WHERE grade_tb.Grad_id = '".$_SESSION['GradID']."'" ;
+            INNER JOIN register_tb ON grade_tb.Std_code = register_tb.Std_code
+            INNER JOIN student_tb ON grade_tb.Std_code = student_tb.Std_Code
+            WHERE grade_tb.Grad_id = '".$_GET['GradID']."'" ;
             
             $queryEditGrade = mysqli_query($conn, $sqlEditGrade);
             $resultEditGrade = $queryEditGrade->FETCH_ASSOC();
 
-            echo $resultShowED['course_tb.Sub_code']." - ".$resultShowED['subject_tb.Sub_Name'];
+            
+            
            
             ?>
 
 
         <form action="../../control/grade/save_addEdit_score.php" method = "POST" class="form-inline">
             <div class="form-group mb-2">
-            <label for="StudentName"><?php echo $resultShowED['Std_Pname'].$resultShowED['Std_Fname']." ".$resultShowED['Std_Lname']?></label>
+            <label for="StudentName"><?php echo $resultEditGrade['Std_Pname'].$resultEditGrade['Std_Fname']." ".$resultEditGrade['Std_Lname']?></label>
             </div>
             <div class="form-group mx-sm-3 mb-2">
             <input type="text" class="form-control" id="txtGrade" placeholder="คะแนน" name="txtGrade"
             <?php if($_SESSION['GradID']){ ?> value="<?php echo $resultEditGrade['GPA']?>"<?php } 
             else { ?> <?php } ?> required>
             </div>
-            <button type="submit" class="btn btn-success mb-2" href = "../../control/grade/save_add_score.php">บันทึก</button>
+
+            <input type="submit" class="btn btn-success mb-2" value="บันทึก" name="GradeEdit" href="../../control/grade/save_addEdit_score.php?ID=<?php echo $_SESSION['ID'];?>">
       </form>
       <a type="back" class="btn btn-secondary mb-2" href="./GradeManager.php?ID=<?php echo $_SESSION['ID'];?>">กลับหน้าเดิม</a>
 
