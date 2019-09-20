@@ -89,6 +89,7 @@
 			<br />
 			<br />
 			<h2 align="center">ค้นหารายวิชา</h2><br />
+            <a href="../subjects/subject/subjects.php"><button class="btn btn-secondary btn-sm m-1">กลับไปหน้ารายวิชา</button></a><br><br>
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon">Search &nbsp;</span>
@@ -105,6 +106,7 @@
 		<br />
 		<br />
 		<br />
+        <a href="../subjects/subject/subjects.php"><button class="btn btn-secondary btn-sm m-1">กลับไปหน้ารายวิชา</button></a>
            </body>
 
         </div>

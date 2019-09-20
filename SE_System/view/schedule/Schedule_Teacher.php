@@ -86,7 +86,7 @@ session_start();
                     </button>
                 </div>
             </nav>
-            <h3>ตรางเรียนนักศึกษา</h3>
+            <h3>ค้นหา ตรางสอนอาจารย์</h3>
            <body>
            <div class="container">
 			<br />
@@ -125,7 +125,7 @@ session_start();
             crossorigin="anonymous"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
+        
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#sidebarCollapse').on('click', function () {

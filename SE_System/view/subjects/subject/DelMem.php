@@ -6,9 +6,9 @@
 <br>
 
 <?php
- include 'subjects.php'; $ID = $_GET['ID'];
-$sql = "DELETE FROM subject_tb WHERE ID=".$ID;
-$query = mysqli_query($link, $sql);
+ include '../../../model/condb.php' ; $ID = $_GET['ID'];
+$sql = "DELETE FROM subject_tb WHERE Sub_id=".$ID;
+$query = mysqli_query($conn, $sql);
 if($query==TRUE)
 {
     echo"Delete Complete";
@@ -19,7 +19,7 @@ else
     echo "Error , can't Delete member";
       echo "<META HTTP-EQUIV='Refresh'CONTENT = '2;URL=subjects.php'>";
 }
-mysqli_close($link);
+mysqli_close($conn);
 ?>
 
 </center
