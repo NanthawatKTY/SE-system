@@ -113,8 +113,6 @@
         {
             ?>
             <tr>
-           
-            
             <td><div align="center">
             <?php echo $result['Sub_code'];?></div></td>
             <td><div align="left">
@@ -123,7 +121,7 @@
             <?php echo $result['Sub_Credit'];?></div></td>
             <td><div align="center">
             <a href="UpdSubAdmin.php?ID=<?php echo $result['Sub_id'];?>"><ion-icon style="color:orange" name="construct"></ion-icon></a></td>
-            <td><div align="center"><a href="JavaScript:if(confirm('Confirm Delete?')== true){window.location='DelMem.php?ID=<?php echo $result['ID'];?>';}"><ion-icon style="color:red" name="trash"></ion-icon></a></td>
+            <td><div align="center"><a href="JavaScript:if(confirm('Confirm Delete?')== true){window.location='DelMem.php?ID=<?php echo $result['Sub_id'];?>';}"><ion-icon style="color:red" name="trash"></ion-icon></a></td>
             </tr>
             <?php
 
