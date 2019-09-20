@@ -17,7 +17,7 @@ $query = $conn->query($sql);
 //print_r($sql);
 if($query){
     echo $_SESSION['Std_edit'];
-    $_SESSION['Std_edit'] = " ";
+    $_SESSION['Std_edit'] = "";
     echo "<script>";
     echo "alert('แก้ไขเรียบร้อย');";
     echo "window.location='../../view/manageStudent/main.php';";

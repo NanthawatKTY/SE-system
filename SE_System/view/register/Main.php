@@ -1,3 +1,14 @@
+<?php
+session_start();
+include_once('../../model/connect.php');
+$sql = "SELECT * FROM `student_tb` ";
+$query = $conn->query($sql);
+error_reporting(0);
+$sqlCourseName = "SELECT * FROM `coursename_tb` ";
+$queryCourseName = $conn->query($sqlCourseName);
+// $resultCourseName = $queryCourseName->FETCH_ASSOC();
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -82,75 +93,95 @@
                 </div>
             </nav>
             <h3>จัดการลงทะเบียน</h3>
-<div class="form-group">
-        <select class="" id="inputGroupSelect01">
-                <option selected>ชั้นปี</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="3">4</option>
-              </select>
-         <button>เลือก</button>
-</div>
+            <form class="form-inline">
+            <div class="form-group mr-2 mb-2">
+                <label for="inputPassword2" class="sr-only">Password</label>
+                <input type="password" class="form-control form-control-sm" id="inputPassword2" placeholder="รหัส หรือ หมู่เรียน">
+              </div>
+              <button type="submit" class="btn btn-secondary btn-sm mb-2">ค้นหา</button>
+            </form>
+
+
+            <script language="JavaScript">
+	function ClickCheckAll(vol)
+	{
+		for(var i=2;i<=document.frmMain.hdnCount.value;i++)
+		{
+            console.log(i);
+            
+			if(vol.checked == true)
+			{
+				eval("document.frmMain.Chk"+i+".checked=true");
+			}
+			else
+			{
+				eval("document.frmMain.Chk"+i+".checked=false");
+			}
+		}
+	}
+</script>
+
+
+<form action="../../control/register/AddRegister.php" method="post" name="frmMain" id="frmMain">
 
 <div class="form-group">
-        <select class="form-control-sm">
-                <option>เลือกแผนการเรียน</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+        <select name="CosCode" class="form-control-sm" required>
+                <option value="">เลือกแผนการเรียน</option>
+<?php while($rowCsName = $queryCourseName->FETCH_ASSOC()){ ?>
+                <option value="<?php echo $rowCsName['Cos_code'] ?>"><?php echo $rowCsName['Cos_name'] ?></option>
+<?php } ?>
               </select>
-              <button>+ เพิ่มแผนการเรียน</button>
+              <button class="btn btn-sm btn-success">+ เพิ่ม/แก้ไข</button>
 </div>
 
+<?php if($_GET['susccess'] == 1){ ?>
+    <div class="alert alert-success" role="alert">
+  สำเร็จ
+</div>
 
-            <table class="table table-bordered mt-3">
+<?php }else if($_GET['susccess'] == 2) { ?>
+    <div class="alert alert-danger" role="alert">
+  มีบางอย่างผิดพลาด กรุณาตรวจสอบ
+</div> <?php } ?>
+
+
+            <table class="table table-bordered mt-3 ">
                     <thead>
                       <tr>
-                        <th scope="col">เลือก</th>
+                      <td width="34"><div align="center">
+        <input name="CheckAll" type="checkbox" id="CheckAll" onClick="ClickCheckAll(this);">
+      </div></td>
                         <th scope="col">รหัส</th>
                         <th scope="col">ชื่อ - นามสกุล</th>
                         <th scope="col">แผนการเรียน</th>
-                        <th scope="col">แก้ไข</th>
                       </tr>
                     </thead>
                     <tbody>
-<td><div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="defaultCheck1">1</label>
-      </div>
-    </td>
-                        <td scope="row">60122660101</td>
-                        <td>นาย สมชาย ไม่ค่อยมี</td>
-                        <td><button class="btn btn-outline-success">วิศวกรรมซอฟต์แวร์ 2560</button></td>
-                        <td><button>แก้ไข</button></td>
+                        <?php $i = 1; while($row = $query->FETCH_ASSOC()) {
+                             $i = $i+1; 
+                             $sqlNameCourse = "  SELECT * FROM `register_tb`
+                    INNER JOIN coursename_tb
+                    ON register_tb.Cos_code = coursename_tb.Cos_code
+                    WHERE `Std_code` = '".$row['Std_Code']."' ";
+                    $queryNameCourse = $conn->query($sqlNameCourse);
+                    $resultNameCourse = $queryNameCourse->FETCH_ASSOC();
+                             ?>
+                            
+                        <tr>
+                        <td><div align="center">
+                            <input name="Chk<?php echo $i; ?>" type="checkbox" id="Chk1" value="<?php echo $row['Std_Code']; ?>">
+                        </div></td>
+                        <td scope="row"><?php echo $row['Std_Code'] ?></td>
+                        <td><?php echo $row['Std_Pname'].$row['Std_Fname']." ".$row['Std_Lname'] ?></td>
+                        <td><?php echo $resultNameCourse['Cos_name'] ?></td>
                       </tr>
-                      <tr>
-                            <td><div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">2</label>
-                                  </div>
-                                </td>
-                        <td scope="row">60122660102</td>
-                        <td>นางสาว สมหญิง มีมากเหลือเกิน</td>
-                        <td><button class="btn btn-outline-success">วิศวกรรมซอฟต์แวร์ 2560</button></td>
-                        <td><button>แก้ไข</button></td>
-                      </tr>
-                      <tr>
-                            <td><div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">3</label>
-                                  </div>
-                                </td>
-                            <td scope="row">60122660103</td>
-                            <td>นาย เกิดมาทำไม ไม่รู้เหมือนกัน</td>
-                            <td><button class="btn btn-outline-success">วิศวกรรมซอฟต์แวร์ 2560</button></td>
-                            <td><button>แก้ไข</button></td>
-                          </tr>
+                      
+                        <?php  } ?>
                     </tbody>
                   </table>
+                  <input type="hidden" name="hdnCount" value="<?php echo $i ?>">
+                  </form>
+
         </div>
 
         <!-- jQuery CDN - Slim version (=without AJAX) -->
