@@ -14,7 +14,7 @@
             window.onload = noBack;
             window.onpageshow = function(evt) { if (evt.persisted) noBack() }
             window.onunload = function() { void (0) }
-        </script>
+
 
 </head>
 <body>
@@ -26,4 +26,9 @@ echo "ขอบคุณที่ใช้บริการ";
 session_start();
 session_destroy();
 echo "<META HTTP-EQUIV='Refresh' CONTENT ='3;URL=../../index.html'>";
+
 ?>
+        </script>
+        <script type="text/javascript">
+window.history.go(-2);
+</script>
