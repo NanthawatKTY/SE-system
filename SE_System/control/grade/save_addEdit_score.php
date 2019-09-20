@@ -1,8 +1,9 @@
 <?php
 session_start();
 include_once('../../model/connect.php');
-$ID = $_GET['ID'];
-$_SESSION['ID'] = $ID;
+
+$SubCode = $_GET['ID'];
+$_SESSION['ID'] = $SubCode;
 
 $grade = $_POST['txtGrade'];
    
@@ -34,7 +35,9 @@ $grade = $_POST['txtGrade'];
        else if ($grade<=49.4) {       
          $gradeSum = "F";    
       }    
-
+echo $gradeSum;
+echo $SubCode;
+return false;
 
 if($_SESSION['GradID'] != ""){
 
@@ -46,9 +49,9 @@ if($_SESSION['GradID'] != ""){
    $queryGradeEdit = $conn->query($sqlGradeEdit);
 
    $_SESSION['GradID'] = '';
-   $ID = $_GET['ID'];
-   $_SESSION['ID'] = $ID;
+
 if($queryGradeEdit){
+   $_GET['ID'] = $_SESSION['SubCodeED'];
    header("location: ../../view/grade/GradeManager.php?success=1");
 }
 else{
@@ -71,7 +74,7 @@ if($query)
 else
 {
     echo"Error , Insert Again";
-    echo"<META HTTP-EQUIV='Refresh' CONTENT='2;URL=../../view/grade/GradeManager.php'>";
+    echo"<META HTTP-EQUIV='Refresh' CONTENT='2;URL=../../view/grade/GradeManager.php?'>";
 }
 }
 mysqli_close($conn);

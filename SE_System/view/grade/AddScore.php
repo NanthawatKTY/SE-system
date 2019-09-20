@@ -93,8 +93,8 @@ include_once('../../model/connect.php');
 
            <?php 
            
-            $subcodeED = $_GET['SubCodeED'];
-            $_SESSION['SubCodeED'] = $subcodeED;
+            $SubCodeED = $_GET['SubCodeED'];
+            $_SESSION['SubCodeED'] = $SubCodeED;
 
             
 
@@ -141,7 +141,7 @@ include_once('../../model/connect.php');
             else { ?> <?php } ?> required>
             </div>
 
-            <input type="submit" class="btn btn-success mb-2" value="บันทึก" name="GradeEdit" href="../../control/grade/save_addEdit_score.php?ID=<?php echo $_SESSION['ID'];?>">
+            <button type="submit" class="btn btn-success mb-2" name="GradeEdit" href="../../control/grade/save_addEdit_score.php?SubCodeED=<?php echo $_SESSION['SubCodeED'];?>">บันทึก</button>
       </form>
       <a type="back" class="btn btn-secondary mb-2" href="./GradeManager.php?ID=<?php echo $_SESSION['ID'];?>">กลับหน้าเดิม</a>
 

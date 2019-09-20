@@ -45,7 +45,7 @@ include_once('../../model/connect.php');
                     <a href="/SE_System/view/profile/EditProfile.html">ข้อมูลส่วนตัว</a>
                 </li>
                 <li>
-                    <a href="/SE_System/view/grade/gradeStudent.html">ผลการเรียน</a>
+                    <a href="./GradeMain.php">ผลการเรียน</a>
                 </li>
                 <li>
                     <a href="/SE_System/Edittranscript2.php">แผนการเรียน</a>
@@ -133,25 +133,6 @@ include_once('../../model/connect.php');
         $query1 = mysqli_query($conn, $sql);
         $query2 = mysqli_query($conn, $sql);
         $resultShow = mysqli_fetch_array($query1,MYSQLI_ASSOC);
-
-        
-
-            // สำหรับหน้าแก้ไข //
-
-        // $sqlEditGrade = "SELECT DISTINCT grade_tb.Grad_id, register_tb.Cos_code, course_tb.Sub_code, subject_tb.Sub_Name, register_tb.Std_code, 
-        // student_tb.Std_Fname, student_tb.Std_Lname, subject_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font
-        // FROM course_tb
-        // INNER JOIN register_tb ON course_tb.Cos_code = register_tb.Cos_code
-        // INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
-        // INNER JOIN subject_tb ON course_tb.Sub_Code = subject_tb.Sub_code
-        // INNER JOIN grade_tb ON register_tb.Std_code = grade_tb.Std_code
-        // WHERE grade_tbGrad_id = '".$_SESSION['GradID']."'" ;
-        
-        // $queryEditGrade = mysqli_query($conn, $sqlEditGrade);
-        // $resultEditGrade = mysqli_fetch_array($queryEditGrade,MYSQLI_ASSOC);
-
-        
-       
 
         echo $resultShow['Sub_code'];echo"&nbsp&nbsp";echo"-";echo"&nbsp&nbsp";echo $resultShow['Sub_Name'];
         

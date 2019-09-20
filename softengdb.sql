@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2019 at 02:55 PM
+-- Generation Time: Sep 20, 2019 at 06:33 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -100,7 +100,8 @@ CREATE TABLE `grade_tb` (
 --
 
 INSERT INTO `grade_tb` (`Grad_id`, `Grad_Term`, `Std_code`, `Sub_code`, `GPA`, `grade_font`) VALUES
-(1, '1/2561', '60122660134', '911103', '70', 'A');
+(1, '2/2563', '60122660134', '9011103', '70', 'B'),
+(2, '1/2561', '60122660118', '9011103', '85', 'A');
 
 -- --------------------------------------------------------
 
@@ -142,7 +143,8 @@ CREATE TABLE `register_tb` (
 --
 
 INSERT INTO `register_tb` (`Reg_id`, `Std_code`, `Cos_code`) VALUES
-(1, '60122660134', '12345');
+(1, '60122660134', '12345'),
+(2, '60122660118', '12345');
 
 -- --------------------------------------------------------
 
@@ -338,7 +340,7 @@ ALTER TABLE `course_tb`
 -- AUTO_INCREMENT for table `grade_tb`
 --
 ALTER TABLE `grade_tb`
-  MODIFY `Grad_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Grad_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `member_tb`
@@ -350,7 +352,7 @@ ALTER TABLE `member_tb`
 -- AUTO_INCREMENT for table `register_tb`
 --
 ALTER TABLE `register_tb`
-  MODIFY `Reg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Reg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `student_tb`
