@@ -122,20 +122,34 @@ include_once('../../model/connect.php');
 
         $ID = $_GET['ID'];
         $_SESSION['ID'] = $ID;
-        $sql = "SELECT DISTINCT register_tb.Cos_code,   course_tb.Sub_code, subject_tb.Sub_Name, register_tb.Std_code, student_tb.Std_Fname, student_tb.Std_Lname, subject_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font
+        $sql = "SELECT DISTINCT grade_tb.Grad_id, register_tb.Cos_code, course_tb.Sub_code, subject_tb.Sub_Name, register_tb.Std_code, 
+        student_tb.Std_Fname, student_tb.Std_Lname, subject_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font
         FROM course_tb
         INNER JOIN register_tb ON course_tb.Cos_code = register_tb.Cos_code
         INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
         INNER JOIN subject_tb ON course_tb.Sub_Code = subject_tb.Sub_code
         INNER JOIN grade_tb ON register_tb.Std_code = grade_tb.Std_code
         WHERE course_tb.Sub_Code = '".$_SESSION['ID']."'" ;
-
-
-    
         $query1 = mysqli_query($conn, $sql);
         $query2 = mysqli_query($conn, $sql);
-
         $resultShow = mysqli_fetch_array($query1,MYSQLI_ASSOC);
+
+            // สำหรับหน้าแก้ไข //
+
+        // $sqlEditGrade = "SELECT DISTINCT grade_tb.Grad_id, register_tb.Cos_code, course_tb.Sub_code, subject_tb.Sub_Name, register_tb.Std_code, 
+        // student_tb.Std_Fname, student_tb.Std_Lname, subject_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font
+        // FROM course_tb
+        // INNER JOIN register_tb ON course_tb.Cos_code = register_tb.Cos_code
+        // INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
+        // INNER JOIN subject_tb ON course_tb.Sub_Code = subject_tb.Sub_code
+        // INNER JOIN grade_tb ON register_tb.Std_code = grade_tb.Std_code
+        // WHERE grade_tbGrad_id = '".$_SESSION['GradID']."'" ;
+        
+        // $queryEditGrade = mysqli_query($conn, $sqlEditGrade);
+        // $resultEditGrade = mysqli_fetch_array($queryEditGrade,MYSQLI_ASSOC);
+
+        
+       
 
         echo $resultShow['Sub_code'];echo"&nbsp&nbsp";echo"-";echo"&nbsp&nbsp";echo $resultShow['Sub_Name'];
         
@@ -157,9 +171,9 @@ include_once('../../model/connect.php');
             <td><div align="center">
             <?php echo $result['grade_font']; ?></div></td>
             <td><div align="center">
-            <a class="btn btn-info" href ="./AddScore.php?SubCodeED=<?php echo $resultShow['Sub_code'];?>?StdCodeED=<?php echo $resultShow['Std_code'];?>">แก้ไข</a></td>
+            <a class="btn btn-info" href ="./AddScore.php?GradID=<?php echo $resultShow['Grad_id'];?>">แก้ไข</a></td>
             <td><div align="center">
-            <a class="btn btn-info" href ="./AddScore.php?SubCodeAdd=<?php echo $resultShow['Sub_code'];?>?StdCodeAdd=<?php echo $resultShow['Std_code'];?>">+ เพิ่มเกรด</a></td>
+            <a class="btn btn-info" href ="./AddScore.php?SubCodeAdd=<?php echo $resultShow['Sub_code'];?>">+ เพิ่มเกรด</a></td>
             </tr>
             <?php
 

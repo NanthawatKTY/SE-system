@@ -230,6 +230,7 @@ $rowTeacher['Teach_Fname'] ." ". $rowTeacher['Teach_Lname']?></option>
         <option value="1/2563">1/2563</option>
         <option value="2/2563">2/2563</option>
       </select>
+      
       <?php if($_GET['CosId']){ 
           $_SESSION['EditProgream'] = $_GET['CosId'];?>
 <input class="btn btn-sm" type="submit" value="แก้ไขวิชา" name="Edit">

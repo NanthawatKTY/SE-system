@@ -2,8 +2,8 @@
 session_start();
 include_once('../../model/connect.php');
 
-$_SESSION['ID'];
-$_GET['ID'] = $_SESSION['ID'];
+// $_SESSION['ID'];
+// $_GET['ID'] = $_SESSION['ID'];
 
 ?>
 <!DOCTYPE html>
@@ -66,7 +66,7 @@ $_GET['ID'] = $_SESSION['ID'];
                     <a href="/SE_System/index.html" class="article">กลับเมนูหลัก</a>
                 </li>
                 <li>
-                    <a href="/SE_System/logout.php" class="download">ออกจากระบบ</a>
+                    <a href="../../control/login/logout.php" class="download">ออกจากระบบ</a>
                 </li>
 
             </ul>
@@ -90,16 +90,51 @@ $_GET['ID'] = $_SESSION['ID'];
                 </div>
             </nav>
             <h3>แก้ไขผลการเรียน</h3>
-<h5>วิชา ภาษาอังกฤษเพื่อทักษะการเรียน - 9011103</h5>
 
-<form action="" class="form-inline">
-        <div class="form-group mb-2">
-          <label for="staticEmail2">นายสมชาย ไม่ค่อยมี</label>
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-          <input type="text" class="form-control" id="txtGrade" placeholder="คะแนน" name="txtGrade">
-        </div>
-        <button type="submit" class="btn btn-success mb-2" href = "../../control/grade/save_add_score.php">บันทึก</button>
+           <?php 
+           
+            // $subcodeED = $_GET['SubCodeED'];
+            // $_SESSION['SubCodeED'] = $subcodeED;
+
+        
+
+            $sqlED = "SELECT DISTINCT register_tb.Cos_code,   course_tb.Sub_Code, subject_tb.Sub_Name, register_tb.Std_code, 
+            student_tb.Std_Pname,student_tb.Std_Fname, student_tb.Std_Lname, subject_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font
+            FROM course_tb
+            INNER JOIN register_tb ON course_tb.Cos_code = register_tb.Cos_code
+            INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
+            INNER JOIN subject_tb ON course_tb.Sub_Code = subject_tb.Sub_code
+            INNER JOIN grade_tb ON register_tb.Std_code = grade_tb.Std_code
+            WHERE course_tb.Sub_Code = '".$_SESSION['SubCodeED']."'" ;
+
+
+            $queryED = mysqli_query($conn, $sqlED);
+            $resultShowED = mysqli_fetch_array($queryED,MYSQLI_ASSOC);
+       
+            $GradIDED = $_GET['GradID'];
+            $_SESSION['GradID'] = $GradIDED;
+            $sqlEditGrade = "SELECT grade_tb.Grad_id, grade_tb.Grad_Term, grade_tb.Std_code, grade_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font
+            FROM grade_tb
+            WHERE grade_tb.Grad_id = '".$_SESSION['GradID']."'" ;
+            
+            $queryEditGrade = mysqli_query($conn, $sqlEditGrade);
+            $resultEditGrade = $queryEditGrade->FETCH_ASSOC();
+
+            echo $resultShowED['course_tb.Sub_code']." - ".$resultShowED['subject_tb.Sub_Name'];
+           
+            ?>
+
+
+        <form action="../../control/grade/save_addEdit_score.php" method = "POST" class="form-inline">
+            <div class="form-group mb-2">
+            <label for="StudentName"><?php echo $resultShowED['Std_Pname'].$resultShowED['Std_Fname']." ".$resultShowED['Std_Lname']?></label>
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+            <input type="text" class="form-control" id="txtGrade" placeholder="คะแนน" name="txtGrade"
+            <?php if($_SESSION['GradID']){ ?> value="<?php echo $resultEditGrade['GPA']?>"<?php } 
+            else { ?> <?php } ?> required>
+            </div>
+            <button type="submit" class="btn btn-success mb-2" href = "../../control/grade/save_add_score.php">บันทึก</button>
       </form>
       <a type="back" class="btn btn-secondary mb-2" href="./GradeManager.php?ID=<?php echo $_SESSION['ID'];?>">กลับหน้าเดิม</a>
 
