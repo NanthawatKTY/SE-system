@@ -4,7 +4,7 @@ include_once('../../model/connect.php');error_reporting(0);
 $_SESSION['Std_id'] = "";
 $id = $_GET['Std_id'];
 $_SESSION['Std_edit'] = $id;
-$sql = "SELECT * FROM student_tb WHERE Std_id = '".$_SESSION['Std_edit']."'";
+$sql = "SELECT * FROM student_tb WHERE Std_id = '$id'";
 $query = $conn->query($sql);
 $result = $query->fetch_assoc()
 ?>
