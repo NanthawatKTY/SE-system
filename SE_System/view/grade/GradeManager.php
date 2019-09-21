@@ -121,7 +121,7 @@ include_once('../../model/connect.php');
         // WHERE subject_tb.Sub_code='".$_SESSION['ID']."'" ;
 
         $ID = $_GET['ID'];
-        $ID = $_SESSION['SubCodeED'];
+        // $ID = $_SESSION['SubCodeED'];
 
         
         $sql = "SELECT DISTINCT grade_tb.Grad_id, register_tb.Cos_code, course_tb.Sub_code, subject_tb.Sub_Name, register_tb.Std_code, 

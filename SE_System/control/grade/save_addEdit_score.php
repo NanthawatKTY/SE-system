@@ -2,15 +2,19 @@
 session_start();
 include '../../model/connect.php';
 
-$SubCode = $_SESSION['SubCodeED'];
-
 $GradID = $_SESSION['GradID'];
 
+// ตรวจเกรด ถ้าเกินให้ใช้ค่าเดิม
+$sqlShowGrade = "SELECT * FROM grade_tb WHERE Grad_id=".$GradID;
+$queryShowGrade = mysqli_query($conn, $sqlShowGrade);
+$resultShow = mysqli_fetch_array($queryShowGrade);
+$_SESSION['GPA'] = $resultShow['GPA'];
 
 $grade = $_POST['txtGrade'];
 
        if(($grade>100)||($grade<0)) {    
-         print "เกรดที่ได้  : ไม่สามารถคิดเกรดได้ คะแนนเกิน".'<br>';   
+         echo "เกรดที่ได้  : ไม่สามารถคิดเกรดได้ คะแนนเกิน".'<br>';   
+         $gradeSum = $_SESSION['GPA'];
       }
       else if (($grade>=79.5)&&($grade<=100)) {    
          $gradeSum = "A";   
@@ -42,34 +46,37 @@ $grade = $_POST['txtGrade'];
 // return false;
 
 
+$SubCode = $_SESSION['SubCodeED'];
+
+
+
 if($GradID != ""){
    // echo $_SESSION['GradID'];
+   $GradID = $_SESSION['GradID'];
    include '../../model/connect.php';
-   $sqlGEdit = "UPDATE `grade_tb` SET `Grad_id`='".$_POST['txtGid']."', `Grad_Term`='".$_POST['txtGterm']."', `Std_code`='".$_POST['txtStdCode']."',
+   $sql = "UPDATE `grade_tb` SET `Grad_id`='".$_POST['txtGid']."', `Grad_Term`='".$_POST['txtGterm']."', `Std_code`='".$_POST['txtStdCode']."',
    `Sub_code`='".$_POST['txtSubCode']."',`GPA`='".$_POST['txtGrade']."', 'grade_font'=.$gradeSum
    WHERE Grad_id =".$GradID;
 
 
 
 
-   $queryGEdit = mysqli_query($conn,$sqlGEdit);
+   $query = mysqli_query($conn,$sql);
   
-   echo $GradID;
-   echo $gradeSum;
-   echo $queryGEdit;
-   // return false;
+  
+   // echo $GradID;
+   echo $query;
+   
+   return false;
   $GradID = '';
-   print_r($queryGEdit);
+   // print_r($query);
  
 
-if($queryGEdit==TRUE){
+if($query==TRUE){
    header("location: ../../view/grade/GradeManager.php?ID=".$_SESSION['SubCodeED']);
-
-   
 }
 else{
-   header("location: ../../view/grade/GradeManager.php?ID=".$_SESSION['SubCodeED']);
-
+   header("location: ../../view/grade/GradeManager.php?ID=".$_SESSION['SubCodeED']);   
 }
 }
 else{
