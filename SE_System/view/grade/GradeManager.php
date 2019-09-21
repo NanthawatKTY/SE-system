@@ -97,7 +97,6 @@ include_once('../../model/connect.php');
                         <th scope="col"><div  align="center">คะแนน</th></div>
                         <th scope="col"><div  align="center">เกรด</th></div>
                         <th scope="col"><div  align="center">แก้ไข</th></div>
-                        <th scope="col"><div  align="center">เพิ่มเกรด</th></div>
                       </tr>
                     </thead>
                     
@@ -155,8 +154,6 @@ include_once('../../model/connect.php');
             <?php echo $result['grade_font']; ?></div></td>
             <td><div align="center">
             <a class="btn btn-info" href ="./AddScore.php?GradID=<?php echo $result['Grad_id']?>&SubCodeED=<?php echo $ID?> ">แก้ไข</a></td>
-            <td><div align="center">
-            <a class="btn btn-info" href ="./AddScore.php?SubCodeAdd=<?php echo $result['Sub_code'];?>">+ เพิ่มเกรด</a></td>
             </tr>
             <?php
 
