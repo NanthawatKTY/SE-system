@@ -136,16 +136,24 @@ include_once('../../model/connect.php');
             <label for="StudentName"><?php echo $resultEditGrade['Std_Pname'].$resultEditGrade['Std_Fname']." ".$resultEditGrade['Std_Lname']?></label>
             </div>
             <div class="form-group mx-sm-3 mb-2">
-            <input type="text" class="form-control" id="txtGrade" placeholder="คะแนน" name="txtGrade"
+            
+            <!-- Hidden -->
+            <input  name="txtGid"type="hidden" id="txtGid" value="<?php $result['Grad_id'];?>">
+            <input  name="txtGterm"type="hidden" id="txtGterm" value="<?php $result['Grad_Term'];?>">
+            <input  name="txtStdCode"type="hidden" id="txtStdCode" value="<?php $result['Std_code'];?>">
+            <input  name="txtSubCode"type="hidden" id="txtSubCode" value="<?php $result['Sub_code'];?>">
+
+            <!-- Grade -->
+            <input type="int" class="form-control" id="txtGrade" placeholder="คะแนน" name="txtGrade"
             <?php if($_SESSION['GradID']){ ?> value="<?php echo $resultEditGrade['GPA']?>"<?php } 
             else { ?> <?php } ?> required>
             </div>
 
-            <button type="submit" class="btn btn-success mb-2" name="GradeEdit" href="../../control/grade/save_addEdit_score.php?SubCodeED=<?php echo $_SESSION['SubCodeED'];?>">บันทึก</button>
+            <button type="submit" class="btn btn-success mb-2" name="GradeEdit" href="../../control/grade/save_addEdit_score.php?SubED=<?php echo $_SESSION['SubCodeED'];?>&GradID=<?php echo $_SESSION['GradID'];?>">บันทึก</button>
       </form>
       <a type="back" class="btn btn-secondary mb-2" href="./GradeManager.php?ID=<?php echo $_SESSION['ID'];?>">กลับหน้าเดิม</a>
 
-
+  
 
         </div>
 

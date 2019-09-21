@@ -121,7 +121,9 @@ include_once('../../model/connect.php');
         // WHERE subject_tb.Sub_code='".$_SESSION['ID']."'" ;
 
         $ID = $_GET['ID'];
-        $_SESSION['ID'] = $ID;
+        $ID = $_SESSION['SubCodeED'];
+
+        
         $sql = "SELECT DISTINCT grade_tb.Grad_id, register_tb.Cos_code, course_tb.Sub_code, subject_tb.Sub_Name, register_tb.Std_code, 
         student_tb.Std_Fname, student_tb.Std_Lname, subject_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font
         FROM course_tb
@@ -129,7 +131,7 @@ include_once('../../model/connect.php');
         INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
         INNER JOIN subject_tb ON course_tb.Sub_Code = subject_tb.Sub_code
         INNER JOIN grade_tb ON register_tb.Std_code = grade_tb.Std_code
-        WHERE course_tb.Sub_Code = '".$_SESSION['ID']."'" ;
+        WHERE course_tb.Sub_Code = ".$ID ;
         $query1 = mysqli_query($conn, $sql);
         $query2 = mysqli_query($conn, $sql);
         $resultShow = mysqli_fetch_array($query1,MYSQLI_ASSOC);
@@ -152,7 +154,7 @@ include_once('../../model/connect.php');
             <td><div align="center">
             <?php echo $result['grade_font']; ?></div></td>
             <td><div align="center">
-            <a class="btn btn-info" href ="./AddScore.php?GradID=<?php echo $result['Grad_id']?>&SubCodeED=<?php echo $_SESSION['ID']?> ">แก้ไข</a></td>
+            <a class="btn btn-info" href ="./AddScore.php?GradID=<?php echo $result['Grad_id']?>&SubCodeED=<?php echo $ID?> ">แก้ไข</a></td>
             <td><div align="center">
             <a class="btn btn-info" href ="./AddScore.php?SubCodeAdd=<?php echo $result['Sub_code'];?>">+ เพิ่มเกรด</a></td>
             </tr>
