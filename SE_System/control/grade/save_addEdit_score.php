@@ -54,29 +54,29 @@ if($GradID != ""){
    // echo $_SESSION['GradID'];
    $GradID = $_SESSION['GradID'];
    include '../../model/connect.php';
-   $sql = "UPDATE `grade_tb` SET `Grad_id`='".$_POST['txtGid']."', `Grad_Term`='".$_POST['txtGterm']."', `Std_code`='".$_POST['txtStdCode']."',
-   `Sub_code`='".$_POST['txtSubCode']."',`GPA`='".$_POST['txtGrade']."', 'grade_font'=.$gradeSum
+   $sql = "UPDATE `grade_tb` SET `GPA`='".$_POST['txtGrade']."', 'grade_font'=.$gradeSum
    WHERE Grad_id =".$GradID;
 
-
+// $sql = "UPDATE `grade_tb` SET `Grad_id`='".$_POST['txtGid']."', `Grad_Term`='".$_POST['txtGterm']."', `Std_code`='".$_POST['txtStdCode']."',
+//    `Sub_code`='".$_POST['txtSubCode']."',`GPA`='".$_POST['txtGrade']."', 'grade_font'=.$gradeSum
+//    WHERE Grad_id =".$GradID;
 
 
    $query = mysqli_query($conn,$sql);
-  
+
   
    // echo $GradID;
    echo $query;
    
-   return false;
-  $GradID = '';
-   // print_r($query);
- 
+   
+   $GradID = '';
+   print_r($query);
 
 if($query==TRUE){
-   header("location: ../../view/grade/GradeManager.php?ID=".$_SESSION['SubCodeED']);
+   header("location: ../../view/grade/GradeManager.php?success=1&ID=".$_SESSION['SubCodeED']);
 }
 else{
-   header("location: ../../view/grade/GradeManager.php?ID=".$_SESSION['SubCodeED']);   
+   header("location: ../../view/grade/GradeManager.php?success=2&ID=".$_SESSION['SubCodeED']);   
 }
 }
 else{
