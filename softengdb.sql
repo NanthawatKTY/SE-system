@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2019 at 02:44 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.8
+-- Generation Time: Sep 22, 2019 at 08:10 PM
+-- Server version: 10.3.16-MariaDB
+-- PHP Version: 7.1.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -65,20 +65,20 @@ CREATE TABLE `course_tb` (
 
 INSERT INTO `course_tb` (`Cos_id`, `Cos_code`, `Cos_term`, `Sub_Code`, `Teach_code`, `Sect_code`, `Cos_Time`, `Cos_Room`) VALUES
 (1, '12345', '1/2561', '9011103', '50436', '03', 'จ(1-4)', '1234'),
-(2, '12345', '1/2562', '9011103', '50436', '01', 'อ(5-7)', '5466'),
 (29, '12345', '1/2560', '9011403', '30144', '03', 'พฤ(5-7)', '90125'),
 (30, '12345', '1/2560', '9011204', '30144', '03', 'พ(5-7)', '90126'),
-(33, '12345', '1/2560', '9011103', '30144', '03', 'อ(5-7)', '5466'),
-(44, '12346', '1/2560', '9011103', '50436', '03', 'อ(5-7)', '1234'),
 (57, '12345', '2/2563', '5672202', '30141', '03', '1', '1'),
 (58, '12345', '2/2560', '9011202', '30141', '03', 'พ(5-8)', '90125'),
 (59, '12345', '2/2560', '5672101', '30141', '03', 'พ(1-4)', '39402'),
-(68, '12346', '2/2560', '9011202', '50436', '03', 'อ(5-7)', '5466'),
-(73, '12345', '1/2560', '9011103', '50436', '03', 'อ(5-7)', '5466'),
 (74, '12345', '1/2560', '9011103', '50436', '03', 'อ(5-7)', '5466'),
-(75, '12345', '1/2562', '9011103', '50436', '03', 'อ(5-7)', '5466'),
 (76, '12345', '1/2562', '9011103', '50436', '03', 'อ(5-7)', '5466'),
-(77, '172839', '1/2560', '9011103', '50436', '03', 'อ(5-7)', '1234');
+(77, '172839', '1/2560', '9011103', '50436', '03', 'อ(5-7)', '1234'),
+(79, '12346', '1/2561', '5674901', '50436', '03', 'พ(1-4)', '39402'),
+(80, '12346', '1/2561', '5673605', '50436', '03', 'จ(6-9)', '39401'),
+(81, '172839', '1/2561', '9011103', '50436', '03', 'พ(1-4)', '39402'),
+(82, '', '1/2561', '5673605', '50436', '03', 'พ(1-4)', '39402'),
+(83, '', '1/2561', '9011103', '50436', '03', 'พ(1-4)', '39402'),
+(84, '12346', '1/2561', '9011103', '30144', '03', 'พ(1-4)', '39402');
 
 -- --------------------------------------------------------
 
@@ -101,8 +101,8 @@ CREATE TABLE `grade_tb` (
 
 INSERT INTO `grade_tb` (`Grad_id`, `Grad_Term`, `Std_code`, `Sub_code`, `GPA`, `grade_font`) VALUES
 (1, '1/2561', '60122660134', '9011103', '10', 'F'),
-(2, '1/2561', '60122660118', '9011103', '85', 'A'),
-(3, '1/2561', '60122660100', '9011103', '100', 'A');
+(2, '1/2561', '60122660100', '9011103', '55', 'D+'),
+(3, '1/2561', '60122660118', '9011103', '4', 'F');
 
 -- --------------------------------------------------------
 
@@ -125,7 +125,9 @@ CREATE TABLE `member_tb` (
 INSERT INTO `member_tb` (`Mem_id`, `Mem_user`, `Mem_pass`, `Type_id`, `Email`) VALUES
 (1, '60122660134', '123456', '3', 'eazy@gmail.com'),
 (2, 'admin', 'admin', '1', 'test@gmail.com'),
-(3, '50436', '251241', '2', 'namo@gmail.com');
+(3, '50436', '251241', '2', 'namo@gmail.com'),
+(4, '60122660140', '25121990', '3', 'gg@gmail.com'),
+(5, '30144', '170919', '2', 'chai@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -144,9 +146,10 @@ CREATE TABLE `register_tb` (
 --
 
 INSERT INTO `register_tb` (`Reg_id`, `Std_code`, `Cos_code`) VALUES
-(1, '60122660134', '12345'),
+(1, '60122660134', '12346'),
 (2, '60122660118', '12345'),
-(3, '60122660100', '12345');
+(3, '60122660100', '172839'),
+(4, '', '12346');
 
 -- --------------------------------------------------------
 
@@ -196,7 +199,8 @@ CREATE TABLE `student_tb` (
 INSERT INTO `student_tb` (`Std_id`, `Std_Code`, `Std_Pname`, `Std_Fname`, `Std_Lname`, `Std_Tel`, `Std_Add`, `Std_Birth`, `Std_Card`, `Std_Major`, `Std_Faculty`, `Std_Image`) VALUES
 (1, '60122660118', 'Mr.', 'Kuy', 'Puat', '0652556595', 'USA', '2019-09-19', '1529900975465', 'SE', 'SE', ''),
 (2, '60122660134', 'Mrs.', 'Worawit', 'Luffy', '0659897895', 'LA, USA', '1998-12-25', '152990098755', 'Science', 'Physics', ''),
-(3, '60122660100', 'Mr.', 'Van', 'Helsing', '0620323035', 'Netherland', '1997-09-01', '1529900975111', 'IE', 'SE', '');
+(3, '60122660100', 'Mr.', 'Van', 'Helsing', '0620323035', 'Netherland', '1997-09-01', '1529900975111', 'IE', 'SE', ''),
+(4, '60122660140', 'Mr.', 'Naruto', 'Uzumaki', '0620323038', 'Japan', '1990-12-25', '1529900975889', 'SE', 'IE', '');
 
 -- --------------------------------------------------------
 
@@ -337,7 +341,7 @@ ALTER TABLE `teacher_tb`
 -- AUTO_INCREMENT for table `course_tb`
 --
 ALTER TABLE `course_tb`
-  MODIFY `Cos_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `Cos_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `grade_tb`
@@ -349,19 +353,19 @@ ALTER TABLE `grade_tb`
 -- AUTO_INCREMENT for table `member_tb`
 --
 ALTER TABLE `member_tb`
-  MODIFY `Mem_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Mem_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `register_tb`
 --
 ALTER TABLE `register_tb`
-  MODIFY `Reg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Reg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `student_tb`
 --
 ALTER TABLE `student_tb`
-  MODIFY `Std_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Std_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `subject_tb`
