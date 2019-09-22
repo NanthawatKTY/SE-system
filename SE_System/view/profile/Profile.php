@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('../../model/connect.php');
-if($_SESSION['Type_id'] == 3){
+if($_SESSION['Type_id'] == 1){
     $name = "admin";
     $img = "admin.jpg";
     error_reporting(0);
@@ -74,9 +74,17 @@ else {
                 <li>
                     <a href="">ข้อมูลส่วนตัว</a>
                 </li>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="../grade/GradeMain.php">ผลการเรียน</a>
+                    
+                    <a href="../grade/GradeMain.php ">จัดการผลการเรียน</a>
+                    
                 </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
+                <li>
+                    <a href="../grade/gradeStudent.php ">ผลการเรียน</a>  
+                </li>
+                <?php }?>
                 <li>
                     <a href="../subjects/edprograms/ShowPrograms.php">แผนการเรียน</a>
                 </li>

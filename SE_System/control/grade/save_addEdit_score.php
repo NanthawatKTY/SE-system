@@ -7,14 +7,16 @@ $GradID = $_SESSION['GradID'];
 // ตรวจเกรด ถ้าเกินให้ใช้ค่าเดิม
 $sqlShowGrade = "SELECT * FROM grade_tb WHERE Grad_id=".$GradID;
 $queryShowGrade = mysqli_query($conn, $sqlShowGrade);
-$resultShow = mysqli_fetch_array($queryShowGrade);
+$resultShow = mysqli_fetch_array($queryShowGrade,MYSQLI_ASSOC);
 $_SESSION['GPA'] = $resultShow['GPA'];
+$_SESSION['grade_font'] = $resultShow['grade_font'];
 
 $grade = $_POST['txtGrade'];
 
        if(($grade>100)||($grade<0)) {    
          echo "เกรดที่ได้  : ไม่สามารถคิดเกรดได้ คะแนนเกิน".'<br>';   
-         $gradeSum = $_SESSION['GPA'];
+         $gradeSum = $_SESSION['grade_font'];
+         $grade = $_SESSION['GPA'];
       }
       else if (($grade>=79.5)&&($grade<=100)) {    
          $gradeSum = "A";   
@@ -55,7 +57,7 @@ if($GradID != ""){
   
 
    include '../../model/connect.php';
-   $sql = "UPDATE `grade_tb` SET `GPA`='".$_POST['txtGrade']."', `grade_font`='".$gradeSum."'
+   $sql = "UPDATE `grade_tb` SET `GPA`='".$grade."', `grade_font`='".$gradeSum."'
    WHERE Grad_id =".$GradID;
 
 // $sql = "UPDATE `grade_tb` SET `Grad_id`='".$_POST['txtGid']."', `Grad_Term`='".$_POST['txtGterm']."', `Std_code`='".$_POST['txtStdCode']."',

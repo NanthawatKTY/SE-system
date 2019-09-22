@@ -3,29 +3,76 @@ session_start();
 include_once('../../model/connect.php');
 error_reporting(0);
 
-$sqlStdGrade = "SELECT grade_tb.Grad_Term, grade_tb.Sub_code, subject_tb.Sub_Name, subject_tb.Sub_Credit, grade_tb.grade_font, register_tb.Std_code, course_tb.Cos_term
-FROM grade_tb 
-INNER JOIN subject_tb ON grade_tb.Sub_code = subject_tb.Sub_code
+if($_SESSION['Type_id'] == 1){
+    $name = "admin";
+    $img = "admin.jpg";
+    error_reporting(0);
+}
+else if($_SESSION['Type_id'] == 2){
+    $sqlTC = "SELECT * FROM teacher_tb WHERE Teach_code = '".$_SESSION['id']."'";
+    $queryTC = $conn->query($sqlTC);
+    $resultTC  = $queryTC ->FETCH_ASSOC();
+    $name = $resultTC['Teach_Pname']." ".$resultTC['Teach_Fname']." ".$resultTC['Teach_Lname'];
+    $birth = $resultTC['Teach_Birth'];
+    $card = $resultTC['Teach_Card'];
+    $code = $resultTC['Teach_code'];
+    $faculty = $resultTC['Teach _Faculty'];
+    $major = $resultTC['Teach _Major'];
+    $img = $resultTC['Teach _Image'];
+}
+else {
+    $sqlSTD = "SELECT * FROM student_tb WHERE Std_code = '".$_SESSION['id']."'";
+    $querySTD = $conn->query($sqlSTD);
+    $resultSTD = $querySTD->FETCH_ASSOC();
+    $name = $resultSTD['Std_Pname']." ".$resultSTD['Std_Fname']." ".$resultSTD['Std_Lname'];
+    $birth = $resultSTD['Std_Birth'];
+    $card = $resultSTD['Std_Card'];
+    $code = $resultSTD['Std_Code'];
+    $faculty = $resultSTD['Std_Faculty'];
+    $major = $resultSTD['Std_Major'];
+    $img = $resultSTD['Std_Image'];
+}
 
-INNER JOIN course_tb ON grade_tb.Grad_Term = course_tb.Cos_term
-INNER JOIN register_tb ON grade_tb.Std_code = register_tb.Std_code
-
-WHERE grade_tb.Std_code = '".$_SESSION['Mem_user']."' ";
-
-$queryStdGrade = $conn->query($sqlStdGrade);
-$resultShowGrade = $queryStdGrade->FETCH_ASSOC();
-
-// if($_SESSION['Type_id'] == 3){
-//     $tb = "grade_tb.Std_code = '".$_SESSION['Mem_user']."' ";
+if($_SESSION['Type_id'] == 3){
+    $tb = "grade_tb.Std_code = '".$_SESSION['Mem_user']."' ";
     
-//     $show = "ผลการเรียน"; 
-//     header("location: SE-system\SE_System\view\grade\gradeStudent.php");
-// }
-// else{
-//     $tb = "course_tb.Teach_code = '".$_SESSION['Mem_user']."' "; 
-//     $show = "จัดการผลการเรียน";
-//     header("location: SE-system\SE_System\view\grade\GradeManager.php");
-// }
+    $show = "ผลการเรียน"; 
+    
+}
+else{
+    $tb = "course_tb.Teach_code = '".$_SESSION['Mem_user']."' "; 
+    $show = "จัดการผลการเรียน";
+   
+}
+
+// $sqlStdGrade = "SELECT grade_tb.Grad_Term, grade_tb.Sub_code, subject_tb.Sub_Name, subject_tb.Sub_Credit, grade_tb.grade_font, register_tb.Std_code, course_tb.Cos_term
+// FROM grade_tb 
+// INNER JOIN subject_tb ON grade_tb.Sub_code = subject_tb.Sub_code
+
+// INNER JOIN course_tb ON grade_tb.Grad_Term = course_tb.Cos_term
+// INNER JOIN register_tb ON grade_tb.Std_code = register_tb.Std_code
+
+// WHERE grade_tb.Std_code = '".$_SESSION['Mem_user']."' ";
+
+// $sqlStdGrade = "SELECT DISTINCT course_tb.Sub_Code, subject_tb.Sub_name, subject_tb.Sub_Credit, sect_tb.Sect_Name,
+// grade_tb.GPA, grade_tb.grade_font
+// FROM course_tb
+// INNER JOIN grade_tb 
+// ON course_tb.Cos_term = grade_tb.Grad_Term
+// INNER JOIN subject_tb 
+// ON course_tb.Sub_code = subject_tb.Sub_code
+// INNER JOIN sect_tb 
+// ON course_tb.Sect_code = sect_tb.Sect_code
+// INNER JOIN register_tb
+// ON course_tb.Cos_code = register_tb.Cos_code
+// INNER JOIN member_tb
+// ON grade_tb.Std_code = member_tb.Mem_user
+// WHERE grade_tb.Grad_term = '1/2561' AND $tb ";
+
+// $queryStdGrade = $conn->query($sqlStdGrade);
+// $resultShowGrade = $queryStdGrade->FETCH_ASSOC();
+
+
 
 ?>
 
@@ -87,10 +134,10 @@ $resultShowGrade = $queryStdGrade->FETCH_ASSOC();
 
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="/SE_System/index.html" class="article">กลับเมนูหลัก</a>
+                    <a href="../../index.php" class="article">กลับเมนูหลัก</a>
                 </li>
                 <li>
-                    <a href="/SE_System/logout.php" class="download">ออกจากระบบ</a>
+                    <a href="../../control/login/logout.php" class="download">ออกจากระบบ</a>
                 </li>
 
             </ul>
@@ -133,39 +180,47 @@ $resultShowGrade = $queryStdGrade->FETCH_ASSOC();
                         <th colspan="9">ภาคเรียนที่ 1/2561</th>
                        <?PHP
 
-                        $sqlGrade_1_2561 = "SELECT DISTINCT course_tb.Cos_code, coursename_tb.Cos_name, course_tb.Cos_term ,course_tb.Sub_Code 					,course_tb.Teach_code,course_tb.Sect_code, course_tb.Cos_Time, 
-                        course_tb.Cos_Room,subject_tb.Sub_name,sect_tb.Sect_Name FROM course_tb
-                        INNER JOIN coursename_tb 
-                        ON course_tb.Cos_code = coursename_tb.Cos_code
-                        INNER JOIN subject_tb 
-                        ON course_tb.Sub_code = subject_tb.Sub_code
+                        $sql_1_2561 = "SELECT DISTINCT subject_tb.Sub_name, subject_tb.Sub_Credit, sect_tb.Sect_Name, grade_tb.Std_code, 
+                        grade_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font 
+                        FROM course_tb
+                     
+                     
                         INNER JOIN sect_tb 
                         ON course_tb.Sect_code = sect_tb.Sect_code
                         INNER JOIN register_tb
                         ON course_tb.Cos_code = register_tb.Cos_code
-                        WHERE course_tb.Cos_term = '1/2561' AND $tb ";
+                        INNER JOIN grade_tb
+                        ON register_tb.Std_code = grade_tb.Std_code
+                        INNER JOIN subject_tb 
+                        ON grade_tb.Sub_code = subject_tb.Sub_code
+                                    
+                        WHERE course_tb.Cos_term = '1/2561' AND grade_tb.Std_code = '60122660134' ";
 
                         $query_1_2561 = $conn->query($sql_1_2561);
-                        if($query_1_2560->num_rows == 0){?>
+                        
+
+                        if($query_1_2561->num_rows == 0){?>
                             <tr>
-                            <td class="text-center" colspan="6">--- ไม่พบข้อมูล ---</td><?php }?>
+                            <td class="text-center" colspan="6">--- ไม่พบข้อมูล ---</td>
+                    
+                            <?php }?>
                             </tr>
                         <?php while($result_1_2561 = $query_1_2561->fetch_assoc()) {?>
                         <tr>
-                        <td scope="row"><?php echo $result_1_2560['Sub_Code']?></td>
+                        <td scope="row"><?php echo $result_1_2561['Sub_code']?></td>
                         <td><?php echo $result_1_2561['Sub_name']?></td>
                         <td><?php echo $result_1_2561['Sub_Credit']?></td>
                         <td><?php echo $result_1_2561['Sect_Name']?></td>
                         <td class="text-success" ><?php echo $result_1_2561['grade_font']?></td>
                         </tr>
                         <?php } ?>
-                      <tr>
+                      <!-- <tr>
                         <td scope="row">9011202</td>
                         <td>การทวนสอบและการทดสอบซอฟต์แวร์</td>
                         <td>3(3-0-6)</td>
                         <td> เอกบังคับ</td>
                         <td class="text-success">B</td>
-                      </tr>
+                      </tr> -->
                       
                       <th cols pan="9">ภาคเรียนที่ 2/2560</th>
                       <?PHP
