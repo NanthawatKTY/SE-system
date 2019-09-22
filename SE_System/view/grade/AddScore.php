@@ -144,8 +144,8 @@ include_once('../../model/connect.php');
             <input  name="txtSubCode"type="hidden" id="txtSubCode" value="<?php $result['Sub_code'];?>">
 
             <!-- Grade -->
-            <input type="int" class="form-control" id="txtGrade" placeholder="คะแนน" name="txtGrade" 
-            min="0" max="3" title = "โปรดกรอกคะแนนตั้งแต่ 0 - 100 !"
+            <input type="number" class="form-control" id="txtGrade" placeholder="คะแนน" name="txtGrade" 
+            min="0" max="100" title = "โปรดกรอกคะแนนตั้งแต่ 0 - 100 !"
             <?php if($_SESSION['GradID']){ ?> value="<?php echo $resultEditGrade['GPA']?>"<?php } 
             else { ?> <?php } ?> required>
             </div>
