@@ -1,3 +1,35 @@
+<?php
+session_start();
+include_once('../../model/connect.php');
+error_reporting(0);
+
+$sqlStdGrade = "SELECT grade_tb.Grad_Term, grade_tb.Sub_code, subject_tb.Sub_Name, subject_tb.Sub_Credit, grade_tb.grade_font, register_tb.Std_code, course_tb.Cos_term
+FROM grade_tb 
+INNER JOIN subject_tb ON grade_tb.Sub_code = subject_tb.Sub_code
+
+INNER JOIN course_tb ON grade_tb.Grad_Term = course_tb.Cos_term
+INNER JOIN register_tb ON grade_tb.Std_code = register_tb.Std_code
+
+WHERE grade_tb.Std_code = '".$_SESSION['Mem_user']."' ";
+
+$queryStdGrade = $conn->query($sqlStdGrade);
+$resultShowGrade = $queryStdGrade->FETCH_ASSOC();
+
+// if($_SESSION['Type_id'] == 3){
+//     $tb = "grade_tb.Std_code = '".$_SESSION['Mem_user']."' ";
+    
+//     $show = "ผลการเรียน"; 
+//     header("location: SE-system\SE_System\view\grade\gradeStudent.php");
+// }
+// else{
+//     $tb = "course_tb.Teach_code = '".$_SESSION['Mem_user']."' "; 
+//     $show = "จัดการผลการเรียน";
+//     header("location: SE-system\SE_System\view\grade\GradeManager.php");
+// }
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -40,7 +72,7 @@
                     <a href="/SE_System/view/profile/EditProfile.html">ข้อมูลส่วนตัว</a>
                 </li>
                 <li>
-                    <a href="/SE_System/view/grade/gradeStudent.html">ผลการเรียน</a>
+                    <a href="">ผลการเรียน</a>
                 </li>
                 <li>
                     <a href="/SE_System/Edittranscript2.php">แผนการเรียน</a>
@@ -81,7 +113,9 @@
                     </button>
                 </div>
             </nav>
-            <h3>แสดงผลการเรียน</h3>
+            <h3><?php echo $show; ?></h3>
+            <h3><?php echo $show; ?> : <?php echo $resultShowGrade['Cos_name']?></h3>
+
 
 
 
@@ -96,14 +130,35 @@
                       </tr>
                     </thead>
                     <tbody>
-                        <th colspan="9">ภาคเรียนที่ 1/2560</th>
+                        <th colspan="9">ภาคเรียนที่ 1/2561</th>
+                       <?PHP
+
+                        $sqlGrade_1_2561 = "SELECT DISTINCT course_tb.Cos_code, coursename_tb.Cos_name, course_tb.Cos_term ,course_tb.Sub_Code 					,course_tb.Teach_code,course_tb.Sect_code, course_tb.Cos_Time, 
+                        course_tb.Cos_Room,subject_tb.Sub_name,sect_tb.Sect_Name FROM course_tb
+                        INNER JOIN coursename_tb 
+                        ON course_tb.Cos_code = coursename_tb.Cos_code
+                        INNER JOIN subject_tb 
+                        ON course_tb.Sub_code = subject_tb.Sub_code
+                        INNER JOIN sect_tb 
+                        ON course_tb.Sect_code = sect_tb.Sect_code
+                        INNER JOIN register_tb
+                        ON course_tb.Cos_code = register_tb.Cos_code
+                        WHERE course_tb.Cos_term = '1/2561' AND $tb ";
+
+                        $query_1_2561 = $conn->query($sql_1_2561);
+                        if($query_1_2560->num_rows == 0){?>
+                            <tr>
+                            <td class="text-center" colspan="6">--- ไม่พบข้อมูล ---</td><?php }?>
+                            </tr>
+                        <?php while($result_1_2561 = $query_1_2561->fetch_assoc()) {?>
                         <tr>
-                        <td scope="row">9011103</td>
-                        <td>การสร้างและการวิวัฒน์ซอฟต์แวร์</td>
-                        <td>3(3-0-6)</td>
-                        <td>พื้นฐานภาษา</td>
-                        <td class="text-success" >A</td>
-                      </tr>
+                        <td scope="row"><?php echo $result_1_2560['Sub_Code']?></td>
+                        <td><?php echo $result_1_2561['Sub_name']?></td>
+                        <td><?php echo $result_1_2561['Sub_Credit']?></td>
+                        <td><?php echo $result_1_2561['Sect_Name']?></td>
+                        <td class="text-success" ><?php echo $result_1_2561['grade_font']?></td>
+                        </tr>
+                        <?php } ?>
                       <tr>
                         <td scope="row">9011202</td>
                         <td>การทวนสอบและการทดสอบซอฟต์แวร์</td>
@@ -113,13 +168,34 @@
                       </tr>
                       
                       <th cols pan="9">ภาคเรียนที่ 2/2560</th>
-                      <tr>
-                      <td scope="row">9011103</td>
-                      <td>สถาปัตยกรรมซอฟต์แวร์</td>
-                      <td>3(3-0-6)</td>
-                      <td>พื้นฐานภาษา</td>
-                      <td class="text-success">C</td>
-                    </tr>
+                      <?PHP
+
+                        $sqlGrade_1_2560 = "SELECT DISTINCT course_tb.Cos_code, coursename_tb.Cos_name, course_tb.Cos_term ,course_tb.Sub_Code 					,course_tb.Teach_code,course_tb.Sect_code, course_tb.Cos_Time, 
+                        course_tb.Cos_Room,subject_tb.Sub_name,sect_tb.Sect_Name FROM course_tb
+                        INNER JOIN coursename_tb 
+                        ON course_tb.Cos_code = coursename_tb.Cos_code
+                        INNER JOIN subject_tb 
+                        ON course_tb.Sub_code = subject_tb.Sub_code
+                        INNER JOIN sect_tb 
+                        ON course_tb.Sect_code = sect_tb.Sect_code
+                        INNER JOIN register_tb
+                        ON course_tb.Cos_code = register_tb.Cos_code
+                        WHERE course_tb.Cos_term = '1/2560' AND $tb ";
+
+                        $query_1_2560 = $conn->query($sql_1_2560);
+                        if($query_1_2560->num_rows == 0){?>
+                            <tr>
+                            <td class="text-center" colspan="6">--- ไม่พบข้อมูล ---</td><?php }?>
+                            </tr>
+                        <?php while($result_1_2560 = $query_1_2560->fetch_assoc()) {?>
+                        <tr>
+                        <td scope="row"><?php echo $result_1_2560['Sub_Code']?></td>
+                        <td><?php echo $result_1_2560['Sub_name']?></td>
+                        <td><?php echo $result_1_2560['Sub_Credit']?></td>
+                        <td><?php echo $result_1_2560['Sect_Name']?></td>
+                        <td class="text-success" ><?php echo $result_1_2560['grade_font']?></td>
+                        </tr>
+                        <?php } ?>
                     <tr>
                       <td scope="row">9011202</td>
                       <td>พีชคณิตเชิงเส้นสำหรับวิศวกรรมซอฟต์แวร์</td>

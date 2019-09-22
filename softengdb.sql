@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2019 at 06:33 PM
+-- Generation Time: Sep 22, 2019 at 02:44 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -100,8 +100,9 @@ CREATE TABLE `grade_tb` (
 --
 
 INSERT INTO `grade_tb` (`Grad_id`, `Grad_Term`, `Std_code`, `Sub_code`, `GPA`, `grade_font`) VALUES
-(1, '2/2563', '60122660134', '9011103', '70', 'B'),
-(2, '1/2561', '60122660118', '9011103', '85', 'A');
+(1, '1/2561', '60122660134', '9011103', '10', 'F'),
+(2, '1/2561', '60122660118', '9011103', '85', 'A'),
+(3, '1/2561', '60122660100', '9011103', '100', 'A');
 
 -- --------------------------------------------------------
 
@@ -144,7 +145,8 @@ CREATE TABLE `register_tb` (
 
 INSERT INTO `register_tb` (`Reg_id`, `Std_code`, `Cos_code`) VALUES
 (1, '60122660134', '12345'),
-(2, '60122660118', '12345');
+(2, '60122660118', '12345'),
+(3, '60122660100', '12345');
 
 -- --------------------------------------------------------
 
@@ -193,7 +195,8 @@ CREATE TABLE `student_tb` (
 
 INSERT INTO `student_tb` (`Std_id`, `Std_Code`, `Std_Pname`, `Std_Fname`, `Std_Lname`, `Std_Tel`, `Std_Add`, `Std_Birth`, `Std_Card`, `Std_Major`, `Std_Faculty`, `Std_Image`) VALUES
 (1, '60122660118', 'Mr.', 'Kuy', 'Puat', '0652556595', 'USA', '2019-09-19', '1529900975465', 'SE', 'SE', ''),
-(2, '60122660134', 'Mrs.', 'Worawit', 'Luffy', '0659897895', 'LA, USA', '1998-12-25', '152990098755', 'Science', 'Physics', '');
+(2, '60122660134', 'Mrs.', 'Worawit', 'Luffy', '0659897895', 'LA, USA', '1998-12-25', '152990098755', 'Science', 'Physics', ''),
+(3, '60122660100', 'Mr.', 'Van', 'Helsing', '0620323035', 'Netherland', '1997-09-01', '1529900975111', 'IE', 'SE', '');
 
 -- --------------------------------------------------------
 
@@ -340,7 +343,7 @@ ALTER TABLE `course_tb`
 -- AUTO_INCREMENT for table `grade_tb`
 --
 ALTER TABLE `grade_tb`
-  MODIFY `Grad_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Grad_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `member_tb`
@@ -352,13 +355,13 @@ ALTER TABLE `member_tb`
 -- AUTO_INCREMENT for table `register_tb`
 --
 ALTER TABLE `register_tb`
-  MODIFY `Reg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Reg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `student_tb`
 --
 ALTER TABLE `student_tb`
-  MODIFY `Std_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Std_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `subject_tb`
