@@ -135,7 +135,7 @@ else {
             </nav>
             <h3>ข้อมูลส่วนตัว</h3>
             <hr>
-            <?php if($_SESSION['Type_id'] == 3){ ?>
+            <?php if($_SESSION['Type_id'] == 1){ ?>
             <b>ชื่อ - นามสกุล : </b>
             <label for="idcard"><?php echo $name; ?> </label> <br>
             <?php  } else {?>

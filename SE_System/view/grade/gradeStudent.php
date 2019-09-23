@@ -211,7 +211,7 @@ else{
                         INNER JOIN subject_tb 
                         ON grade_tb.Sub_code = subject_tb.Sub_code
                                     
-                        WHERE course_tb.Cos_term = '1/2561' AND grade_tb.Std_code = '60122660134' ";
+                        WHERE course_tb.Cos_term = '1/2561' AND $tb ";
 
                         $query_1_2561 = $conn->query($sql_1_2561);
                         

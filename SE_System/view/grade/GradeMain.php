@@ -2,8 +2,7 @@
 session_start();
 include_once('../../model/connect.php');
 
-session_start();
-include('../../model/connect.php');
+
 if($_SESSION['Type_id'] == 1){
     $name = "admin";
     $img = "admin.jpg";
@@ -84,7 +83,7 @@ $result = mysqli_fetch_array($query,MYSQLI_ASSOC);
             <p class="text-center text-light mt-3">มารุตเทพ ร่มโพธิ์</p>
             <p class="text-center text-light">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
             <ul class="list-unstyled components pl-2">
-            <li>
+                <li>
                     <a href="../profile/Profile.php">ข้อมูลส่วนตัว</a>
                 </li>
                 <?php if($_SESSION['Type_id'] == 2){?>
