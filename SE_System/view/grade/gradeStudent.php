@@ -115,21 +115,38 @@ else{
             <p class="text-center text-light mt-3">มารุตเทพ ร่มโพธิ์</p>
             <p class="text-center text-light">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
             <ul class="list-unstyled components pl-2">
-                <li>
-                    <a href="/SE_System/view/profile/EditProfile.html">ข้อมูลส่วนตัว</a>
+            <li>
+                    <a href="../profile/Profile.php">ข้อมูลส่วนตัว</a>
                 </li>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="">ผลการเรียน</a>
+                    
+                    <a href="../grade/GradeMain.php ">จัดการผลการเรียน</a>
+                    
                 </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
                 <li>
-                    <a href="/SE_System/Edittranscript2.php">แผนการเรียน</a>
+                    <a href="../grade/gradeStudent.php ">ผลการเรียน</a>  
                 </li>
+                <?php }?>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="/Manager/subjects.html">สถานะการลงทะเบียน</a>
+                    <a href="../subjects/edprograms/Main.php">จัดการแผนการเรียน</a>
                 </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
+                    <li>
+                    <a href="../subjects/edprograms/ShowPrograms.php">แผนการเรียน</a>
+                </li>
+                <?php }?>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="/SE_System/view/schedule/editSchedule.html">ตารางสอน</a>
+                    <a href="../schedule/Schedule_Teacher.php">ตารางสอน</a>
                 </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
+                <li>
+                    <a href="../schedule/Schedule_Student.php">ตารางสอน</a>
+                </li>
+                <?php }?>
             </ul>
 
             <ul class="list-unstyled CTAs">
