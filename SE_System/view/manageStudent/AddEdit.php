@@ -1,12 +1,16 @@
 <?php
 session_start();
-include_once('../../model/connect.php');error_reporting(0);
-$_SESSION['Std_id'] = "";
-$id = $_GET['Std_id'];
+include_once('../../model/connect.php');//error_reporting(0);
+$_SESSION['Std_Code'] = "";
+$id = $_GET['Std_Code'];
+//$memcode = $_GET['Std_Code'];
 $_SESSION['Std_edit'] = $id;
-$sql = "SELECT * FROM student_tb WHERE Std_id = '$id'";
-$query = $conn->query($sql);
-$result = $query->fetch_assoc()
+$sqlStd = "SELECT * FROM student_tb WHERE Std_Code = '$id'";
+$sqlMem = "SELECT * FROM `member_tb` WHERE Mem_user = '$id'";
+$queryStd = $conn->query($sqlStd);
+$queryMem = $conn->query($sqlMem);
+$resultStd = $queryStd->fetch_assoc();
+$resultMem = $queryMem->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html>
@@ -100,30 +104,32 @@ $result = $query->fetch_assoc()
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">รหัสนักศึกษา : </label>
                     <div class="col-sm-5">
                         <input type="text" name="txtcode" class="form-control form-control-sm" id="txtcode"
-                            <?php if($id!=null){ ?> value="<?php echo $result['Std_Code']; }else { echo "";}?>" ></div>
+                            <?php if($id!=null){ ?> value="<?php echo $resultStd['Std_Code']; }else { echo "";}?>" ></div>
                 </div>
-                <!-- ชื่อขึ้นต้น-ชื่อ-นามสกุล  -->
+                <!-- ชื่อขึ้นต้น -->
                 <div class="form-group row">
                     <label for="colFormLabelSm"
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ชื่อขึ้นต้น
                         :</label>
                     <div class="col-sm-5">     
                         <input type="text" name="txtPname" class="form-control form-control-sm" id="txtPname"
-                            <?php if($id!=null){ ?> value="<?php echo $result['Std_Pname']; }else { echo "";}?>" ></div></div>
+                            <?php if($id!=null){ ?> value="<?php echo $resultStd['Std_Pname']; }else { echo "";}?>" ></div></div>
+                <!-- ชื่อ -->
                 <div class="form-group row">
                     <label for="colFormLabelSm"
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ชื่อ
                         :</label>
                     <div class="col-sm-5">
                         <input type="text" name="txtFname" class="form-control form-control-sm" id="txtFname"
-                            <?php if($id!=null){ ?> value="<?php echo $result['Std_Fname']; }else { echo "";}?>" ></div></div>
+                            <?php if($id!=null){ ?> value="<?php echo $resultStd['Std_Fname']; }else { echo "";}?>" ></div></div>
+              <!-- นามสกุล  -->
                 <div class="form-group row">
                     <label for="colFormLabelSm"
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">นามสกุล
                         :</label>
                     <div class="col-sm-5">
                         <input type="text" name="txtLname" class="form-control form-control-sm" id="txtLname"
-                            <?php if($id!=null){ ?> value="<?php echo $result['Std_Lname']; }else { echo "";}?>" ></div></div>
+                            <?php if($id!=null){ ?> value="<?php echo $resultStd['Std_Lname']; }else { echo "";}?>" ></div></div>
                 <!-- เบอร์โทร -->
                 <div class="form-group row">
         
@@ -131,7 +137,7 @@ $result = $query->fetch_assoc()
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">เบอร์โทร : </label>
                     <div class="col-sm-5">
                         <input type="text" name="txttel" class="form-control form-control-sm" id="txttel"
-                            <?php if($id!=null){ ?> value="<?php echo $result['Std_Tel']; }else { echo "";}?>" ></div>
+                            <?php if($id!=null){ ?> value="<?php echo $resultStd['Std_Tel']; }else { echo "";}?>" ></div>
                     </div>
                 <!-- ที่อยู่ -->
                 <div class="form-group row">
@@ -139,7 +145,7 @@ $result = $query->fetch_assoc()
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">ที่อยู่ : </label>
                     <div class="col-sm-5">
                         <input type="text" name="txtbadd" class="form-control form-control-sm" id="txtbadd"
-                            <?php if($id!=null){ ?> value="<?php echo $result['Std_Add']; }else { echo "";}?>" ></div>
+                            <?php if($id!=null){ ?> value="<?php echo $resultStd['Std_Add']; }else { echo "";}?>" ></div>
                     </div>
                 <!-- วันเดือนปีเกิด -->
                 <div class="form-group row">
@@ -148,8 +154,24 @@ $result = $query->fetch_assoc()
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">วันเกิด : </label>
                     <div class="col-sm-5">
                         <input type="date" name="txtbirth" class="form-control form-control-sm" id="txtbirth"
-                            <?php if($id!=null){ ?> value="<?php echo $result['Std_Birth']; }else { echo "";}?>" ></div>
+                            <?php if($id!=null){ ?> value="<?php echo $resultStd['Std_Birth']; }else { echo "";}?>" ></div>
                     </div>
+                <!-- Email -->
+                <div class="form-group row">
+                    <label for="colFormLabelSm"
+                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">Email
+                        :</label>
+                    <div class="col-sm-5">     
+                        <input type="text" name="txtEmail" class="form-control form-control-sm" id="txtEmail"
+                            <?php if($id!=null){ ?> value="<?php echo $resultMem['Email']; }else { echo "";}?>" ></div></div>
+                <!-- รหัสผ่าน -->
+                <div class="form-group row">
+                    <label for="colFormLabelSm"
+                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">รหัสผ่าน
+                        :</label>
+                    <div class="col-sm-5">     
+                        <input type="text" name="txtPass" class="form-control form-control-sm" id="txtPass"
+                            <?php if($id!=null){ ?> value="<?php echo $resultMem['Mem_pass']; }else { echo "";}?>" ></div></div>
                 <!-- เลขที่บัตรประจำตัวประชาชน -->
                 <div class="form-group row">
         
@@ -157,7 +179,7 @@ $result = $query->fetch_assoc()
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">เลขที่บัตรประจำตัวประชาชน : </label>
                     <div class="col-sm-5">
                         <input type="text" name="txtidcard" class="form-control form-control-sm" id="txtcard"
-                            <?php if($id!=null){ ?> value="<?php echo $result['Std_Card']; }else { echo "";}?>" ></div>
+                            <?php if($id!=null){ ?> value="<?php echo $resultStd['Std_Card']; }else { echo "";}?>" ></div>
                 </div>
                 <!-- สาขาวิชา -->
                 <div class="form-group row">
@@ -166,7 +188,7 @@ $result = $query->fetch_assoc()
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">สาขาวิชา : </label>
                     <div class="col-sm-5">
                         <input type="text" name="txtmajor" class="form-control form-control-sm" id="txtmajor"
-                            <?php if($id!=null){ ?> value="<?php echo $result['Std_Major']; }else { echo "";}?>" ></div>
+                            <?php if($id!=null){ ?> value="<?php echo $resultStd['Std_Major']; }else { echo "";}?>" ></div>
                 </div>
                 <!-- คณะ -->
                 <div class="form-group row">
@@ -175,7 +197,7 @@ $result = $query->fetch_assoc()
                         class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">คณะ : </label>
                     <div class="col-sm-5">
                         <input type="text" name="txtfac" class="form-control form-control-sm" id="txtfac"
-                            <?php if($id!=null){ ?> value="<?php echo $result['Std_Faculty']; }else { echo "";}?>" ></div>
+                            <?php if($id!=null){ ?> value="<?php echo $resultStd['Std_Faculty']; }else { echo "";}?>" ></div>
                 </div>         
             <div class="row">
                 <button class="btn btn-sm btn-primary mx-auto col-2" >บันทึก</button>
