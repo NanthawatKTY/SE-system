@@ -85,15 +85,24 @@ else {
                     <a href="../grade/gradeStudent.php ">ผลการเรียน</a>  
                 </li>
                 <?php }?>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
+                    <a href="../subjects/edprograms/Main.php">จัดการแผนการเรียน</a>
+                </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
+                    <li>
                     <a href="../subjects/edprograms/ShowPrograms.php">แผนการเรียน</a>
                 </li>
+                <?php }?>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="/Manager/subjects.html">สถานะการลงทะเบียน</a>
+                    <a href="../schedule/Schedule_Teacher.php">ตารางสอน</a>
                 </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
                 <li>
                     <a href="../schedule/Schedule_Student.php">ตารางสอน</a>
                 </li>
+                <?php }?>
             </ul>
             
             <ul class="list-unstyled CTAs">
