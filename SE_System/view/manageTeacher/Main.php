@@ -1,12 +1,8 @@
 <?php
 session_start();
 include_once('../../model/connect.php');error_reporting(0);
-$_SESSION['Std_id'] = "";
-$id = $_GET['Std_id'];
-$_SESSION['Std_edit'] = $id;
 $sql = "SELECT * FROM teacher_tb";
 $query = $conn->query($sql);
-$result = $query->fetch_assoc()
 ?>
 <!DOCTYPE html>
 <html>
@@ -99,6 +95,10 @@ $result = $query->fetch_assoc()
                     <tr>
                         <th scope="col">รหัสบุคลากร</th>
                         <th scope="col">ชื่อ - นามสกุล</th>
+                        <th scope="col">เบอร์โทร - ติดต่อ</th>
+                        <th scope="col">ที่อยู่</th>
+                        <th scope="col">วันเดือนปีเกิด</th>
+                        <th scope="col">รหัสประจำตัวประชาชน</th>
                         <th scope="col">สาขา</th>
                         <th scope="col">คณะ</th>
                         <th scope="col">แก้ไข</th>
@@ -112,10 +112,14 @@ $result = $query->fetch_assoc()
                             <?php while($result = $query->fetch_assoc()){ ?>
                               <td><?php echo $result['Teach_code']; ?></td>
                               <td><?php echo $result['Teach_Pname'].$result['Teach_Fname']." ".$result['Teach_Lname']; ?></td>
+                              <td><?php echo $result['Teach_Tel']; ?></td>     
+                              <td><?php echo $result['Teach_Add']; ?></td>
+                              <td><?php echo $result['Teach_Birth']; ?></td>     
+                              <td><?php echo $result['Teach_Card']; ?></td>
                               <td><?php echo $result['Teach _Major']; ?></td>     
                               <td><?php echo $result['Teach _Faculty']; ?></td>
-                              <td><a class="btn btn-dark btn-sm" href="./AddEdit.php?Std_id=<?php echo $result['Teach_id']; ?>">แก้ไข</a></td>
-                              <td><a class="btn btn-danger btn-sm" href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='../../control/student/del_std.php?Std_id=<?php echo $result["Teach_id"];?>';}">ลบ</a></td>
+                              <td><a class="btn btn-dark btn-sm" href="./AddEdit.php?Teach_Code=<?php echo $result['Teach_code']; ?>">แก้ไข</a></td>
+                              <td><a class="btn btn-danger btn-sm" href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='../../control/Teacher/del_tch.php?Teach_Code=<?php echo $result["Teach_code"];?>';}">ลบ</a></td>
                             </tr>
                             <?php } ?>
                           </tbody>

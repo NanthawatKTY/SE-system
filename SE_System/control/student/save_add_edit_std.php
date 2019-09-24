@@ -15,9 +15,9 @@ $major  = $_POST['txtmajor'];
 $fac  = $_POST['txtfac'];
 if($_SESSION['Std_edit']!=null){
 $sqlSTD = "UPDATE `student_tb` SET `Std_Code`='".$code."',`Std_Pname`='".$Pname."',`Std_Fname`='".$Fname."',`Std_Lname`='".$Lname."',`Std_Tel`='".$tel."',`Std_Add`='".$add."',`Std_Birth`='".$Birth."',`Std_Card`='".$card."',`Std_Major`='".$major."',`Std_Faculty`='".$fac."' WHERE Std_Code = '".$_SESSION['Std_edit']."' ";
-$sqlMem = "UPDATE `member_tb` SET `Mem_user`='".$code."',`Mem_pass`='".$pass."',`Email`='".$Email."' WHERE Mem_user = '".$_SESSION['Std_edit']."' ";
+$sqlMEM = "UPDATE `member_tb` SET `Mem_user`='".$code."',`Mem_pass`='".$pass."',`Email`='".$Email."' WHERE Mem_user = '".$_SESSION['Std_edit']."' ";
 $querySTD = $conn->query($sqlSTD);
-$queryMEM  = $conn->query($sqlMem);
+$queryMEM  = $conn->query($sqlMEM);
 //print_r($sql);
 //print_r($sql);
 //print_r($sql);
@@ -42,7 +42,7 @@ else{
     
 $sqlStd = "INSERT INTO student_tb(Std_Code, Std_Pname, Std_Fname, Std_Lname, Std_Tel, Std_Add, Std_Birth, Std_Card, Std_Major, Std_Faculty)
         VALUES('".$_POST['txtcode']."','".$_POST['txtPname']."','".$_POST['txtFname']."','".$_POST['txtLname']."','".$_POST['txttel']."','".$_POST['txtbadd']."','".$_POST['txtbirth']."','".$_POST['txtidcard']."','".$_POST['txtmajor']."','".$_POST['txtfac']."')";
-$sqlMem = "INSERT INTO `member_tb`(`Mem_user`, `Mem_pass`, `Type_id`, `Email`) VALUES ('".$_POST['txtcode']."','".$_POST['txtPass']."',3,'".$_POST['txtEmail']."')";
+$sqlMem = "INSERT INTO `member_tb`(`Mem_user`, `Mem_pass`, `Type_id`, `Email`) VALUES ('".$_POST['txtcode']."','".$_POST['txtPass']."',2,'".$_POST['txtEmail']."')";
 $queryStd = $conn->query($sqlStd);
 $queryMem = $conn->query($sqlMem);
 if($query)

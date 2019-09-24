@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../../model/connect.php');
+include_once('../../model/connect.php');error_reporting(0);
 $sql = "SELECT * FROM student_tb";
 $query = $conn->query($sql);
 ?>

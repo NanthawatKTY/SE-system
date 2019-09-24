@@ -1,9 +1,8 @@
 <?php
 session_start();
-include_once('../../model/connect.php');//error_reporting(0);
+include_once('../../model/connect.php');error_reporting(0);
 $_SESSION['Std_Code'] = "";
 $id = $_GET['Std_Code'];
-//$memcode = $_GET['Std_Code'];
 $_SESSION['Std_edit'] = $id;
 $sqlStd = "SELECT * FROM student_tb WHERE Std_Code = '$id'";
 $sqlMem = "SELECT * FROM `member_tb` WHERE Mem_user = '$id'";
