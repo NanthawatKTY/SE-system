@@ -6,7 +6,37 @@ $id = $_GET['Std_id'];
 $_SESSION['Std_edit'] = $id;
 $sql = "SELECT * FROM student_tb WHERE Std_id = '$id'";
 $query = $conn->query($sql);
-$result = $query->fetch_assoc()
+$result = $query->fetch_assoc();
+
+if($_SESSION['Type_id'] == 1){
+    $name = "admin";
+    $img = "admin.jpg";
+    error_reporting(0);
+}
+else if($_SESSION['Type_id'] == 2){
+    $sqlTC = "SELECT * FROM teacher_tb WHERE Teach_code = '".$_SESSION['id']."'";
+    $queryTC = $conn->query($sqlTC);
+    $resultTC  = $queryTC ->FETCH_ASSOC();
+    $name = $resultTC['Teach_Pname']." ".$resultTC['Teach_Fname']." ".$resultTC['Teach_Lname'];
+    $birth = $resultTC['Teach_Birth'];
+    $card = $resultTC['Teach_Card'];
+    $code = $resultTC['Teach_code'];
+    $faculty = $resultTC['Teach _Faculty'];
+    $major = $resultTC['Teach _Major'];
+    $img = $resultTC['Teach _Image'];
+}
+else {
+    $sqlSTD = "SELECT * FROM student_tb WHERE Std_code = '".$_SESSION['id']."'";
+    $querySTD = $conn->query($sqlSTD);
+    $resultSTD = $querySTD->FETCH_ASSOC();
+    $name = $resultSTD['Std_Pname']." ".$resultSTD['Std_Fname']." ".$resultSTD['Std_Lname'];
+    $birth = $resultSTD['Std_Birth'];
+    $card = $resultSTD['Std_Card'];
+    $code = $resultSTD['Std_Code'];
+    $faculty = $resultSTD['Std_Faculty'];
+    $major = $resultSTD['Std_Major'];
+    $img = $resultSTD['Std_Image'];
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,21 +75,38 @@ $result = $query->fetch_assoc()
             <p class="text-center text-light mt-3 setfont">มารุตเทพ ร่มโพธิ์</p>
             <p class="text-center text-light setfont">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
             <ul class="list-unstyled components pl-2">
-                <li>
-                    <a href="/SE_System/view/profile/EditProfile.html">ข้อมูลส่วนตัว</a>
+            <li>
+                    <a href="../profile/Profile.php">ข้อมูลส่วนตัว</a>
                 </li>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="/SE_System/view/grade/gradeStudent.html">ผลการเรียน</a>
+                    
+                    <a href="../grade/GradeMain.php ">จัดการผลการเรียน</a>
+                    
                 </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
                 <li>
-                    <a href="/SE_System/Edittranscript2.php">แผนการเรียน</a>
+                    <a href="../grade/gradeStudent.php ">ผลการเรียน</a>  
                 </li>
+                <?php }?>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="/Manager/subjects.html">สถานะการลงทะเบียน</a>
+                    <a href="../subjects/edprograms/Main.php">จัดการแผนการเรียน</a>
                 </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
+                    <li>
+                    <a href="../subjects/edprograms/ShowPrograms.php">แผนการเรียน</a>
+                </li>
+                <?php }?>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="/SE_System/view/schedule/editSchedule.html">ตารางสอน</a>
+                    <a href="../schedule/Schedule_Teacher.php">ตารางสอน</a>
                 </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
+                <li>
+                    <a href="../schedule/Schedule_Student.php">ตารางสอน</a>
+                </li>
+                <?php }?>
             </ul>
 
             <ul class="list-unstyled CTAs">

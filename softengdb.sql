@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2019 at 08:10 PM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.1.30
+-- Generation Time: Sep 24, 2019 at 10:38 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -100,9 +100,10 @@ CREATE TABLE `grade_tb` (
 --
 
 INSERT INTO `grade_tb` (`Grad_id`, `Grad_Term`, `Std_code`, `Sub_code`, `GPA`, `grade_font`) VALUES
-(1, '1/2561', '60122660134', '9011103', '10', 'F'),
+(1, '1/2561', '60122660134', '9011103', '50', 'D'),
 (2, '1/2561', '60122660100', '9011103', '55', 'D+'),
-(3, '1/2561', '60122660118', '9011103', '4', 'F');
+(3, '1/2561', '60122660118', '9011103', '5', 'F'),
+(4, '1/2561', '60122660134', '5673605', '60', 'C');
 
 -- --------------------------------------------------------
 
@@ -347,7 +348,7 @@ ALTER TABLE `course_tb`
 -- AUTO_INCREMENT for table `grade_tb`
 --
 ALTER TABLE `grade_tb`
-  MODIFY `Grad_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Grad_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `member_tb`

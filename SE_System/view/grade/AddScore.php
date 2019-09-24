@@ -4,8 +4,6 @@ include_once('../../model/connect.php');
 
 // $_SESSION['ID'];
 // $_GET['ID'] = $_SESSION['ID'];
-session_start();
-include('../../model/connect.php');
 if($_SESSION['Type_id'] == 1){
     $name = "admin";
     $img = "admin.jpg";

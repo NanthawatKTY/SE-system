@@ -106,7 +106,7 @@ else{
                 </li>
                 <?php }else if($_SESSION['Type_id'] == 3){?>
                 <li>
-                    <a href="../grade/gradeStudent.php ">ผลการเรียน</a>  
+                    <a href="../../grade/gradeStudent.php">ผลการเรียน</a>  
                 </li>
                 <?php }?>
                 <?php if($_SESSION['Type_id'] == 2){?>

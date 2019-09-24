@@ -115,7 +115,7 @@ else{
             <p class="text-center text-light mt-3">มารุตเทพ ร่มโพธิ์</p>
             <p class="text-center text-light">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
             <ul class="list-unstyled components pl-2">
-            <li>
+                <li>
                     <a href="../profile/Profile.php">ข้อมูลส่วนตัว</a>
                 </li>
                 <?php if($_SESSION['Type_id'] == 2){?>
@@ -239,42 +239,76 @@ else{
                         <td class="text-success">B</td>
                       </tr> -->
                       
-                      <th cols pan="9">ภาคเรียนที่ 2/2560</th>
+                      <th cols pan="9">ภาคเรียนที่ 2/2561</th>
                       <?PHP
 
-                        $sqlGrade_1_2560 = "SELECT DISTINCT course_tb.Cos_code, coursename_tb.Cos_name, course_tb.Cos_term ,course_tb.Sub_Code 					,course_tb.Teach_code,course_tb.Sect_code, course_tb.Cos_Time, 
-                        course_tb.Cos_Room,subject_tb.Sub_name,sect_tb.Sect_Name FROM course_tb
-                        INNER JOIN coursename_tb 
-                        ON course_tb.Cos_code = coursename_tb.Cos_code
-                        INNER JOIN subject_tb 
-                        ON course_tb.Sub_code = subject_tb.Sub_code
+                        $sql_2_2561 = "SELECT DISTINCT subject_tb.Sub_name, subject_tb.Sub_Credit, sect_tb.Sect_Name, grade_tb.Std_code, 
+                        grade_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font 
+                        FROM course_tb
+                     
+                     
                         INNER JOIN sect_tb 
                         ON course_tb.Sect_code = sect_tb.Sect_code
                         INNER JOIN register_tb
                         ON course_tb.Cos_code = register_tb.Cos_code
-                        WHERE course_tb.Cos_term = '1/2560' AND $tb ";
+                        INNER JOIN grade_tb
+                        ON register_tb.Std_code = grade_tb.Std_code
+                        INNER JOIN subject_tb 
+                        ON grade_tb.Sub_code = subject_tb.Sub_code
+                                    
+                        WHERE course_tb.Cos_term = '2/2561' AND $tb ";
 
-                        $query_1_2560 = $conn->query($sql_1_2560);
-                        if($query_1_2560->num_rows == 0){?>
+                        $query_2_2561 = $conn->query($sql_2_2561);
+                        if($query_2_2561->num_rows == 0){?>
                             <tr>
-                            <td class="text-center" colspan="6">--- ไม่พบข้อมูล ---</td><?php }?>
+                            <td class="text-center" colspan="6">--- ไม่พบข้อมูล ---</td>
+                            <?php }?>
                             </tr>
-                        <?php while($result_1_2560 = $query_1_2560->fetch_assoc()) {?>
+                        <?php while($result_2_2561 = $query_2_2561->fetch_assoc()) {?>
                         <tr>
-                        <td scope="row"><?php echo $result_1_2560['Sub_Code']?></td>
-                        <td><?php echo $result_1_2560['Sub_name']?></td>
-                        <td><?php echo $result_1_2560['Sub_Credit']?></td>
-                        <td><?php echo $result_1_2560['Sect_Name']?></td>
-                        <td class="text-success" ><?php echo $result_1_2560['grade_font']?></td>
+                        <td scope="row"><?php echo $result_2_2561['Sub_Code']?></td>
+                        <td><?php echo $result_2_2561['Sub_name']?></td>
+                        <td><?php echo $result_2_2561['Sub_Credit']?></td>
+                        <td><?php echo $result_2_2561['Sect_Name']?></td>
+                        <td class="text-success" ><?php echo $result_2_2561['grade_font']?></td>
                         </tr>
                         <?php } ?>
-                    <tr>
-                      <td scope="row">9011202</td>
-                      <td>พีชคณิตเชิงเส้นสำหรับวิศวกรรมซอฟต์แวร์</td>
-                      <td>3(3-0-6)</td>
-                      <td> เอกบังคับ</td>
-                      <td class="text-success">C+</td>
-                    </tr>
+
+
+                        <th cols pan="9">ภาคเรียนที่ 1/2562</th>
+                      <?PHP
+
+                        $sql_1_2562 = "SELECT DISTINCT subject_tb.Sub_name, subject_tb.Sub_Credit, sect_tb.Sect_Name, grade_tb.Std_code, 
+                        grade_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font 
+                        FROM course_tb
+                     
+                     
+                        INNER JOIN sect_tb 
+                        ON course_tb.Sect_code = sect_tb.Sect_code
+                        INNER JOIN register_tb
+                        ON course_tb.Cos_code = register_tb.Cos_code
+                        INNER JOIN grade_tb
+                        ON register_tb.Std_code = grade_tb.Std_code
+                        INNER JOIN subject_tb 
+                        ON grade_tb.Sub_code = subject_tb.Sub_code
+                                    
+                        WHERE course_tb.Cos_term = '1/2562' AND $tb ";
+
+                        $query_1_2562 = $conn->query($sql_1_2562);
+                        if($query_1_2562->num_rows == 0){?>
+                            <tr>
+                            <td class="text-center" colspan="6">--- ไม่พบข้อมูล ---</td>
+                            <?php }?>
+                            </tr>
+                        <?php while($result_1_2562 = $query_1_2562->fetch_assoc()) {?>
+                        <tr>
+                        <td scope="row"><?php echo $result_1_2562['Sub_Code']?></td>
+                        <td><?php echo $result_1_2562['Sub_name']?></td>
+                        <td><?php echo $result_1_2562['Sub_Credit']?></td>
+                        <td><?php echo $result_1_2562['Sect_Name']?></td>
+                        <td class="text-success" ><?php echo $result_1_2562['grade_font']?></td>
+                        </tr>
+                        <?php } ?>
 
                     </tbody>
                   </table>
@@ -286,7 +320,9 @@ else{
                     หน่วยกิตรวม
             </div>
             <div class="col-12">
-                    78
+                    <?php  
+                          echo $result_1_2561['Sub_Credit'];
+                    ?>
             </div>
         </div>
     </div>
@@ -296,7 +332,7 @@ else{
                             เกรดเฉลี่ย
                     </div>
                     <div class="col-12">
-                            4.00
+                            <?php ?>
                     </div>
                 </div>
     </div>

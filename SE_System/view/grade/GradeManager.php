@@ -2,8 +2,7 @@
 session_start();
 include_once('../../model/connect.php');
 
-session_start();
-include('../../model/connect.php');
+
 if($_SESSION['Type_id'] == 1){
     $name = "admin";
     $img = "admin.jpg";
@@ -103,7 +102,7 @@ else {
                 </li>
                 <?php }else if($_SESSION['Type_id'] == 3){?>
                 <li>
-                    <a href="../schedule/Schedule_Student.php">ตารางสอน</a>
+                    <a href="../schedule/Schedule_Student.php">ตารางเรียน</a>
                 </li>
                 <?php }?>
             </ul>
@@ -142,7 +141,9 @@ else {
             <table class="table table-bordered mt-3">
                     <thead>
                       <tr>
-                        <th scope="col"><div  align="center">รหัส</th></div>
+                        <th scope="col"><div  align="center">รหัสแผนการเรียน</th></div>
+                        <th scope="col"><div  align="center">ชื่อแผนการเรียน</th></div>
+                        <th scope="col"><div  align="center">รหัสนักศึกษา</th></div>
                         <th scope="col"><div  align="center">ชื่อ - นามสกุล</th></div>
                         <th scope="col"><div  align="center">คะแนน</th></div>
                         <th scope="col"><div  align="center">เกรด</th></div>
@@ -174,12 +175,14 @@ else {
 
         
         $sql = "SELECT DISTINCT student_tb.Std_Code, student_tb.Std_Pname, student_tb.Std_Fname, student_tb.Std_Lname,
-        course_tb.Sub_Code,grade_tb.GPA, grade_tb.grade_font,subject_tb.Sub_Name,subject_tb.Sub_code, grade_tb.Grad_id
+        course_tb.Sub_Code,grade_tb.GPA, grade_tb.grade_font,subject_tb.Sub_Name,subject_tb.Sub_code, grade_tb.Grad_id,
+        course_tb.Cos_code, coursename_tb.Cos_name
         FROM course_tb
         INNER JOIN register_tb ON course_tb.Cos_code = register_tb.Cos_code
         INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
         INNER JOIN grade_tb ON register_tb.Std_code = grade_tb.Std_code
         INNER JOIN subject_tb ON grade_tb.Sub_code = subject_tb.Sub_code
+        INNER JOIN coursename_tb ON course_tb.Cos_code = coursename_tb.Cos_code
         WHERE course_tb.Teach_code = '".$_SESSION['Mem_user']."' AND course_tb.Sub_Code = ".$ID  ;
         $query1 = mysqli_query($conn, $sql);
         $query2 = mysqli_query($conn, $sql);
@@ -194,6 +197,10 @@ else {
             error_reporting(0);
             ?>
             <tr>           
+            <td><div align="center">
+            <?php echo $result['Cos_code'];?></div></td>
+            <td><div align="center">
+            <?php echo $result['Cos_name'];?></div></td>
             <td><div align="center">
             <?php echo $result['Std_Code'];?></div></td>
             <td><div align="center">
