@@ -116,7 +116,7 @@ $result = $query->FETCH_ASSOC();
                 </div>
 
                 <div class="row">
-                        <button name="edit" <?php if($_GET['CosCode']) { ?> value="<?php echo $_GET['CosCode']; ?>" <?php } else{ ?> value="add" <?php } ?>  type="submit" class="btn btn-sm btn-primary mx-auto col-2">
+                        <button name="<?php if($_GET['CosCode']) {echo "edit";} else{ echo "add";} ?>" <?php if($_GET['CosCode']) { ?> value="<?php echo $_GET['CosCode']; ?>" <?php } else{ ?> value="add" <?php } ?>  type="submit" class="btn btn-sm btn-primary mx-auto col-2">
                             <?php if($_GET['CosCode']) { ?> แก้ไข <?php } else{ ?> บันทึก <?php } ?></button>
                     </div>
             </form>

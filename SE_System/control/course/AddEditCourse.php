@@ -17,8 +17,7 @@ if($_POST['edit'] != ""){
 }
 else{
 
-$sql =  "INSERT INTO `coursename_tb` (`Cos_code`, `Cos_name`) VALUES ('".$_POST['courseCode']."',
-'".$_POST['courseName']."');";
+$sql =  "INSERT INTO `coursename_tb` (`Cos_code`, `Cos_name`) VALUES ('".$_POST['courseCode']."','".$_POST['courseName']."');";
 $query = $conn->query($sql);
 
 
@@ -28,10 +27,5 @@ header( "location: ../../view/subjects/edprograms/Main.php?susccess=1");
 else{
 header( "location: ../../view/subjects/edprograms/Main.php?susccess=2");
 }
-
 }
-
-
-
-
 ?>

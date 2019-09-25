@@ -81,9 +81,6 @@ else {
                     <a href="../subjects/edprograms/ShowPrograms.php">แผนการเรียน</a>
                 </li>
                 <li>
-                    <a href="/Manager/subjects.html">สถานะการลงทะเบียน</a>
-                </li>
-                <li>
                     <a href="../schedule/Schedule_Student.php">ตารางสอน</a>
                 </li>
             </ul>
