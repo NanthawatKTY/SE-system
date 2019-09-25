@@ -41,21 +41,38 @@ $query = $conn->query($sql);
             <p class="text-center text-light mt-3">มารุตเทพ ร่มโพธิ์</p>
             <p class="text-center text-light">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
             <ul class="list-unstyled components pl-2">
-                <li>
-                    <a href="/SE_System/view/profile/EditProfile.html">ข้อมูลส่วนตัว</a>
+            <li>
+                    <a href="../profile/Profile.php">ข้อมูลส่วนตัว</a>
                 </li>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="/SE_System/view/grade/gradeStudent.html">ผลการเรียน</a>
+                    
+                    <a href="../grade/GradeMain.php ">จัดการผลการเรียน</a>
+                    
                 </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
                 <li>
-                    <a href="/SE_System/Edittranscript2.php">แผนการเรียน</a>
+                    <a href="../grade/gradeStudent.php ">ผลการเรียน</a>  
                 </li>
+                <?php }?>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="/Manager/subjects.html">สถานะการลงทะเบียน</a>
+                    <a href="../subjects/edprograms/Main.php">จัดการแผนการเรียน</a>
                 </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
+                    <li>
+                    <a href="../subjects/edprograms/ShowPrograms.php">แผนการเรียน</a>
+                </li>
+                <?php }?>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="/SE_System/view/schedule/editSchedule.html">ตารางสอน</a>
+                    <a href="../schedule/Schedule_Teacher.php">ตารางสอน</a>
                 </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
+                <li>
+                    <a href="../schedule/Schedule_Student.php">ตารางสอน</a>
+                </li>
+                <?php }?>
             </ul>
 
             <ul class="list-unstyled CTAs">
@@ -87,7 +104,7 @@ $query = $conn->query($sql);
                 </div>
             </nav>
             <h3>จัดการนักศึกษา</h3>
-<button class="btn btn-success btn-sm m-1"><a href="\SE-system\SE_System\view\manageStudent\AddEdit.php"> + เพิ่มนักศึกษา</a></button> 
+<button class="btn btn-success btn-sm m-1"><a href="./AddEdit.php"> + เพิ่มนักศึกษา</a></button> 
 <input type="text" placeholder="รหัสนักศึกษา/ชื่อ - นามสกุล">
 <button class="btn btn-secondary btn-sm m-1">ค้นหา</button> 
             <table class="table table-bordered mt-3">

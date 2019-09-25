@@ -4,48 +4,12 @@ include_once('../../model/connect.php');error_reporting(0);
 $_SESSION['Std_Code'] = "";
 $id = $_GET['Std_Code'];
 $_SESSION['Std_edit'] = $id;
-<<<<<<< HEAD
-$sql = "SELECT * FROM student_tb WHERE Std_id = '$id'";
-$query = $conn->query($sql);
-$result = $query->fetch_assoc();
-
-if($_SESSION['Type_id'] == 1){
-    $name = "admin";
-    $img = "admin.jpg";
-    error_reporting(0);
-}
-else if($_SESSION['Type_id'] == 2){
-    $sqlTC = "SELECT * FROM teacher_tb WHERE Teach_code = '".$_SESSION['id']."'";
-    $queryTC = $conn->query($sqlTC);
-    $resultTC  = $queryTC ->FETCH_ASSOC();
-    $name = $resultTC['Teach_Pname']." ".$resultTC['Teach_Fname']." ".$resultTC['Teach_Lname'];
-    $birth = $resultTC['Teach_Birth'];
-    $card = $resultTC['Teach_Card'];
-    $code = $resultTC['Teach_code'];
-    $faculty = $resultTC['Teach _Faculty'];
-    $major = $resultTC['Teach _Major'];
-    $img = $resultTC['Teach _Image'];
-}
-else {
-    $sqlSTD = "SELECT * FROM student_tb WHERE Std_code = '".$_SESSION['id']."'";
-    $querySTD = $conn->query($sqlSTD);
-    $resultSTD = $querySTD->FETCH_ASSOC();
-    $name = $resultSTD['Std_Pname']." ".$resultSTD['Std_Fname']." ".$resultSTD['Std_Lname'];
-    $birth = $resultSTD['Std_Birth'];
-    $card = $resultSTD['Std_Card'];
-    $code = $resultSTD['Std_Code'];
-    $faculty = $resultSTD['Std_Faculty'];
-    $major = $resultSTD['Std_Major'];
-    $img = $resultSTD['Std_Image'];
-}
-=======
 $sqlStd = "SELECT * FROM student_tb WHERE Std_Code = '$id'";
 $sqlMem = "SELECT * FROM `member_tb` WHERE Mem_user = '$id'";
 $queryStd = $conn->query($sqlStd);
 $queryMem = $conn->query($sqlMem);
 $resultStd = $queryStd->fetch_assoc();
 $resultMem = $queryMem->fetch_assoc();
->>>>>>> e7676c713da33ab1df7d44a8247909b7adb570d4
 ?>
 <!DOCTYPE html>
 <html>
