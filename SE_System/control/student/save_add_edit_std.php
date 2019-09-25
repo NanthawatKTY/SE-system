@@ -8,12 +8,19 @@ $Lname  = $_POST['txtLname'];
 $tel  = $_POST['txttel'];
 $add = $_POST['txtbadd'];
 $Birth  = $_POST['txtbirth'];
+$Email  = $_POST['txtEmail'];
+$pass = $_POST['txtPass'];
 $card = $_POST['txtidcard'];
 $major  = $_POST['txtmajor'];
 $fac  = $_POST['txtfac'];
 if($_SESSION['Std_edit']!=null){
-$sql = "UPDATE `student_tb` SET `Std_Code`='".$code."',`Std_Pname`='".$Pname."',`Std_Fname`='".$Fname."',`Std_Lname`='".$Lname."',`Std_Tel`='".$tel."',`Std_Add`='".$add."',`Std_Birth`='".$Birth."',`Std_Card`='".$card."',`Std_Major`='".$major."',`Std_Faculty`='".$fac."' WHERE Std_id = '".$_SESSION['Std_edit']."' ";
-$query = $conn->query($sql);
+$sqlSTD = "UPDATE `student_tb` SET `Std_Code`='".$code."',`Std_Pname`='".$Pname."',`Std_Fname`='".$Fname."',`Std_Lname`='".$Lname."',`Std_Tel`='".$tel."',`Std_Add`='".$add."',`Std_Birth`='".$Birth."',`Std_Card`='".$card."',`Std_Major`='".$major."',`Std_Faculty`='".$fac."' WHERE Std_Code = '".$_SESSION['Std_edit']."' ";
+$sqlMEM = "UPDATE `member_tb` SET `Mem_user`='".$code."',`Mem_pass`='".$pass."',`Email`='".$Email."' WHERE Mem_user = '".$_SESSION['Std_edit']."' ";
+$querySTD = $conn->query($sqlSTD);
+$queryMEM  = $conn->query($sqlMEM);
+//print_r($sql);
+//print_r($sql);
+//print_r($sql);
 //print_r($sql);
 if($query){
     echo $_SESSION['Std_edit'];
@@ -33,9 +40,11 @@ else{
 }
 else{
     
-$sql = "INSERT INTO student_tb(Std_Code, Std_Pname, Std_Fname, Std_Lname, Std_Tel, Std_Add, Std_Birth, Std_Card, Std_Major, Std_Faculty)
+$sqlStd = "INSERT INTO student_tb(Std_Code, Std_Pname, Std_Fname, Std_Lname, Std_Tel, Std_Add, Std_Birth, Std_Card, Std_Major, Std_Faculty)
         VALUES('".$_POST['txtcode']."','".$_POST['txtPname']."','".$_POST['txtFname']."','".$_POST['txtLname']."','".$_POST['txttel']."','".$_POST['txtbadd']."','".$_POST['txtbirth']."','".$_POST['txtidcard']."','".$_POST['txtmajor']."','".$_POST['txtfac']."')";
-$query = $conn->query($sql);
+$sqlMem = "INSERT INTO `member_tb`(`Mem_user`, `Mem_pass`, `Type_id`, `Email`) VALUES ('".$_POST['txtcode']."','".$_POST['txtPass']."',2,'".$_POST['txtEmail']."')";
+$queryStd = $conn->query($sqlStd);
+$queryMem = $conn->query($sqlMem);
 if($query)
 {
     echo "<script>";

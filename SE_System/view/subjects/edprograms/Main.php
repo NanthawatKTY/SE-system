@@ -63,10 +63,10 @@ $query = $conn->query($sql);
 
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="/SE_System/index.html" class="article">กลับเมนูหลัก</a>
+                    <a href="../../../index.php" class="article">กลับเมนูหลัก</a>
                 </li>
                 <li>
-                    <a href="/SE_System/logout.php" class="download">ออกจากระบบ</a>
+                    <a href="../../../control/login/logout.php" class="download">ออกจากระบบ</a>
                 </li>
 
             </ul>

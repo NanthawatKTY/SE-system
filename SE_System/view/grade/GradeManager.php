@@ -1,6 +1,38 @@
 <?php
 session_start();
 include_once('../../model/connect.php');
+
+
+if($_SESSION['Type_id'] == 1){
+    $name = "admin";
+    $img = "admin.jpg";
+    error_reporting(0);
+}
+else if($_SESSION['Type_id'] == 2){
+    $sqlTC = "SELECT * FROM teacher_tb WHERE Teach_code = '".$_SESSION['id']."'";
+    $queryTC = $conn->query($sqlTC);
+    $resultTC  = $queryTC ->FETCH_ASSOC();
+    $name = $resultTC['Teach_Pname']." ".$resultTC['Teach_Fname']." ".$resultTC['Teach_Lname'];
+    $birth = $resultTC['Teach_Birth'];
+    $card = $resultTC['Teach_Card'];
+    $code = $resultTC['Teach_code'];
+    $faculty = $resultTC['Teach _Faculty'];
+    $major = $resultTC['Teach _Major'];
+    $img = $resultTC['Teach _Image'];
+}
+else {
+    $sqlSTD = "SELECT * FROM student_tb WHERE Std_code = '".$_SESSION['id']."'";
+    $querySTD = $conn->query($sqlSTD);
+    $resultSTD = $querySTD->FETCH_ASSOC();
+    $name = $resultSTD['Std_Pname']." ".$resultSTD['Std_Fname']." ".$resultSTD['Std_Lname'];
+    $birth = $resultSTD['Std_Birth'];
+    $card = $resultSTD['Std_Card'];
+    $code = $resultSTD['Std_Code'];
+    $faculty = $resultSTD['Std_Faculty'];
+    $major = $resultSTD['Std_Major'];
+    $img = $resultSTD['Std_Image'];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -41,21 +73,38 @@ include_once('../../model/connect.php');
             <p class="text-center text-light mt-3">มารุตเทพ ร่มโพธิ์</p>
             <p class="text-center text-light">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
             <ul class="list-unstyled components pl-2">
-                <li>
-                    <a href="/SE_System/view/profile/EditProfile.html">ข้อมูลส่วนตัว</a>
+            <li>
+                    <a href="../profile/Profile.php">ข้อมูลส่วนตัว</a>
                 </li>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="./GradeMain.php">ผลการเรียน</a>
+                    
+                    <a href="../grade/GradeMain.php ">จัดการผลการเรียน</a>
+                    
                 </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
                 <li>
-                    <a href="/SE_System/Edittranscript2.php">แผนการเรียน</a>
+                    <a href="../grade/gradeStudent.php ">ผลการเรียน</a>  
                 </li>
+                <?php }?>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="/Manager/subjects.html">สถานะการลงทะเบียน</a>
+                    <a href="../subjects/edprograms/Main.php">จัดการแผนการเรียน</a>
                 </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
+                    <li>
+                    <a href="../subjects/edprograms/ShowPrograms.php">แผนการเรียน</a>
+                </li>
+                <?php }?>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="/SE_System/view/schedule/editSchedule.html">ตารางสอน</a>
+                    <a href="../schedule/Schedule_Teacher.php">ตารางสอน</a>
                 </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
+                <li>
+                    <a href="../schedule/Schedule_Student.php">ตารางเรียน</a>
+                </li>
+                <?php }?>
             </ul>
 
             <ul class="list-unstyled CTAs">
@@ -92,7 +141,9 @@ include_once('../../model/connect.php');
             <table class="table table-bordered mt-3">
                     <thead>
                       <tr>
-                        <th scope="col"><div  align="center">รหัส</th></div>
+                        <th scope="col"><div  align="center">รหัสแผนการเรียน</th></div>
+                        <th scope="col"><div  align="center">ชื่อแผนการเรียน</th></div>
+                        <th scope="col"><div  align="center">รหัสนักศึกษา</th></div>
                         <th scope="col"><div  align="center">ชื่อ - นามสกุล</th></div>
                         <th scope="col"><div  align="center">คะแนน</th></div>
                         <th scope="col"><div  align="center">เกรด</th></div>
@@ -123,14 +174,16 @@ include_once('../../model/connect.php');
         // $ID = $_SESSION['SubCodeED'];
 
         
-        $sql = "SELECT DISTINCT grade_tb.Grad_id, register_tb.Cos_code, course_tb.Sub_code, subject_tb.Sub_Name, register_tb.Std_code, 
-        student_tb.Std_Fname, student_tb.Std_Lname, subject_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font
+        $sql = "SELECT DISTINCT student_tb.Std_Code, student_tb.Std_Pname, student_tb.Std_Fname, student_tb.Std_Lname,
+        course_tb.Sub_Code,grade_tb.GPA, grade_tb.grade_font,subject_tb.Sub_Name,subject_tb.Sub_code, grade_tb.Grad_id,
+        course_tb.Cos_code, coursename_tb.Cos_name
         FROM course_tb
         INNER JOIN register_tb ON course_tb.Cos_code = register_tb.Cos_code
         INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
-        INNER JOIN subject_tb ON course_tb.Sub_Code = subject_tb.Sub_code
         INNER JOIN grade_tb ON register_tb.Std_code = grade_tb.Std_code
-        WHERE course_tb.Sub_Code = ".$ID ;
+        INNER JOIN subject_tb ON grade_tb.Sub_code = subject_tb.Sub_code
+        INNER JOIN coursename_tb ON course_tb.Cos_code = coursename_tb.Cos_code
+        WHERE course_tb.Teach_code = '".$_SESSION['Mem_user']."' AND course_tb.Sub_Code = ".$ID  ;
         $query1 = mysqli_query($conn, $sql);
         $query2 = mysqli_query($conn, $sql);
         $resultShow = mysqli_fetch_array($query1,MYSQLI_ASSOC);
@@ -145,7 +198,11 @@ include_once('../../model/connect.php');
             ?>
             <tr>           
             <td><div align="center">
-            <?php echo $result['Std_code'];?></div></td>
+            <?php echo $result['Cos_code'];?></div></td>
+            <td><div align="center">
+            <?php echo $result['Cos_name'];?></div></td>
+            <td><div align="center">
+            <?php echo $result['Std_Code'];?></div></td>
             <td><div align="center">
             <?php echo $result['Std_Fname'];echo"&nbsp&nbsp";echo $result['Std_Lname'];?></div></td>
             <td><div align="center">

@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('../../model/connect.php');
-if($_SESSION['Type_id'] == 3){
+if($_SESSION['Type_id'] == 1){
     $name = "admin";
     $img = "admin.jpg";
     error_reporting(0);
@@ -74,15 +74,38 @@ else {
                 <li>
                     <a href="">ข้อมูลส่วนตัว</a>
                 </li>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="../grade/GradeMain.php">ผลการเรียน</a>
+                    
+                    <a href="../grade/GradeMain.php ">จัดการผลการเรียน</a>
+                    
                 </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
                 <li>
+                    <a href="../grade/gradeStudent.php ">ผลการเรียน</a>  
+                </li>
+                <?php }?>
+                <?php if($_SESSION['Type_id'] == 2){?>
+                <li>
+                    <a href="../subjects/edprograms/Main.php">จัดการแผนการเรียน</a>
+                </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
+                    <li>
                     <a href="../subjects/edprograms/ShowPrograms.php">แผนการเรียน</a>
                 </li>
+                <?php }?>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
+<<<<<<< HEAD
+=======
+                    <a href="../schedule/Schedule_Teacher.php">ตารางสอน</a>
+                </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
+                <li>
+>>>>>>> 1fa84ba26104c090b826e9ade737e1dc1d41f75c
                     <a href="../schedule/Schedule_Student.php">ตารางสอน</a>
                 </li>
+                <?php }?>
             </ul>
             
             <ul class="list-unstyled CTAs">
@@ -115,7 +138,7 @@ else {
             </nav>
             <h3>ข้อมูลส่วนตัว</h3>
             <hr>
-            <?php if($_SESSION['Type_id'] == 3){ ?>
+            <?php if($_SESSION['Type_id'] == 1){ ?>
             <b>ชื่อ - นามสกุล : </b>
             <label for="idcard"><?php echo $name; ?> </label> <br>
             <?php  } else {?>

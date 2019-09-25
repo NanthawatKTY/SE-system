@@ -48,10 +48,10 @@ error_reporting(0);
     <div class="col-4 right-team">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">ยินดีต้อนรับ</h5>
+                <h5 class="card-title">คุณต้องการออกจากระบบหรือไม่?</h5>
                 <form name="login" method = "POST" action = "control/login/Check_login.php">
                     <div class="form-group">
-                      <label>คุณ มารุตเทพ ร่มโพธิ์</label>
+                      <label></label>
                     </div>
                     <a href = "./view/profile/Profile.php" type="text" class="btn btn-primary btn-sm btn-block">ดำเนินการต่อ</a>
                     <a href = "./control/login/logout.php" type="text" class="btn btn-danger btn-sm btn-block">ออกจากระบบ</a>

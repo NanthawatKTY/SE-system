@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../../model/connect.php');
+include_once('../../model/connect.php');error_reporting(0);
 $sql = "SELECT * FROM student_tb";
 $query = $conn->query($sql);
 ?>
@@ -95,6 +95,10 @@ $query = $conn->query($sql);
                     <tr>
                         <th scope="col">รหัสนักศึกษา</th>
                         <th scope="col">ชื่อ - นามสกุล</th>
+                        <th scope="col">เบอร์โทร - ติดต่อ</th>
+                        <th scope="col">ที่อยู่</th>
+                        <th scope="col">วันเดือนปีเกิด</th>
+                        <th scope="col">รหัสประจำตัวประชาชน</th>
                         <th scope="col">สาขา</th>
                         <th scope="col">คณะ</th>
                         <th scope="col">แก้ไข</th>
@@ -108,10 +112,14 @@ $query = $conn->query($sql);
                             <?php while($result = $query->fetch_assoc()){ ?>
                               <td><?php echo $result['Std_Code']; ?></td>
                               <td><?php echo $result['Std_Pname'].$result['Std_Fname']." ".$result['Std_Lname']; ?></td>
+                              <td><?php echo $result['Std_Tel']; ?></td>
+                              <td><?php echo $result['Std_Add']; ?></td>
+                              <td><?php echo $result['Std_Birth']; ?></td>
+                              <td><?php echo $result['Std_Card']; ?></td>
                               <td><?php echo $result['Std_Major']; ?></td>
                               <td><?php echo $result['Std_Faculty']; ?></td>
-                              <td><a class="btn btn-dark btn-sm" href="./AddEdit.php?Std_id=<?php echo $result['Std_id']; ?>">แก้ไข</a></td>
-                              <td><a class="btn btn-danger btn-sm" href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='../../control/student/del_std.php?Std_id=<?php echo $result["Std_id"];?>';}">ลบ</a></td>
+                              <td><a class="btn btn-dark btn-sm" href="./AddEdit.php?Std_Code=<?php echo $result['Std_Code'];?>">แก้ไข</a></td>
+                              <td><a class="btn btn-danger btn-sm" href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='../../control/student/del_std.php?Std_Code=<?php echo $result["Std_Code"];?>';}">ลบ</a></td>
                             </tr>
                             <?php } ?>
                           </tbody>
