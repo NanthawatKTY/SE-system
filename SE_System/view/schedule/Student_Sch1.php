@@ -5,8 +5,8 @@ $db->set_charset('utf8');
 ///////////////////////////////////////////////////////////////////////////////////////////
 //   day config
 $day_config = array(
-	'Mon'=>array('', 'จันทร์', 1 ),
-	'Tue'=>array('', 'อังคาร', 2 ),
+	'Mon'=>array('red', 'จันทร์', 1 ),
+	'Tue'=>array('yellow', 'อังคาร', 2 ),
 	'Wed'=>array('', 'พุธ', 3 ),
 	'Thu'=>array('', 'พฤหัสบดี', 4 ),
 	'Fri'=>array('', 'ศุกร์', 5 ),
@@ -23,7 +23,7 @@ INNER JOIN subject_tb ON course_tb.Sub_code = subject_tb.Sub_code
 INNER JOIN teacher_tb ON course_tb.Teach_code = teacher_tb.Teach_code
 INNER JOIN sect_tb ON course_tb.Sect_code = sect_tb.Sect_code
 INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
-WHERE student_tb.Std_Code = '60122660134' AND  course_tb.Cos_term = '1/2560' ORDER BY `course_tb`.`Cos_Time` ASC " ;
+WHERE student_tb.Std_Code = '60122660134' AND  course_tb.Cos_term = '1/2561' ORDER BY `course_tb`.`Cos_Time` ASC " ;
 ////////////////////////////////////////////////////////////////////////////////////////*/
 //  ส่วนการสร้าง tr
 $cur_day=0; $cur_hour=''; $tr='';

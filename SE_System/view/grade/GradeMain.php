@@ -188,7 +188,7 @@ $result = mysqli_fetch_array($query,MYSQLI_ASSOC);
             <td><div align="left">
             <?php echo $result['Sub_Name'];?></div></td>
             <td><div align="center">
-            <a class="btn btn-info" href ="./GradeManager.php?ID=<?php echo $result['Sub_code'];?>" ?>จัดการ</a></td>
+            <a class="btn btn-info" href ="./GradeManager.php?ID=<?php echo $result['Sub_code']?>&SubName=<?php echo $result['Sub_Name']?> ">จัดการ</a></td>
             </tr>
             <?php
 

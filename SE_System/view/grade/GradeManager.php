@@ -171,27 +171,28 @@ else {
         // WHERE subject_tb.Sub_code='".$_SESSION['ID']."'" ;
 
         $ID = $_GET['ID'];
+        $SubName = $_GET['SubName'];
         // $ID = $_SESSION['SubCodeED'];
 
+
         
-        $sql = "SELECT DISTINCT student_tb.Std_Code, student_tb.Std_Pname, student_tb.Std_Fname, student_tb.Std_Lname,
-        course_tb.Sub_Code,grade_tb.GPA, grade_tb.grade_font,subject_tb.Sub_Name,subject_tb.Sub_code, grade_tb.Grad_id,
-        course_tb.Cos_code, coursename_tb.Cos_name
-        FROM course_tb
-        INNER JOIN register_tb ON course_tb.Cos_code = register_tb.Cos_code
-        INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
-        INNER JOIN grade_tb ON register_tb.Std_code = grade_tb.Std_code
-        INNER JOIN subject_tb ON grade_tb.Sub_code = subject_tb.Sub_code
-        INNER JOIN coursename_tb ON course_tb.Cos_code = coursename_tb.Cos_code
+        $sql = "SELECT DISTINCT register_tb.Cos_code, coursename_tb.Cos_name, course_tb.Teach_code, course_tb.Sub_Code, register_tb.Std_code,
+        student_tb.Std_Fname, student_tb.Std_Lname, subject_tb.Sub_Name
+        FROM register_tb
+        INNER JOIN course_tb on register_tb.Cos_code = course_tb.Cos_code
+        INNER JOIN coursename_tb on course_tb.Cos_code = coursename_tb.Cos_code
+        INNER JOIN student_tb on register_tb.Std_code = student_tb.Std_Code
+        INNER JOIN subject_tb on course_tb.Sub_code = subject_tb.Sub_code
         WHERE course_tb.Teach_code = '".$_SESSION['Mem_user']."' AND course_tb.Sub_Code = ".$ID  ;
         $query1 = mysqli_query($conn, $sql);
         $query2 = mysqli_query($conn, $sql);
         $resultShow = mysqli_fetch_array($query1,MYSQLI_ASSOC);
 
-        echo $resultShow['Sub_code'];echo"&nbsp&nbsp";echo"-";echo"&nbsp&nbsp";echo $resultShow['Sub_Name'];
+        
+        echo $ID;echo"&nbsp&nbsp";echo"-";echo"&nbsp&nbsp";echo  $SubName;
         
         while($result=mysqli_fetch_array($query2,MYSQLI_ASSOC))
-         
+     
         {
             
             error_reporting(0);
@@ -202,13 +203,13 @@ else {
             <td><div align="center">
             <?php echo $result['Cos_name'];?></div></td>
             <td><div align="center">
-            <?php echo $result['Std_Code'];?></div></td>
+            <?php echo $result['Std_code'];?></div></td>
             <td><div align="center">
             <?php echo $result['Std_Fname'];echo"&nbsp&nbsp";echo $result['Std_Lname'];?></div></td>
             <td><div align="center">
-            <?php echo $result['GPA'];?></div></td>
+            <?php echo $result[''];?></div></td>
             <td><div align="center">
-            <?php echo $result['grade_font']; ?></div></td>
+            <?php echo $result[''];?></div></td>
             <td><div align="center">
             <a class="btn btn-info" href ="./AddScore.php?GradID=<?php echo $result['Grad_id']?>&SubCodeED=<?php echo $ID?> ">แก้ไข</a></td>
             </tr>
