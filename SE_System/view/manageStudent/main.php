@@ -106,7 +106,6 @@ $query = $conn->query($sql);
             <h3>จัดการนักศึกษา</h3>
 <button class="btn btn-success btn-sm m-1"><a href="./AddEdit.php"> + เพิ่มนักศึกษา</a></button> 
 <input type="text" placeholder="รหัสนักศึกษา/ชื่อ - นามสกุล">
-<button class="btn btn-secondary btn-sm m-1">ค้นหา</button> 
             <table class="table table-bordered mt-3">
                 <thead>
                     <tr>
