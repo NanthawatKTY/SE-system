@@ -15,15 +15,21 @@ $major  = $_POST['txtmajor'];
 $fac  = $_POST['txtfac'];
 if($_SESSION['Teach_edit']!=null){
 $sqlTCH = "UPDATE `teacher_tb` SET `Teach_code`='".$code."',`Teach_Pname`='".$Pname."',`Teach_Fname`='".$Fname."',`Teach_Lname`='".$Lname."',`Teach_Tel`='".$tel."',`Teach_Add`='".$add."',`Teach_Birth`='".$Birth."',`Teach_Card`='".$card."',`Teach _Major`='".$major."',`Teach _Faculty`='".$fac."' WHERE Teach_id = '".$_SESSION['Teach_edit']."' ";
-$sqlMem = "UPDATE `member_tb` SET `Mem_user`='".$code."',`Mem_pass`='".$pass."',`Email`='".$Email."' WHERE Mem_user = '".$_SESSION['Std_edit']."' ";
+$sqlMEM = "UPDATE `member_tb` SET `Mem_user`='".$code."',`Mem_pass`='".$pass."',`Email`='".$Email."' WHERE Mem_user = '".$_SESSION['Std_edit']."' ";
 $queryTCH = $conn->query($sqlTCH);
-$queryMEM  = $conn->query($sqlMem);
+$queryMEM  = $conn->query($sqlMEM);
 //print_r($sql);
-if($query){
+if($queryTCH){
+    if($queryMem){
     echo $_SESSION['Teach_edit'];
     $_SESSION['Teach_edit'] = " ";
     echo "<script>";
     echo "alert('แก้ไขเรียบร้อย');";
+    echo "window.location='../../view/manageTeacher/Main.php";
+    echo "</script>";
+}else{
+    echo "<script>";
+    echo "alert('เกิดข้อผิดพลาด');";
     echo "window.location='../../view/manageTeacher/Main.php";
     echo "</script>";
 }
@@ -42,12 +48,19 @@ $sqlTch = "INSERT INTO teacher_tb(Teach_code, Teach_Pname, Teach_Fname, Teach_Ln
 $sqlMem = "INSERT INTO `member_tb`(`Mem_user`, `Mem_pass`, `Type_id`, `Email`) VALUES ('".$_POST['txtcode']."','".$_POST['txtPass']."',2,'".$_POST['txtEmail']."')";
 $queryTch = $conn->query($sqlTch);
 $queryMem = $conn->query($sqlMem);
-if($query)
-{
+if($queryTch){
+if($queryMem){
     echo "<script>";
     echo "alert('เพิ่มข้อมูลเรียบร้อยแล้ว');";
     echo "window.location='../../view/manageTeacher/Main.php";
     echo "</script>";}
+
+else{
+    echo "<script>";
+    echo "alert('ไม่สามารถเพิ่มข้อมูลได้');";
+    echo "window.location='../../view/manageTeacher/Main.php";
+    echo "</script>";
+}}
 else
 {
     echo "<script>";
