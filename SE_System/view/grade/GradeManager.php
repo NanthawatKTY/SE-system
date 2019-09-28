@@ -208,15 +208,11 @@ $resultsub = $querysub -> FETCH_ASSOC();
             
             $sqlgrade = "   SELECT * FROM `grade_tb` 
                             WHERE `Std_code` ='".$resultG['Std_code']."' 
+                            AND  `Grad_Term` = '".$resultG['Cos_term']."'
                             AND `Sub_code` = '".$resultG['Sub_Code']."' ";
             $querygrade = $conn->query($sqlgrade);
             $resultgrade = $querygrade->FETCH_ASSOC();
-        
-
-       
-        
-        
-            
+ 
         error_reporting(0);
         ?>
             <tr>        

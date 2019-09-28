@@ -52,7 +52,8 @@ $querycheck = $conn->query($sqlcheck);
 if($querycheck -> num_rows > 0){
    //Update
    $sql = "UPDATE `grade_tb` SET `GPA`='".$grade."', `grade_font`='".$gradeSum."'
-   WHERE `Std_code` ='".$_SESSION['StdCode']."'
+   WHERE  `Grad_Term` = '".$_SESSION['Term']."'
+   AND `Std_code` ='".$_SESSION['StdCode']."'
    AND `Sub_code` = '".$_SESSION['SubCodeED']."' ";
    $query = $conn->query($sql);
 

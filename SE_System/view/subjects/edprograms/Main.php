@@ -8,7 +8,7 @@ $query = $conn->query($sql);
 
 <!DOCTYPE html>
 <html>
-SE-system/SE_System/view/subjects/edprograms/Main.php
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
