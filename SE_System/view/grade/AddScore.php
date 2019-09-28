@@ -34,6 +34,18 @@ else {
     $img = $resultSTD['Std_Image'];
 }
 
+    $_SESSION['StdCode'] = $_GET['StdCode'];
+    $_SESSION['Term'] = $_GET['Term'];
+
+    // $sqlcheckStd = "SELECT * FROM `student_tb` 
+    // WHERE `Std_code` ='".$_SESSION['StdCode']."'";
+    $sqlcheckStd = "SELECT register_tb.Std_code, student_tb.Std_Pname, student_tb.Std_Fname, student_tb.Std_Lname, student_tb.Std_Tel, student_tb.Std_Add, student_tb.Std_Birth, student_tb.Std_Card, student_tb.Std_Major, student_tb.Std_Faculty
+    FROM `register_tb` 
+    INNER JOIN student_tb on register_tb.Std_code = student_tb.Std_Code
+    WHERE register_tb.Std_code ='".$_SESSION['StdCode']."'"; 
+
+    $querycheckStd = $conn->query($sqlcheckStd);
+    $resultcheckStd = $querycheckStd->FETCH_ASSOC();
 
 ?>
 <!DOCTYPE html>
@@ -71,8 +83,8 @@ else {
             <img class=" circle-img mt-4"
                 src="https://scontent.fbkk13-1.fna.fbcdn.net/v/t1.0-9/62071969_10216624784104470_275687937776025600_n.jpg?_nc_cat=108&_nc_eui2=AeFlWjrNsKSDZAOkhDiO8Sh9gK_6MxCkO4I7Q7q-kDWjlvHgaQxXXnd_Kdgzvpf12-V57NUXyBmP9tQiXiQDK7h_oUO2uTgBIMIajS4DEgl9rw&_nc_oc=AQnPsBYrLEFJd65Nx-49Wa0az84w5sFxnLpeeeT6v3CGiW6Ct0XMM4l0zk2c3dPGwd8&_nc_ht=scontent.fbkk13-1.fna&oh=4de81c57afef203ee9addf36f5353172&oe=5E0D477F"
                 alt="">
-            <p class="text-center text-light mt-3">มารุตเทพ ร่มโพธิ์</p>
-            <p class="text-center text-light">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
+            <p class="text-center text-light mt-3"><?php echo $name;?></p>
+            <p class="text-center text-light"><?php echo $major;?></p>
             <ul class="list-unstyled components pl-2">
             <li>
                     <a href="../profile/Profile.php">ข้อมูลส่วนตัว</a>
@@ -136,68 +148,41 @@ else {
                     </button>
                 </div>
             </nav>
-            <h3>แก้ไขผลการเรียน</h3>
+            <h3>จัดการผลการเรียน</h3>
 
            <?php 
            
+           //SQL//
             $SubCodeED = $_GET['SubCodeED'];
             $_SESSION['SubCodeED'] = $SubCodeED;
 
-            
+            $SubName = $_GET['SubName'];
+            $_SESSION['SubName'] = $SubName ;  
 
-            $sqlED = "SELECT DISTINCT register_tb.Cos_code,   course_tb.Sub_Code, subject_tb.Sub_Name, register_tb.Std_code, 
-            student_tb.Std_Pname,student_tb.Std_Fname, student_tb.Std_Lname, subject_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font
-            FROM course_tb
-            INNER JOIN register_tb ON course_tb.Cos_code = register_tb.Cos_code
-            INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
-            INNER JOIN subject_tb ON course_tb.Sub_Code = subject_tb.Sub_code
-            INNER JOIN grade_tb ON register_tb.Std_code = grade_tb.Std_code
-            WHERE course_tb.Sub_Code = '".$_SESSION['SubCodeED']."'" ;
 
-            $queryED = mysqli_query($conn, $sqlED);
-            $resultShowED = mysqli_fetch_array($queryED,MYSQLI_ASSOC);
-
-            echo $_SESSION['SubCodeED']." - ".$resultShowED['Sub_Name'];
+            echo $_SESSION['SubCodeED']." - ".$_SESSION['SubName'];
        
-            $GradIDED = $_GET['GradID'];
-            $_SESSION['GradID'] = $GradIDED;
-            $sqlEditGrade = "SELECT grade_tb.Grad_id, grade_tb.Grad_Term, grade_tb.Std_code, grade_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font, 
-            student_tb.Std_Pname, student_tb.Std_Fname, student_tb.Std_Lname
-
-            FROM grade_tb
-            INNER JOIN register_tb ON grade_tb.Std_code = register_tb.Std_code
-            INNER JOIN student_tb ON grade_tb.Std_code = student_tb.Std_Code
-            WHERE grade_tb.Grad_id = '".$_GET['GradID']."'" ;
-            
-            $queryEditGrade = mysqli_query($conn, $sqlEditGrade);
-            $resultEditGrade = $queryEditGrade->FETCH_ASSOC();
-
-            
-            
-           
             ?>
 
 
-        <form action="../../control/grade/save_addEdit_score.php" method = "POST" class="form-inline">
             <div class="form-group mb-2">
-            <label for="StudentName"><?php echo $resultEditGrade['Std_Pname'].$resultEditGrade['Std_Fname']." ".$resultEditGrade['Std_Lname']?></label>
+            <label for="StudentName"><?php echo $resultcheckStd['Std_code']."  ".$resultcheckStd['Std_Pname'].$resultcheckStd['Std_Fname']." ".$resultcheckStd['Std_Lname']?></label>
             </div>
             <div class="form-group mx-sm-3 mb-2">
             
             <!-- Hidden -->
-            <input  name="txtGid"type="hidden" id="txtGid" value="<?php $result['Grad_id'];?>">
-            <input  name="txtGterm"type="hidden" id="txtGterm" value="<?php $result['Grad_Term'];?>">
-            <input  name="txtStdCode"type="hidden" id="txtStdCode" value="<?php $result['Std_code'];?>">
-            <input  name="txtSubCode"type="hidden" id="txtSubCode" value="<?php $result['Sub_code'];?>">
+      
+
 
             <!-- Grade -->
+        <form action="../../control/grade/save_addEdit_score.php" method = "POST" class="form-inline">
+
             <input type="number" class="form-control" id="txtGrade" placeholder="คะแนน" name="txtGrade" 
             min="0" max="100" title = "โปรดกรอกคะแนนตั้งแต่ 0 - 100 !"
-            <?php if($_SESSION['GradID']){ ?> value="<?php echo $resultEditGrade['GPA']?>"<?php } 
-            else { ?> <?php } ?> required>
+            <?php if($_GET['Grade']){ ?> value="<?php echo $_GET['Grade']?>" <?php } ?> required>
             </div>
 
-            <button type="submit" class="btn btn-success mb-2" name="GradeEdit" href="../../control/grade/save_addEdit_score.php?SubED=<?php echo $_SESSION['SubCodeED'];?>&GradID=<?php echo $_SESSION['GradID'];?>">บันทึก</button>
+            <button type="submit" class="btn btn-success mb-2" name="GradeEdit">บันทึก</button>
       </form>
       <a type="back" class="btn btn-secondary mb-2" href="./GradeManager.php?ID=<?php echo $_SESSION['ID'];?>">กลับหน้าเดิม</a>
 
