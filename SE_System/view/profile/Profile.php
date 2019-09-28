@@ -96,11 +96,11 @@ else {
                 <?php }?>
                 <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="../schedule/Schedule_Teacher.php">ตารางสอน</a>
+                    <a href="../schedule/Teacher_sch1.php">ตารางสอน</a>
                 </li>
                 <?php }else if($_SESSION['Type_id'] == 3){?>
                 <li>
-                    <a href="../schedule/Schedule_Student.php">ตารางสอน</a>
+                    <a href="../schedule/Student_Sch1.php">ตารางสอน</a>
                 </li>
                 <?php }?>
             </ul>

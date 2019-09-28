@@ -2,7 +2,7 @@
 session_start();
 include_once('../../model/connect.php');error_reporting(0);
 $sql = "SELECT * FROM student_tb";
-$query = $conn->query($sql);
+$query = $link->query($sql);
 ?>
 <!DOCTYPE html>
 <html>

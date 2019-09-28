@@ -8,7 +8,7 @@ $query = $conn->query($sql);
 
 <!DOCTYPE html>
 <html>
-
+SE-system/SE_System/view/subjects/edprograms/Main.php
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -121,7 +121,7 @@ $query = $conn->query($sql);
                         <td><a class="btn btn-sm btn-primary" href="../course/AddEditCourse.php?CosCode=<?php echo $result['Cos_code']?>">แก้ไข</a></td>
                         <td><a class="btn btn-sm btn-danger" href="JavaScript:if(confirm('Confirm Delete?')== true){window.location='../../../control/course/DelCourse.php?ID=<?php echo $result['Cos_code'];?>';}">ลบ</a></td>
                       </tr>
-                      <?php }?>
+                      <?php };?>
                       
                       
                     </tbody>
