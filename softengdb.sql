@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2019 at 10:37 PM
+-- Generation Time: Sep 28, 2019 at 09:06 AM
 -- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.8
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -94,11 +94,15 @@ CREATE TABLE `grade_tb` (
 --
 
 INSERT INTO `grade_tb` (`Grad_id`, `Grad_Term`, `Std_code`, `Sub_code`, `GPA`, `grade_font`) VALUES
-(5, '1/2561', '60122660128', '5673101', '5', 'F'),
+(5, '1/2561', '60122660128', '5673101', '0', 'F'),
 (7, '1/2561', '60122660134', '9011103', '95', 'A'),
 (8, '1/2561', '60122660140', '9011103', '75', 'B+'),
 (9, '2/2562', '60122660140', '5673101', '34', 'F'),
-(10, '1/2560', '', '9011103', '100', 'A');
+(10, '1/2560', '', '9011103', '100', 'A'),
+(11, '1/2561', '', '5674901', '34', 'F'),
+(12, '1/2561', '60122660118', '9011103', '79', 'B+'),
+(13, '1/2561', '60122660100', '9011103', '30', 'F'),
+(14, '1/2561', '60122660118', '5674901', '100', 'A');
 
 -- --------------------------------------------------------
 
@@ -349,7 +353,7 @@ ALTER TABLE `course_tb`
 -- AUTO_INCREMENT for table `grade_tb`
 --
 ALTER TABLE `grade_tb`
-  MODIFY `Grad_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `Grad_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `member_tb`

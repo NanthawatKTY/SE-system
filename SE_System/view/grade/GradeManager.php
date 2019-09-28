@@ -241,7 +241,7 @@ $resultsub = $querysub -> FETCH_ASSOC();
            
             
             <td><div align="center">
-            <a class="btn btn-info" href ="./AddScore.php?Grade=<?php echo $resultgrade['GPA'];?>&SubCodeED=<?php echo $ID;?>&SubName=<?php echo $SubName;?>&StdCode=<?php echo $resultgrade['Std_code'];?>&Term=<?php echo $resultG['Cos_term'];?> ">
+            <a class="btn btn-info" href ="./AddScore.php?Grade=<?php echo $resultgrade['GPA'];?>&SubCodeED=<?php echo $ID;?>&SubName=<?php echo $resultsub['Sub_Name'];?>&StdCode=<?php echo $resultG['Std_code'];?>&Term=<?php echo $resultG['Cos_term'];?> ">
             จัดการ</a></td>
             </tr>
             <?php

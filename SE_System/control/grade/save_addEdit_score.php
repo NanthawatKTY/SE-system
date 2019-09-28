@@ -77,8 +77,7 @@ if($querycheck -> num_rows > 0){
    // echo $GradID;
    // echo $GradID;
    // return false;
-  echo $queryAddG;
-   return false;
+
    if($queryAddG==TRUE){
 
       header("location: ../../view/grade/GradeManager.php?success=1&SubName=$SubName&ID=".$SubCode);
