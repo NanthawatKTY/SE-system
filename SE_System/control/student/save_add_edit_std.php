@@ -22,13 +22,21 @@ $queryMEM  = $conn->query($sqlMEM);
 //print_r($sql);
 //print_r($sql);
 //print_r($sql);
-if($query){
+if($querySTD){
+    if($queryMEM){
     echo $_SESSION['Std_edit'];
     $_SESSION['Std_edit'] = "";
     echo "<script>";
     echo "alert('แก้ไขเรียบร้อย');";
     echo "window.location='../../view/manageStudent/main.php';";
     echo "</script>";
+}
+else{
+    echo "<script>";
+    echo "alert('เกิดข้อผิดพลาด');";
+    echo "window.location='../../view/manageStudent/main.php';";
+    echo "</script>";
+}
 }
 else{
     
@@ -45,12 +53,20 @@ $sqlStd = "INSERT INTO student_tb(Std_Code, Std_Pname, Std_Fname, Std_Lname, Std
 $sqlMem = "INSERT INTO `member_tb`(`Mem_user`, `Mem_pass`, `Type_id`, `Email`) VALUES ('".$_POST['txtcode']."','".$_POST['txtPass']."',2,'".$_POST['txtEmail']."')";
 $queryStd = $conn->query($sqlStd);
 $queryMem = $conn->query($sqlMem);
-if($query)
-{
+if($queryStd){
+if($queryMem){
+
     echo "<script>";
     echo "alert('เพิ่มข้อมูลเรียบร้อยแล้ว');";
     echo "window.location='../../view/manageStudent/main.php';";
     echo "</script>";}
+else {
+    echo "<script>";
+    echo "alert('ไม่สามารถเพิ่มข้อมูลได้');";
+    echo "window.location='../../view/manageStudent/main.php';";
+    echo "</script>";
+}
+}
 else
 {
     echo "<script>";

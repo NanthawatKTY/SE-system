@@ -33,6 +33,13 @@ else {
     $img = $resultSTD['Std_Image'];
 }
 
+$ID = $_GET['ID'];
+$_SESSION['SubName'] = $_GET['SubName'];
+
+$sqlsub ="SELECT * FROM `subject_tb` 
+WHERE Sub_code = '".$ID."'";
+$querysub = $conn->query($sqlsub);
+$resultsub = $querysub -> FETCH_ASSOC();
 ?>
 
 <!DOCTYPE html>
@@ -135,82 +142,107 @@ else {
                     </button>
                 </div>
             </nav>
-            <h3>จัดการผลการเรียน</h3>
+            <a class="btn btn-sm btn-secondary mb-2" href="./GradeMain.php"> < กลับหน้าเดิม</a>
+            <h3>จัดการผลการเรียน <?php echo $ID;echo"&nbsp&nbsp";echo"-";echo"&nbsp&nbsp";echo $resultsub['Sub_Name'];?> </h3>
+                        
+<!-- alert  -->
+<??>
+<?php error_reporting(0); if($_GET['success'] == 1){ ?>
+<div class="alert alert-success mt-2" role="alert">
+สำเร็จ
+</div>
 
+<?php }else if($_GET['success'] == 2) { ?>
+<div class="alert alert-danger" role="alert">
+มีบางอย่างผิดพลาด ลองอีกครั้ง
+</div> <?php } error_reporting(0);?>
+<!-- end alert  -->
 
             <table class="table table-bordered mt-3">
                     <thead>
                       <tr>
+                        <th scope="col"><div  align="center">ภาคเรียน</th></div>
                         <th scope="col"><div  align="center">รหัสแผนการเรียน</th></div>
                         <th scope="col"><div  align="center">ชื่อแผนการเรียน</th></div>
                         <th scope="col"><div  align="center">รหัสนักศึกษา</th></div>
                         <th scope="col"><div  align="center">ชื่อ - นามสกุล</th></div>
                         <th scope="col"><div  align="center">คะแนน</th></div>
                         <th scope="col"><div  align="center">เกรด</th></div>
-                        <th scope="col"><div  align="center">แก้ไข</th></div>
+                        <th scope="col"><div  align="center">จัดการ</th></div>
                       </tr>
                     </thead>
-                    
-<!-- 
-                      <tr>
-                            <td scope="row">60122660103</td>
-                            <td>นาย เกิดมาทำไม ไม่รู้เหมือนกัน</td>
-                            <td>80</td>
-                            <td>A</td>
-                            <td><button>แก้ไข</button></td>
-                          </tr> -->
+                
     <?php
-        
-        // $ID = $_GET['ID'];
-        // $_SESSION['ID'] = $ID;
-        // $sql = "SELECT register_tb.Sub_code, register_tb.Std_code, grade_tb.GPA, student_tb.Std_Fname, student_tb.Std_Lname, subject_tb.Sub_Name
-        // FROM (((register_tb
-        // INNER JOIN subject_tb ON register_tb.Sub_code = subject_tb.Sub_code)
-        // INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_code) 
-        // INNER JOIN grade_tb ON register_tb.Std_code = grade_tb.Std_code)          
-        // WHERE subject_tb.Sub_code='".$_SESSION['ID']."'" ;
 
-        $ID = $_GET['ID'];
         // $ID = $_SESSION['SubCodeED'];
 
-        
-        $sql = "SELECT DISTINCT student_tb.Std_Code, student_tb.Std_Pname, student_tb.Std_Fname, student_tb.Std_Lname,
-        course_tb.Sub_Code,grade_tb.GPA, grade_tb.grade_font,subject_tb.Sub_Name,subject_tb.Sub_code, grade_tb.Grad_id,
-        course_tb.Cos_code, coursename_tb.Cos_name
-        FROM course_tb
-        INNER JOIN register_tb ON course_tb.Cos_code = register_tb.Cos_code
-        INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
-        INNER JOIN grade_tb ON register_tb.Std_code = grade_tb.Std_code
-        INNER JOIN subject_tb ON grade_tb.Sub_code = subject_tb.Sub_code
-        INNER JOIN coursename_tb ON course_tb.Cos_code = coursename_tb.Cos_code
-        WHERE course_tb.Teach_code = '".$_SESSION['Mem_user']."' AND course_tb.Sub_Code = ".$ID  ;
-        $query1 = mysqli_query($conn, $sql);
-        $query2 = mysqli_query($conn, $sql);
-        $resultShow = mysqli_fetch_array($query1,MYSQLI_ASSOC);
-
-        echo $resultShow['Sub_code'];echo"&nbsp&nbsp";echo"-";echo"&nbsp&nbsp";echo $resultShow['Sub_Name'];
-        
-        while($result=mysqli_fetch_array($query2,MYSQLI_ASSOC))
-         
-        {
             
-            error_reporting(0);
-            ?>
-            <tr>           
+        
+        // $sql = "SELECT DISTINCT register_tb.Cos_code, coursename_tb.Cos_name, course_tb.Teach_code, course_tb.Sub_Code, register_tb.Std_code,
+        // student_tb.Std_Fname, student_tb.Std_Lname, subject_tb.Sub_Name
+        // FROM register_tb
+        // INNER JOIN course_tb on register_tb.Cos_code = course_tb.Cos_code
+        // INNER JOIN coursename_tb on course_tb.Cos_code = coursename_tb.Cos_code
+        // INNER JOIN student_tb on register_tb.Std_code = student_tb.Std_Code
+        // INNER JOIN subject_tb on course_tb.Sub_code = subject_tb.Sub_code
+        // WHERE course_tb.Teach_code = '".$_SESSION['Mem_user']."' AND course_tb.Sub_Code = ".$ID  ;
+
+      
+        $sqlshow = "SELECT DISTINCT course_tb.Cos_term, register_tb.Cos_code, coursename_tb.Cos_name, register_tb.Std_code, 
+                    student_tb.Std_Fname, student_tb.Std_Lname ,course_tb.Sub_Code
+        
+                FROM register_tb
+                INNER JOIN course_tb
+                ON register_tb.Cos_code = course_tb.Cos_code
+                INNER JOIN student_tb
+                ON register_tb.Std_code = student_tb.Std_code
+                INNER JOIN coursename_tb
+                ON course_tb.Cos_code = coursename_tb.Cos_code
+                WHERE course_tb.Sub_Code = '".$ID."'
+                ORDER BY register_tb.Std_code";
+        $queryshow = $conn->query($sqlshow);
+
+        
+           //SQL Show Grade//
+        while($resultG = $queryshow->FETCH_ASSOC()) {
+            
+            $sqlgrade = "   SELECT * FROM `grade_tb` 
+                            WHERE `Std_code` ='".$resultG['Std_code']."' 
+                            AND `Sub_code` = '".$resultG['Sub_Code']."' ";
+            $querygrade = $conn->query($sqlgrade);
+            $resultgrade = $querygrade->FETCH_ASSOC();
+        
+
+       
+        
+        
+            
+        error_reporting(0);
+        ?>
+            <tr>        
             <td><div align="center">
-            <?php echo $result['Cos_code'];?></div></td>
+            <?php echo $resultG['Cos_term'];?></div></td>   
             <td><div align="center">
-            <?php echo $result['Cos_name'];?></div></td>
+            <?php echo $resultG['Cos_code'];?></div></td>
             <td><div align="center">
-            <?php echo $result['Std_Code'];?></div></td>
+            <?php echo $resultG['Cos_name'];?></div></td>
             <td><div align="center">
-            <?php echo $result['Std_Fname'];echo"&nbsp&nbsp";echo $result['Std_Lname'];?></div></td>
+            <?php echo $resultG['Std_code'];?></div></td>
             <td><div align="center">
-            <?php echo $result['GPA'];?></div></td>
+            <?php echo $resultG['Std_Fname'];echo"&nbsp&nbsp";echo $resultG['Std_Lname'];?></div></td>            
             <td><div align="center">
-            <?php echo $result['grade_font']; ?></div></td>
+            <?php echo $resultgrade['GPA'] ;?>
+            </div>
+            </td>
             <td><div align="center">
-            <a class="btn btn-info" href ="./AddScore.php?GradID=<?php echo $result['Grad_id']?>&SubCodeED=<?php echo $ID?> ">แก้ไข</a></td>
+            <?php echo $resultgrade['grade_font'];?>
+            </div>
+            </td>
+           
+            
+            <td><div align="center">
+            <a class="btn btn-info" href ="./AddScore.php?Grade=<?php echo $resultgrade['GPA'];?>&SubCodeED=<?php echo $ID;?>&SubName=<?php echo $resultsub['Sub_Name'];?>&StdCode=<?php echo $resultG['Std_code'];?>&Term=<?php echo $resultG['Cos_term'];?> ">
+            จัดการ</a></td>
             </tr>
             <?php
 

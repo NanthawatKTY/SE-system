@@ -44,7 +44,6 @@ ON course_tb.Cos_code = register_tb.Cos_code
 WHERE register_tb.Std_code = '60122660132'";
 $query = $conn->query($sql);
 $result = $query->FETCH_ASSOC();
-echo $_SESSION['id'];
 if($_SESSION['Type_id'] == 2){
     $tb = "course_tb.Teach_code = '".$_SESSION['id']."'";
     $show = "แผนการสอน";
