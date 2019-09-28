@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 include('../../model/connect.php');
@@ -33,7 +34,6 @@ else {
 
 ?>
 
-
 <!DOCTYPE html>
 <html>
 
@@ -41,9 +41,9 @@ else {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
+
     <title>ข้อมูลส่วนตัวนักศึกษา</title>
- 
+
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -66,14 +66,14 @@ else {
             <div class="sidebar-header">
                 <h3>ระบบจัดการ</h3>
             </div>
-            <img class=" circle-img mt-4"
-                src="https://scontent.fbkk13-1.fna.fbcdn.net/v/t1.0-9/62071969_10216624784104470_275687937776025600_n.jpg?_nc_cat=108&_nc_eui2=AeFlWjrNsKSDZAOkhDiO8Sh9gK_6MxCkO4I7Q7q-kDWjlvHgaQxXXnd_Kdgzvpf12-V57NUXyBmP9tQiXiQDK7h_oUO2uTgBIMIajS4DEgl9rw&_nc_oc=AQnPsBYrLEFJd65Nx-49Wa0az84w5sFxnLpeeeT6v3CGiW6Ct0XMM4l0zk2c3dPGwd8&_nc_ht=scontent.fbkk13-1.fna&oh=4de81c57afef203ee9addf36f5353172&oe=5E0D477F"
+            <img class="circle-img mt-4"
+                src="../../image/<?php echo $img;?>"
                 alt="">
-            <p class="text-center text-light mt-3 setfont">มารุตเทพ ร่มโพธิ์</p>
-            <p class="text-center text-light setfont">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
+            <p class="text-center text-light mt-3 setfont"><?php echo $name; ?> </p>
+            <p class="text-center text-light setfont"><?php echo $major; ?></p>
             <ul class="list-unstyled components pl-2">
                 <li>
-                    <a href="../profile/Profile.php">ข้อมูลส่วนตัว</a>
+                    <a href="">ข้อมูลส่วนตัว</a>
                 </li>
                 <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
@@ -97,18 +97,18 @@ else {
                 <?php }?>
                 <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="../schedule/Schedule_Teacher.php">ตารางสอน</a>
+                    <a href="../schedule/Teacher_sch1.php">ตารางสอน</a>
                 </li>
                 <?php }else if($_SESSION['Type_id'] == 3){?>
                 <li>
-                    <a href="../schedule/Schedule_Student.php">ตารางสอน</a>
+                    <a href="../schedule/Student_Sch1.php">ตารางสอน</a>
                 </li>
                 <?php }?>
             </ul>
             
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="../../index.html" class="article">กลับเมนูหลัก</a>
+                    <a href="../../index.php" class="article">กลับเมนูหลัก</a>
                 </li>
                 <li>
                     <a href="../../control/login/logout.php" class="download">ออกจากระบบ</a>
@@ -134,6 +134,7 @@ else {
                     </button>
                 </div>
             </nav>
+            
             <h3>ตรางเรียนนักศึกษา</h3>
            <body>
            <div class="container">
@@ -157,7 +158,6 @@ else {
 		<br />
 		<br />
            </body>
-
         </div>
 
         <!-- jQuery CDN - Slim version (=without AJAX) -->
@@ -172,7 +172,15 @@ else {
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
             integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
             crossorigin="anonymous"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar').toggleClass('active');
+                });
+            });
+        </script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
         <script type="text/javascript">
@@ -212,7 +220,6 @@ $(document).ready(function(){
 	});
 });
 </script>
-
 </body>
 
 </html>
