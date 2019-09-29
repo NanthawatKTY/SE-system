@@ -171,7 +171,7 @@ else{
                       
                        <?PHP
                         $sql_1_2561 = "SELECT DISTINCT course_tb.Cos_term, subject_tb.Sub_Name, subject_tb.Sub_Credit, sect_tb.Sect_Name, grade_tb.Std_code, 
-                        grade_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font 
+                        course_tb.Sub_Code, grade_tb.GPA, grade_tb.grade_font 
                         FROM course_tb
                         INNER JOIN sect_tb 
                         ON course_tb.Sect_code = sect_tb.Sect_code
@@ -180,7 +180,7 @@ else{
                         INNER JOIN grade_tb
                         ON register_tb.Std_code = grade_tb.Std_code
                         INNER JOIN subject_tb 
-                        ON grade_tb.Sub_code = subject_tb.Sub_code
+                        ON course_tb.Sub_Code = subject_tb.Sub_code
                                     
                         WHERE course_tb.Cos_term = '1/2561' AND $tb ";
 
@@ -197,20 +197,20 @@ else{
                             //SQL Show Grade//
                                         $sqlgrade = "   SELECT * FROM `grade_tb` 
                                         WHERE `Std_code` ='".$result_1_2561['Std_code']."' 
-                                        AND  `Grad_Term` = '".$result_1_2561['Cos_term']."'
+                                        AND  `Grad_Term` = '1/2561'
                                         AND `Sub_code` = '".$result_1_2561['Sub_Code']."' ";
                                         $querygrade = $conn->query($sqlgrade);
-                                        $resultgrade = $querygrade->FETCH_ASSOC();
+                                        $resultgrade161 = $querygrade->FETCH_ASSOC();
 
                                         // print_r($querygrade);
                                         // return false;
                             ?>
                         <tr>
-                        <td scope="row"><?php echo $result_1_2561['Sub_code']?></td>
+                        <td scope="row"><?php echo $result_1_2561['Sub_Code']?></td>
                         <td><?php echo $result_1_2561['Sub_Name']?></td>
                         <td><?php echo $result_1_2561['Sub_Credit']?></td>
                         <td><?php echo $result_1_2561['Sect_Name']?></td>
-                        <td class="text-success" ><?php echo $resultgrade['grade_font']?></td>
+                        <td class="text-success" ><?php echo $resultgrade161['grade_font']?></td>
                         </tr>
                         <?php } ?>
 
@@ -218,7 +218,7 @@ else{
                       <?PHP
 
                         $sql_2_2561 = "SELECT DISTINCT course_tb.Cos_term, subject_tb.Sub_Name, subject_tb.Sub_Credit, sect_tb.Sect_Name, grade_tb.Std_code, 
-                        grade_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font 
+                        course_tb.Sub_Code, grade_tb.GPA, grade_tb.grade_font 
                         FROM course_tb
                         INNER JOIN sect_tb 
                         ON course_tb.Sect_code = sect_tb.Sect_code
@@ -227,7 +227,7 @@ else{
                         INNER JOIN grade_tb
                         ON register_tb.Std_code = grade_tb.Std_code
                         INNER JOIN subject_tb 
-                        ON grade_tb.Sub_code = subject_tb.Sub_code
+                        ON course_tb.Sub_Code = subject_tb.Sub_code
                                     
                         WHERE course_tb.Cos_term = '2/2561' AND $tb ";
 
@@ -237,9 +237,18 @@ else{
                             <td class="text-center" colspan="6">--- ไม่พบข้อมูล ---</td>
                             <?php }?>
                             </tr>
-                        <?php while($result_2_2561 = $query_2_2561->fetch_assoc()) {?>
+                        <?php while($result_2_2561 = $query_2_2561->fetch_assoc()) {
+                                //SQL Show Grade//
+                                        $sqlgrade = "   SELECT * FROM `grade_tb` 
+                                        WHERE `Std_code` ='".$result_1_2561['Std_code']."' 
+                                        AND  `Grad_Term` = '1/2561'
+                                        AND `Sub_code` = '".$result_1_2561['Sub_Code']."' ";
+                                        $querygrade = $conn->query($sqlgrade);
+                                        $resultgrade161 = $querygrade->FETCH_ASSOC();
+                            
+                            ?>
                         <tr>
-                        <td scope="row"><?php echo $result_2_2561['Sub_code']?></td>
+                        <td scope="row"><?php echo $result_2_2561['Sub_Code']?></td>
                         <td><?php echo $result_2_2561['Sub_Name']?></td>
                         <td><?php echo $result_2_2561['Sub_Credit']?></td>
                         <td><?php echo $result_2_2561['Sect_Name']?></td>
@@ -252,7 +261,7 @@ else{
                       <?PHP
 
                         $sql_1_2562 = "SELECT DISTINCT course_tb.Cos_term, subject_tb.Sub_Name, subject_tb.Sub_Credit, sect_tb.Sect_Name, grade_tb.Std_code, 
-                        grade_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font 
+                        course_tb.Sub_Code, grade_tb.GPA, grade_tb.grade_font 
                         FROM course_tb
                         INNER JOIN sect_tb 
                         ON course_tb.Sect_code = sect_tb.Sect_code
@@ -261,7 +270,7 @@ else{
                         INNER JOIN grade_tb
                         ON register_tb.Std_code = grade_tb.Std_code
                         INNER JOIN subject_tb 
-                        ON grade_tb.Sub_code = subject_tb.Sub_code
+                        ON course_tb.Sub_Code = subject_tb.Sub_code
                                     
                         WHERE course_tb.Cos_term = '1/2562' AND $tb ";
 
@@ -271,9 +280,18 @@ else{
                             <td class="text-center" colspan="6">--- ไม่พบข้อมูล ---</td>
                             <?php }?>
                             </tr>
-                        <?php while($result_1_2562 = $query_1_2562->fetch_assoc()) {?>
+                        <?php while($result_1_2562 = $query_1_2562->fetch_assoc()) {
+                                    
+                                    //SQL Show Grade//
+                                        $sqlgrade = "   SELECT * FROM `grade_tb` 
+                                        WHERE `Std_code` ='".$result_1_2561['Std_code']."' 
+                                        AND  `Grad_Term` = '1/2561'
+                                        AND `Sub_code` = '".$result_1_2561['Sub_Code']."' ";
+                                        $querygrade = $conn->query($sqlgrade);
+                                        $resultgrade161 = $querygrade->FETCH_ASSOC();    
+                            ?>
                         <tr>
-                        <td scope="row"><?php echo $result_1_2562['Sub_code']?></td>
+                        <td scope="row"><?php echo $result_1_2562['Sub_Code']?></td>
                         <td><?php echo $result_1_2562['Sub_Name']?></td>
                         <td><?php echo $result_1_2562['Sub_Credit']?></td>
                         <td><?php echo $result_1_2562['Sect_Name']?></td>
@@ -285,7 +303,7 @@ else{
                         <?PHP
 
                         $sql_2_2562 = "SELECT DISTINCT course_tb.Cos_term, subject_tb.Sub_Name, subject_tb.Sub_Credit, sect_tb.Sect_Name, grade_tb.Std_code, 
-                        grade_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font 
+                        course_tb.Sub_Code, grade_tb.GPA, grade_tb.grade_font 
                         FROM course_tb
                         INNER JOIN sect_tb 
                         ON course_tb.Sect_code = sect_tb.Sect_code
@@ -294,7 +312,7 @@ else{
                         INNER JOIN grade_tb
                         ON register_tb.Std_code = grade_tb.Std_code
                         INNER JOIN subject_tb 
-                        ON grade_tb.Sub_code = subject_tb.Sub_code
+                        ON course_tb.Sub_Code = subject_tb.Sub_code
                                     
                         WHERE course_tb.Cos_term = '2/2562' AND $tb ";
 
@@ -304,13 +322,22 @@ else{
                             <td class="text-center" colspan="6">--- ไม่พบข้อมูล ---</td>
                             <?php }?>
                             </tr>
-                        <?php while($result_2_2562 = $query_2_2562->fetch_assoc()) {?>
+                        <?php while($result_2_2562 = $query_2_2562->fetch_assoc()) {
+                                     //SQL Show Grade//
+                                     $sqlgrade = "   SELECT * FROM `grade_tb` 
+                                     WHERE `Std_code` ='".$result_1_2561['Std_code']."' 
+                                     AND  `Grad_Term` = '2/2562'
+                                     AND `Sub_code` = '".$result_1_2561['Sub_Code']."' ";
+                                     $querygrade = $conn->query($sqlgrade);
+                                     $resultgrade = $querygrade->FETCH_ASSOC();                   
+                            
+                            ?>
                         <tr>
-                        <td scope="row"><?php echo $result_2_2562['Sub_code']?></td>
+                        <td scope="row"><?php echo $result_2_2562['Sub_Code']?></td>
                         <td><?php echo $result_2_2562['Sub_Name']?></td>
                         <td><?php echo $result_2_2562['Sub_Credit']?></td>
                         <td><?php echo $result_2_2562['Sect_Name']?></td>
-                        <td class="text-success" ><?php echo $result_2_2562['grade_font']?></td>
+                        <td class="text-success" ><?php echo $resultgrade['grade_font']?></td>
                         </tr>
                         <?php } ?>
 
@@ -319,7 +346,7 @@ else{
                       <?PHP
 
                         $sql_1_2563 = "SELECT DISTINCT course_tb.Cos_term, subject_tb.Sub_Name, subject_tb.Sub_Credit, sect_tb.Sect_Name, grade_tb.Std_code, 
-                        grade_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font 
+                        course_tb.Sub_Code, grade_tb.GPA, grade_tb.grade_font 
                         FROM course_tb
                         INNER JOIN sect_tb 
                         ON course_tb.Sect_code = sect_tb.Sect_code
@@ -328,7 +355,7 @@ else{
                         INNER JOIN grade_tb
                         ON register_tb.Std_code = grade_tb.Std_code
                         INNER JOIN subject_tb 
-                        ON grade_tb.Sub_code = subject_tb.Sub_code
+                        ON course_tb.Sub_Code = subject_tb.Sub_code
                                     
                         WHERE course_tb.Cos_term = '1/2563' AND $tb ";
 
@@ -338,13 +365,22 @@ else{
                             <td class="text-center" colspan="6">--- ไม่พบข้อมูล ---</td>
                             <?php }?>
                             </tr>
-                        <?php while($result_1_2563 = $query_1_2563->fetch_assoc()) {?>
+                        <?php while($result_1_2563 = $query_1_2563->fetch_assoc()) {
+              
+                                          //SQL Show Grade//
+                                        $sqlgrade = "   SELECT * FROM `grade_tb` 
+                                        WHERE `Std_code` ='".$result_1_2563['Std_code']."' 
+                                        AND  `Grad_Term` = '1/2563'
+                                        AND `Sub_code` = '".$result_1_2563['Sub_Code']."' ";
+                                        $querygrade = $conn->query($sqlgrade);
+                                        $resultgrade = $querygrade->FETCH_ASSOC();
+                            ?>
                         <tr>
-                        <td scope="row"><?php echo $result_1_2563['Sub_code']?></td>
+                        <td scope="row"><?php echo $result_1_2563['Sub_Code']?></td>
                         <td><?php echo $result_1_2563['Sub_Name']?></td>
                         <td><?php echo $result_1_2563['Sub_Credit']?></td>
                         <td><?php echo $result_1_2563['Sect_Name']?></td>
-                        <td class="text-success" ><?php echo $result_1_2563['grade_font']?></td>
+                        <td class="text-success" ><?php echo $resultgrade['grade_font']?></td>
                         </tr>
                         <?php } ?>
 
@@ -353,7 +389,7 @@ else{
                       <?PHP
 
                         $sql_2_2563 = "SELECT DISTINCT course_tb.Cos_term, subject_tb.Sub_Name, subject_tb.Sub_Credit, sect_tb.Sect_Name, grade_tb.Std_code, 
-                        grade_tb.Sub_code, grade_tb.GPA, grade_tb.grade_font 
+                        course_tb.Sub_Code, grade_tb.GPA, grade_tb.grade_font 
                         FROM course_tb
                         INNER JOIN sect_tb 
                         ON course_tb.Sect_code = sect_tb.Sect_code
@@ -362,7 +398,7 @@ else{
                         INNER JOIN grade_tb
                         ON register_tb.Std_code = grade_tb.Std_code
                         INNER JOIN subject_tb 
-                        ON grade_tb.Sub_code = subject_tb.Sub_code
+                        ON course_tb.Sub_Code = subject_tb.Sub_code
                                     
                         WHERE course_tb.Cos_term = '2/2563' AND $tb ";
 
@@ -372,13 +408,21 @@ else{
                             <td class="text-center" colspan="6">--- ไม่พบข้อมูล ---</td>
                             <?php }?>
                             </tr>
-                        <?php while($result_2_2563 = $query_2_2563->fetch_assoc()) {?>
+                        <?php while($result_2_2563 = $query_2_2563->fetch_assoc()) {
+                                        $sqlgrade = "   SELECT * FROM `grade_tb` 
+                                        WHERE `Std_code` ='".$result_2_2563['Std_code']."' 
+                                        AND  `Grad_Term` = '2/2563'
+                                        AND `Sub_code` = '".$result_2_2563['Sub_Code']."' ";
+                                        $querygrade = $conn->query($sqlgrade);
+                                        $resultgrade = $querygrade->FETCH_ASSOC();
+                            ?>
+                        
                         <tr>
-                        <td scope="row"><?php echo $result_2_2563['Sub_code']?></td>
+                        <td scope="row"><?php echo $result_2_2563['Sub_Code']?></td>
                         <td><?php echo $result_2_2563['Sub_Name']?></td>
                         <td><?php echo $result_2_2563['Sub_Credit']?></td>
                         <td><?php echo $result_2_2563['Sect_Name']?></td>
-                        <td class="text-success" ><?php echo $result_2_2563['grade_font']?></td>
+                        <td class="text-success" ><?php echo  $resultgrade['grade_font']?></td>
                         </tr>
                         <?php } ?>
 
