@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2019 at 09:06 AM
+-- Generation Time: Sep 29, 2019 at 04:03 AM
 -- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- PHP Version: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -72,7 +72,32 @@ INSERT INTO `course_tb` (`Cos_id`, `Cos_code`, `Cos_term`, `Sub_Code`, `Teach_co
 (80, '12346', '1/2561', '5673605', '50436', '03', 'Mon(6-9)', '39401'),
 (81, '172839', '1/2561', '9011103', '50436', '03', 'Wed(1-4)', '39402'),
 (84, '12346', '1/2561', '9011103', '30144', '03', 'Wed(1-4)', '39402'),
-(89, '25124', '2/2561', '5673101', '50436', '03', 'Fri(1-2)', '39401');
+(89, '25124', '2/2561', '5673101', '50436', '03', 'Fri(1-2)', '39401'),
+(90, '12345', '1/2561', '5673604', '30141', '03', 'Fri(1-4)', '39401');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `day_tb`
+--
+
+CREATE TABLE `day_tb` (
+  `day` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `Day_Num` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `day_tb`
+--
+
+INSERT INTO `day_tb` (`day`, `Day_Num`) VALUES
+('Mon', 1),
+('Tue', 2),
+('Wed', 3),
+('Thu', 4),
+('Fri', 5),
+('Sat', 6),
+('Sun', 7);
 
 -- --------------------------------------------------------
 
@@ -98,11 +123,10 @@ INSERT INTO `grade_tb` (`Grad_id`, `Grad_Term`, `Std_code`, `Sub_code`, `GPA`, `
 (7, '1/2561', '60122660134', '9011103', '95', 'A'),
 (8, '1/2561', '60122660140', '9011103', '75', 'B+'),
 (9, '2/2562', '60122660140', '5673101', '34', 'F'),
-(10, '1/2560', '', '9011103', '100', 'A'),
-(11, '1/2561', '', '5674901', '34', 'F'),
 (12, '1/2561', '60122660118', '9011103', '79', 'B+'),
 (13, '1/2561', '60122660100', '9011103', '30', 'F'),
-(14, '1/2561', '60122660118', '5674901', '100', 'A');
+(14, '1/2561', '60122660118', '5674901', '100', 'A'),
+(15, '1/2560', '60122660100', '9011103', '60', 'C');
 
 -- --------------------------------------------------------
 
@@ -151,9 +175,10 @@ INSERT INTO `register_tb` (`Reg_id`, `Std_code`, `Cos_code`) VALUES
 (1, '60122660134', '12345'),
 (2, '60122660118', '12346'),
 (3, '60122660100', '172839'),
-(4, '', '25124'),
+(4, '', '12345'),
 (5, '60122660140', '25124'),
-(6, '60122660128', '25124');
+(6, '60122660128', '25124'),
+(7, '60122660122', '12345');
 
 -- --------------------------------------------------------
 
@@ -347,13 +372,13 @@ ALTER TABLE `teacher_tb`
 -- AUTO_INCREMENT for table `course_tb`
 --
 ALTER TABLE `course_tb`
-  MODIFY `Cos_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `Cos_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `grade_tb`
 --
 ALTER TABLE `grade_tb`
-  MODIFY `Grad_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `Grad_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `member_tb`
@@ -365,7 +390,7 @@ ALTER TABLE `member_tb`
 -- AUTO_INCREMENT for table `register_tb`
 --
 ALTER TABLE `register_tb`
-  MODIFY `Reg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Reg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `student_tb`
