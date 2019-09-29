@@ -36,7 +36,7 @@ else{
 
 $sql = "INSERT INTO `course_tb` (`Cos_id`, `Cos_code`, `Cos_term`, `Sub_Code`, `Teach_code`, `Sect_code`, `Cos_Time`, `Cos_Room`) 
 VALUES (NULL, '".$_SESSION['IdEditProgram']."', '".$_POST['cosTerm']."', '".$_POST['subCode']."', '".$_POST['TeacName']."',
-'".$secCode."', '".$_POST['cosTime']."', '".$_POST['cosRoom']."');";
+'".$_POST['secName']."', '".$_POST['cosTime']."', '".$_POST['cosRoom']."');";
 $query = $conn->query($sql);
 // $result = $query->fetch_assoc();
 
