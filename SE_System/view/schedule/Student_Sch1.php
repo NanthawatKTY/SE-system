@@ -237,8 +237,7 @@ INNER JOIN teacher_tb ON course_tb.Teach_code = teacher_tb.Teach_code
 INNER JOIN sect_tb ON course_tb.Sect_code = sect_tb.Sect_code   
 INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
 INNER JOIN day_tb ON SUBSTRING(Cos_Time,-8, 3)= day_tb.day
-WHERE student_tb.Std_Code = '".$_SESSION['id']."' AND  course_tb.Cos_term = '1/2561' ORDER BY day_tb.Day_Num ASC "        
-  ;
+WHERE student_tb.Std_Code = '".$_SESSION['id']."' AND  course_tb.Cos_term = '1/2561' ORDER BY day_tb.Day_Num ASC " ;
 
 $result = mysqli_query($connect, $query);
  $output .= '
