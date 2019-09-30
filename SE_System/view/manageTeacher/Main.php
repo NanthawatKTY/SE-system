@@ -87,7 +87,7 @@ $query = $conn->query($sql);
                 </div>
             </nav>
             <h3>จัดการบุคลากร</h3>
-<button class="btn btn-success btn-sm m-1"><a href="\SE-system\SE_System\view\manageStudent\AddEdit.php"> + เพิ่มนักศึกษา</a></button> 
+<button class="btn btn-success btn-sm m-1"><a href="./AddEdit.php"> + เพิ่มบุคลากร</a></button> 
 <input type="text" placeholder="รหัสนักศึกษา/ชื่อ - นามสกุล">
             <table class="table table-bordered mt-3">
                 <thead>

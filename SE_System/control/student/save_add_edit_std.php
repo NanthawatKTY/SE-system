@@ -18,10 +18,6 @@ $sqlSTD = "UPDATE `student_tb` SET `Std_Code`='".$code."',`Std_Pname`='".$Pname.
 $sqlMEM = "UPDATE `member_tb` SET `Mem_user`='".$code."',`Mem_pass`='".$pass."',`Email`='".$Email."' WHERE Mem_user = '".$_SESSION['Std_edit']."' ";
 $querySTD = $conn->query($sqlSTD);
 $queryMEM  = $conn->query($sqlMEM);
-//print_r($sql);
-//print_r($sql);
-//print_r($sql);
-//print_r($sql);
 if($querySTD){
     if($queryMEM){
     echo $_SESSION['Std_edit'];

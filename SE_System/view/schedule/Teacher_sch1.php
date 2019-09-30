@@ -147,7 +147,7 @@ else {
             <button class="btn btn-sm btn-primary"><a href="./Schedule_Teacher.php">ค้นหารายวิชา</a></button>
                 </li>
             <hr>
-            <h3>ตรางเรียน</h3>
+            <h3>ตารางสอน</h3>
            <body>
            <?php
 $db = mysqli_connect("localhost", "root", "", "softengdb");
@@ -165,7 +165,7 @@ $day_config = array(
 	'Sun'=>array('', 'อาทิตย์', 7 ),
 );
 $day_week=array( '', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri','Sat', 'Sun' );
-$sql = "SELECT SUBSTRING(Cos_Time,-4,1 ) st,SUBSTRING(Cos_Time,-2,1 ) sp,SUBSTRING(Cos_Time,-8, 3) en 
+$sql = "SELECT DISTINCT SUBSTRING(Cos_Time,-4,1 ) st,SUBSTRING(Cos_Time,-2,1 ) sp,SUBSTRING(Cos_Time,-8, 3) en 
 ,course_tb.cos_term,course_tb.Sub_Code,subject_tb.Sub_Name,subject_tb.Sub_Credit,course_tb.Cos_Time ,course_tb.Cos_Room,teacher_tb.Teach_Fname,teacher_tb.Teach_code,sect_tb.Sect_Name 
 from course_tb
 INNER JOIN register_tb ON course_tb.Cos_code = register_tb.Cos_code
@@ -174,7 +174,7 @@ INNER JOIN teacher_tb ON course_tb.Teach_code = teacher_tb.Teach_code
 INNER JOIN sect_tb ON course_tb.Sect_code = sect_tb.Sect_code   
 INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
 INNER JOIN day_tb ON SUBSTRING(Cos_Time,-8, 3)= day_tb.day
-WHERE teacher_tb.Teach_code = '".$_SESSION['id']."' AND  course_tb.Cos_term = '1/2561' ORDER BY day_tb.Day_Num ASC " ;
+WHERE course_tb.Teach_code = '".$_SESSION['id']."' AND  course_tb.Cos_term = '1/2561' ORDER BY day_tb.Day_Num,SUBSTRING(Cos_Time,-4,1 ) ASC" ;
 ////////////////////////////////////////////////////////////////////////////////////////*/
 //  ส่วนการสร้าง tr
 
@@ -184,7 +184,7 @@ while( $ro = $rs->fetch_assoc()){
 	$d=$ro['en']; $w = $day_config[$d][2]; $st = intval($ro['st']); $sp=intval($ro['sp']);
 	if($w!=$cur_day){ // ตรวจสอบว่า เป็นวันใหม่ หรือไม่
 		if($tr) // ถ้า tr มีความยาว แสดงว่าได้ถูกใส่ <TR> เปิดไว้ก่อนแล้ว ให้ ใส่ </TR>
-			$tr .= ($cur_hour < 13 ? '<td colspan='.(13 - $cur_hour)." >&nbsp;</td>" : '') . '</tr>';
+			$tr .= ($cur_hour < 13 ? '<td colspan='.(12 - $cur_hour)." >&nbsp;</td>" : '') . '</tr>';
 		$cur_day++;  //  วันที่เก่า +1
 		for($cur_day; $cur_day<$w; $cur_day++){ 
 			// ตรวจสอบวันที่เก่า กับวันที่ ใหม่ มี gab ช่่องว่างวันที่ ไม่มีชั่วโมงเรียนหรือไม่ 
@@ -200,7 +200,7 @@ while( $ro = $rs->fetch_assoc()){
 		$tr.='<td align=center colspan='.($st - $cur_hour)." >&nbsp;</td>"; 
 	$cur_hour=$sp; // เปลี่ยน ชั่วโมง เริ่มต้น เป็น เวลาสิ้นสุดการเรียน
 	//  แสดงเวลาเรียน
-	$tr .= '<td align=center '.( ($h = $sp - $st)>1 ? "colspan=$h" : '' ).' >'.$ro['Sub_Name'] . '<br>' . $ro['Cos_Room'] .'</td>';
+	$tr .= '<td align=center '.( ($h = $sp - $st + 1)>1? "colspan=$h" : '' ).' >'.$ro['Sub_Name'] . '<br>' . $ro['Cos_Room'] .'</td>';
 }
 if( $cur_hour<13) // ตรวจสอบ ชั่งโมงเรียนสุดท้าย น้อยกว่าเวลาปิดการสอน  21 น. หรือไม่ แล้วแสดง td ช่วงเวลาที่หายไป
 	$tr.= '<td colspan='.(13 - $cur_hour)." >&nbsp;</td>";
@@ -209,7 +209,7 @@ $cur_day++;
 for($cur_day; $cur_day<8; $cur_day++){
 	//ตรวจวัน ที่หายไป จาก วันที่เรียนวันสุดท้าย แล้วแสดง tr วันที่หายไป
 	$tr.='<tr height=55 ><td align=center bgcolor="' . $day_config[$day_week[$cur_day]][0].'" >'.$day_config[$day_week[$cur_day]][1].'</td>'.
-					'<td colspan=13>&nbsp;</td></tr>';
+					'<td colspan=12>&nbsp;</td></tr>';
 }
 ///////////////////////////////////////////////////////////////////////////////l
 // ส่วน แสดงตารางเรียน
@@ -229,6 +229,7 @@ for($cur_day; $cur_day<8; $cur_day++){
 	<th width=80 align=center>คาบ10<br>18:00 - 19:00</th>
 	<th width=80 align=center>คาบ11<br>19:00 - 20:00</th>
 	<th width=80 align=center>คาบ12<br>20:00 - 21:00</th>
+   
 </tr>
 <?=$tr?>
 </table>
@@ -239,16 +240,16 @@ $connect = mysqli_connect("localhost", "root", "", "softengdb");
 mysqli_set_charset($connect, "utf8");
 $output = '';
  $query = "
- SELECT SUBSTRING(Cos_Time,-4,1 ) st,SUBSTRING(Cos_Time,-2,1 ) sp,SUBSTRING(Cos_Time,-8, 3) en 
-,course_tb.cos_term,course_tb.Sub_Code,subject_tb.Sub_Name,subject_tb.Sub_Credit,course_tb.Cos_Time ,course_tb.Cos_Room,teacher_tb.Teach_Fname,teacher_tb.Teach_code,sect_tb.Sect_Name 
-from course_tb
-INNER JOIN register_tb ON course_tb.Cos_code = register_tb.Cos_code
-INNER JOIN subject_tb ON course_tb.Sub_code = subject_tb.Sub_code
-INNER JOIN teacher_tb ON course_tb.Teach_code = teacher_tb.Teach_code
-INNER JOIN sect_tb ON course_tb.Sect_code = sect_tb.Sect_code   
-INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
-INNER JOIN day_tb ON SUBSTRING(Cos_Time,-8, 3)= day_tb.day
-WHERE teacher_tb.Teach_code = '".$_SESSION['id']."' AND  course_tb.Cos_term = '1/2561' ORDER BY day_tb.Day_Num ASC ";
+ SELECT DISTINCT SUBSTRING(Cos_Time,-4,1 ) st,SUBSTRING(Cos_Time,-2,1 ) sp,SUBSTRING(Cos_Time,-8, 3) en 
+ ,course_tb.cos_term,course_tb.Sub_Code,subject_tb.Sub_Name,subject_tb.Sub_Credit,course_tb.Cos_Time ,course_tb.Cos_Room,teacher_tb.Teach_Fname,teacher_tb.Teach_code,sect_tb.Sect_Name 
+ from course_tb
+ INNER JOIN register_tb ON course_tb.Cos_code = register_tb.Cos_code
+ INNER JOIN subject_tb ON course_tb.Sub_code = subject_tb.Sub_code
+ INNER JOIN teacher_tb ON course_tb.Teach_code = teacher_tb.Teach_code
+ INNER JOIN sect_tb ON course_tb.Sect_code = sect_tb.Sect_code   
+ INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
+ INNER JOIN day_tb ON SUBSTRING(Cos_Time,-8, 3)= day_tb.day
+ WHERE course_tb.Teach_code = '".$_SESSION['id']."' AND  course_tb.Cos_term = '1/2561' ORDER BY day_tb.Day_Num,SUBSTRING(Cos_Time,-4,1 ) ASC";
 
 $result = mysqli_query($connect, $query);
 $output .= '

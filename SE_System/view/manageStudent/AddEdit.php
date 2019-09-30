@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once('../../model/connect.php');error_reporting(0);
-$_SESSION['Std_Code'] = "";
+$_SESSION['Std_edit'] = "";
 $id = $_GET['Std_Code'];
 $_SESSION['Std_edit'] = $id;
 $sqlStd = "SELECT * FROM student_tb WHERE Std_Code = '$id'";

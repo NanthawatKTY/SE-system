@@ -4,6 +4,7 @@ include_once('../../model/connect.php');error_reporting(0);
 $_SESSION['Teach_edit'] = "";
 $id = $_GET['Teach_Code'];
 $_SESSION['Teach_edit'] = $id;
+echo $id;
 $sqlTCH = "SELECT * FROM teacher_tb WHERE Teach_code = '$id'";
 $sqlMem = "SELECT * FROM `member_tb` WHERE Mem_user = '$id'";
 $queryTCH = $conn->query($sqlTCH);
@@ -93,14 +94,14 @@ $resultMem = $queryMem->fetch_assoc();
                     </button>
                 </div>
             </nav>
-            <h3>เพิ่ม/แก้ไข ข้อมูลส่วนตัวนักศึกษา</h3>
+            <h3>เพิ่ม/แก้ไข ข้อมูลส่วนตัวบุคลากร</h3>
             <hr>
             <form id="myform" name='myform' method="POST" action="../../control/Teacher/save_add_edit_tch.php">
                 <!-- รหัสนักศึกษา -->
                 <div class="form-group row">
         
                     <label for="colFormLabelSm"
-                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">รหัสนักศึกษา : </label>
+                        class="col-sm-4 text-right col-form-label col-form-label-sm font-weight-bold">รหัสบุคลากร : </label>
                     <div class="col-sm-5">
                         <input type="text" name="txtcode" class="form-control form-control-sm" id="txtcode"
                             <?php if($id!=null){ ?> value="<?php echo $resultTCH['Teach_code']; }else { echo "";}?>" ></div>

@@ -173,7 +173,7 @@ INNER JOIN teacher_tb ON course_tb.Teach_code = teacher_tb.Teach_code
 INNER JOIN sect_tb ON course_tb.Sect_code = sect_tb.Sect_code   
 INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
 INNER JOIN day_tb ON SUBSTRING(Cos_Time,-8, 3)= day_tb.day
-WHERE student_tb.Std_Code = '".$_SESSION['id']."' AND  course_tb.Cos_term = '2/2561' ORDER BY day_tb.Day_Num ASC" ;
+WHERE student_tb.Std_Code = '".$_SESSION['id']."' AND  course_tb.Cos_term = '1/2561' ORDER BY day_tb.Day_Num ASC" ;
 ////////////////////////////////////////////////////////////////////////////////////////*/
 //  ส่วนการสร้าง tr
 
@@ -199,7 +199,7 @@ while( $ro = $rs->fetch_assoc()){
 		$tr.='<td align=center colspan='.($st - $cur_hour)." >&nbsp;</td>"; 
 	$cur_hour=$sp; // เปลี่ยน ชั่วโมง เริ่มต้น เป็น เวลาสิ้นสุดการเรียน
 	//  แสดงเวลาเรียน
-	$tr .= '<td align=center '.( ($h = $sp - $st)>1 ? "colspan=$h" : '' ).' >'.$ro['Sub_Code'] . '<br>' . $ro['Teach_Fname'] .'<br>' . $ro['Cos_Room'] .'</td>';
+	$tr .= '<td align=center '.( ($h = $sp - $st + 1)>1 ? "colspan=$h" : '' ).' >'.$ro['Sub_Code'] . '<br>' . $ro['Teach_Fname'] .'<br>' . $ro['Cos_Room'] .'</td>';
 }
 if( $cur_hour<13) // ตรวจสอบ ชั่งโมงเรียนสุดท้าย น้อยกว่าเวลาปิดการสอน  21 น. หรือไม่ แล้วแสดง td ช่วงเวลาที่หายไป
 	$tr.= '<td colspan='.(13 - $cur_hour)." >&nbsp;</td>";
@@ -247,7 +247,7 @@ INNER JOIN teacher_tb ON course_tb.Teach_code = teacher_tb.Teach_code
 INNER JOIN sect_tb ON course_tb.Sect_code = sect_tb.Sect_code   
 INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
 INNER JOIN day_tb ON SUBSTRING(Cos_Time,-8, 3)= day_tb.day
-WHERE student_tb.Std_Code = '".$_SESSION['id']."' AND  course_tb.Cos_term = '2/2561' ORDER BY day_tb.Day_Num ASC " ;
+WHERE student_tb.Std_Code = '".$_SESSION['id']."' AND  course_tb.Cos_term = '1/2561' ORDER BY day_tb.Day_Num ASC " ;
 
 $result = mysqli_query($connect, $query);
  $output .= '

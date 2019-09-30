@@ -18,10 +18,10 @@ $sqlTCH = "UPDATE `teacher_tb` SET `Teach_code`='".$code."',`Teach_Pname`='".$Pn
 $sqlMEM = "UPDATE `member_tb` SET `Mem_user`='".$code."',`Mem_pass`='".$pass."',`Email`='".$Email."' WHERE Mem_user = '".$_SESSION['Std_edit']."' ";
 $queryTCH = $conn->query($sqlTCH);
 $queryMEM  = $conn->query($sqlMEM);
-//print_r($sql);
+print_r($sqlTCH);
 if($queryTCH){
-    if($queryMem){
-    echo $_SESSION['Teach_edit'];
+    if($queryMEM){
+    //echo $_SESSION['Teach_edit'];
     $_SESSION['Teach_edit'] = " ";
     echo "<script>";
     echo "alert('แก้ไขเรียบร้อย');";
@@ -33,8 +33,8 @@ if($queryTCH){
     echo "window.location='../../view/manageTeacher/Main.php";
     echo "</script>";
 }
+}
 else{
-    
     echo "<script>";
     echo "alert('เกิดข้อผิดพลาด');";
     echo "window.location='../../view/manageTeacher/Main.php";
@@ -43,29 +43,32 @@ else{
 }
 else{
     
-$sqlTch = "INSERT INTO teacher_tb(Teach_code, Teach_Pname, Teach_Fname, Teach_Lname, Teach_Tel, Teach_Add, Teach_Birth, Teach_Card, Teach _Major, Teach _Faculty)
+$sqlTch = "INSERT INTO teacher_tb(Teach_code, Teach_Pname, Teach_Fname, Teach_Lname, Teach_Tel, Teach_Add, Teach_Birth, Teach_Card, Teach_Major, Teach_Faculty)
         VALUES('".$_POST['txtcode']."','".$_POST['txtPname']."','".$_POST['txtFname']."','".$_POST['txtLname']."','".$_POST['txttel']."','".$_POST['txtbadd']."','".$_POST['txtbirth']."','".$_POST['txtidcard']."','".$_POST['txtmajor']."','".$_POST['txtfac']."')";
 $sqlMem = "INSERT INTO `member_tb`(`Mem_user`, `Mem_pass`, `Type_id`, `Email`) VALUES ('".$_POST['txtcode']."','".$_POST['txtPass']."',2,'".$_POST['txtEmail']."')";
 $queryTch = $conn->query($sqlTch);
 $queryMem = $conn->query($sqlMem);
+//print_r($sqlTch);
 if($queryTch){
-if($queryMem){
+    if($queryMem){
+    $_SESSION['Teach_edit'] = " ";
     echo "<script>";
     echo "alert('เพิ่มข้อมูลเรียบร้อยแล้ว');";
-    echo "window.location='../../view/manageTeacher/Main.php";
+    echo "window.location='../../view/manageTeacher/Main.php'";
     echo "</script>";}
 
 else{
     echo "<script>";
     echo "alert('ไม่สามารถเพิ่มข้อมูลได้');";
-    echo "window.location='../../view/manageTeacher/Main.php";
+    echo "window.location='../../view/manageTeacher/Main.php'";
     echo "</script>";
-}}
+}
+}
 else
 {
     echo "<script>";
     echo "alert('ไม่สามารถเพิ่มข้อมูลได้');";
-    echo "window.location='../../view/manageTeacher/Main.php";
+    echo "window.location='../../view/manageTeacher/Main.php'";
     echo "</script>";
 }
 }
