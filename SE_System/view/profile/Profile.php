@@ -98,10 +98,7 @@ else {
                 <li>
                     <a href="../register/Main.php">ลงทะเบียนนักศึกษา</a>
                 </li>
-                <?php }else if($_SESSION['Type_id'] == 3){?>
-                    <li>
-                    <a href="#"></a>
-                </li>
+
                 <?php }?>
 
                 <?php if($_SESSION['Type_id'] == 2){?>
@@ -115,8 +112,9 @@ else {
                 <?php }?>
                 <?php if ($_SESSION['Type_id'] == 1){?>
                 <li>
-                    <a href="../manageStudent/main.php">เพิ่มนักศึกษา</a>
-                    <a href="../manageTeacher/Main.php">เพิ่มอาจารย์</a>
+                    <a href="../manageStudent/main.php">จัดการนักศึกษา</a>
+                    <a href="../manageTeacher/Main.php">จัดการบุคลากร</a>
+                    <a href="../subjects/subject/subjects.php">จัดการรายวิชา</a>
                 </li>
                 <?php } ?>
             </ul>

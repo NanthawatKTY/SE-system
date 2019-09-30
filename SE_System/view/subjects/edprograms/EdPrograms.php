@@ -101,8 +101,8 @@ $resultEdit = $queryEdit->FETCH_ASSOC();
             <img class=" circle-img mt-4"
                 src="https://scontent.fbkk13-1.fna.fbcdn.net/v/t1.0-9/62071969_10216624784104470_275687937776025600_n.jpg?_nc_cat=108&_nc_eui2=AeFlWjrNsKSDZAOkhDiO8Sh9gK_6MxCkO4I7Q7q-kDWjlvHgaQxXXnd_Kdgzvpf12-V57NUXyBmP9tQiXiQDK7h_oUO2uTgBIMIajS4DEgl9rw&_nc_oc=AQnPsBYrLEFJd65Nx-49Wa0az84w5sFxnLpeeeT6v3CGiW6Ct0XMM4l0zk2c3dPGwd8&_nc_ht=scontent.fbkk13-1.fna&oh=4de81c57afef203ee9addf36f5353172&oe=5E0D477F"
                 alt="">
-            <p class="text-center text-light mt-3">มารุตเทพ ร่มโพธิ์</p>
-            <p class="text-center text-light">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
+                <p class="text-center text-light mt-3 setfont"><?php echo $name; ?> </p>
+            <p class="text-center text-light setfont"><?php echo $major; ?></p>
             <ul class="list-unstyled components pl-2">
             <li>
                     <a href="../profile/Profile.php">ข้อมูลส่วนตัว</a>
@@ -129,7 +129,7 @@ $resultEdit = $queryEdit->FETCH_ASSOC();
                 <?php }?>
                 <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="../../register/Main.php">ลงทะเบียนนักศึกษา</a>
+                    <a href="../register/Main.php">ลงทะเบียนนักศึกษา</a>
                 </li>
                 <?php }else if($_SESSION['Type_id'] == 3){?>
                     <li>
@@ -139,13 +139,19 @@ $resultEdit = $queryEdit->FETCH_ASSOC();
 
                 <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="../../schedule/Student_Sch1.php">ตารางสอน</a>
+                    <a href="../schedule/Teacher_sch1.php">ตารางสอน</a>
                 </li>
                 <?php }else if($_SESSION['Type_id'] == 3){?>
                 <li>
-                    <a href="../../schedule/Teacher_sch1.php">ตารางสอน</a>
+                    <a href="../schedule/Student_Sch1.php">ตารางเรียน</a>
                 </li>
                 <?php }?>
+                <?php if ($_SESSION['Type_id'] == 1){?>
+                <li>
+                    <a href="../manageStudent/main.php">เพิ่มนักศึกษา</a>
+                    <a href="../manageTeacher/Main.php">เพิ่มอาจารย์</a>
+                </li>
+                <?php } ?>
             </ul>
 
             <ul class="list-unstyled CTAs">

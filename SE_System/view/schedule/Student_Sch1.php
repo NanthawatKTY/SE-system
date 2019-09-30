@@ -41,7 +41,7 @@ else {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>ข้อมูลส่วนตัวนักศึกษา</title>
+    <title>ตารางเรียนนักศึกษา</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -96,13 +96,10 @@ else {
                 <?php }?>
                 <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="">ลงทะเบียนนักศึกษา</a>
-                </li>
-                <?php }else if($_SESSION['Type_id'] == 3){?>
-                    <li>
-                    <a href="#"></a>
+                    <a href="../register/Main.php">ลงทะเบียนนักศึกษา</a>
                 </li>
                 <?php }?>
+      
 
                 <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
@@ -143,10 +140,9 @@ else {
                     </button>
                 </div>
             </nav>
-            <h3>ข้อมูลส่วนตัว</h3>
             <hr>
             <button class="btn btn-sm btn-primary"><a href="./Schedule_Student.php">ค้นหารายวิชา</a></button>
-       <center>    <br> <h3>ตรางเรียน</h3><br> </center>
+       <center>    <br> <h3>ตารางเรียน</h3><br> </center>
            <body>
            <?php
 $db = mysqli_connect("localhost", "root", "", "softengdb");

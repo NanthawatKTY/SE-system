@@ -41,7 +41,7 @@ else {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>ข้อมูลส่วนตัวนักศึกษา</title>
+    <title>ตารางสอนบุคลากร</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -98,11 +98,9 @@ else {
                 <li>
                     <a href="../register/Main.php">ลงทะเบียนนักศึกษา</a>
                 </li>
-                <?php }else if($_SESSION['Type_id'] == 3){?>
-                    <li>
-                    <a href="#"></a>
-                </li>
                 <?php }?>
+
+
 
                 <?php if($_SESSION['Type_id'] == 2){?>
                 <li>

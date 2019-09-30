@@ -5,6 +5,36 @@ error_reporting(0);
 $sql =  "SELECT * FROM `coursename_tb` WHERE Cos_code = '".$_GET['CosCode']."'";
 $query = $conn->query($sql);
 $result = $query->FETCH_ASSOC();
+
+if($_SESSION['Type_id'] == 1){
+    $name = "admin";
+    $img = "admin.jpg";
+    error_reporting(0);
+}
+else if($_SESSION['Type_id'] == 2){
+    $sqlTC = "SELECT * FROM teacher_tb WHERE Teach_code = '".$_SESSION['id']."'";
+    $queryTC = $conn->query($sqlTC);
+    $resultTC  = $queryTC ->FETCH_ASSOC();
+    $name = $resultTC['Teach_Pname']." ".$resultTC['Teach_Fname']." ".$resultTC['Teach_Lname'];
+    $birth = $resultTC['Teach_Birth'];
+    $card = $resultTC['Teach_Card'];
+    $code = $resultTC['Teach_code'];
+    $faculty = $resultTC['Teach_Faculty'];
+    $major = $resultTC['Teach_Major'];
+    $img = $resultTC['Teach_Image'];
+}
+else {
+    $sqlSTD = "SELECT * FROM student_tb WHERE Std_code = '".$_SESSION['id']."'";
+    $querySTD = $conn->query($sqlSTD);
+    $resultSTD = $querySTD->FETCH_ASSOC();
+    $name = $resultSTD['Std_Pname']." ".$resultSTD['Std_Fname']." ".$resultSTD['Std_Lname'];
+    $birth = $resultSTD['Std_Birth'];
+    $card = $resultSTD['Std_Card'];
+    $code = $resultSTD['Std_Code'];
+    $faculty = $resultSTD['Std_Faculty'];
+    $major = $resultSTD['Std_Major'];
+    $img = $resultSTD['Std_Image'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,32 +69,62 @@ $result = $query->FETCH_ASSOC();
             <div class="sidebar-header">
                 <h3>ระบบจัดการ</h3>
             </div>
-            <img class=" circle-img mt-4"
-                src="https://scontent.fbkk13-1.fna.fbcdn.net/v/t1.0-9/62071969_10216624784104470_275687937776025600_n.jpg?_nc_cat=108&_nc_eui2=AeFlWjrNsKSDZAOkhDiO8Sh9gK_6MxCkO4I7Q7q-kDWjlvHgaQxXXnd_Kdgzvpf12-V57NUXyBmP9tQiXiQDK7h_oUO2uTgBIMIajS4DEgl9rw&_nc_oc=AQnPsBYrLEFJd65Nx-49Wa0az84w5sFxnLpeeeT6v3CGiW6Ct0XMM4l0zk2c3dPGwd8&_nc_ht=scontent.fbkk13-1.fna&oh=4de81c57afef203ee9addf36f5353172&oe=5E0D477F"
-                alt="">
-            <p class="text-center text-light mt-3 setfont">มารุตเทพ ร่มโพธิ์</p>
-            <p class="text-center text-light setfont">วิศวกรรมซอฟต์แวร์ 4 ปี</p>
+ 
+                <p class="text-center text-light mt-3 setfont"><?php echo $name; ?> </p>
+            <p class="text-center text-light setfont"><?php echo $major; ?></p>
             <ul class="list-unstyled components pl-2">
-                <li>
-                    <a href="/SE_System/view/profile/EditProfile.html">ข้อมูลส่วนตัว</a>
+            <li>
+                    <a href="../profile/Profile.php">ข้อมูลส่วนตัว</a>
                 </li>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="/SE_System/view/grade/gradeStudent.html">ผลการเรียน</a>
+                    
+                    <a href="../grade/GradeMain.php ">จัดการผลการเรียน</a>
+                    
                 </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
                 <li>
-                    <a href="/SE_System/Edittranscript2.php">แผนการเรียน</a>
+                    <a href="../grade/gradeStudent.php ">ผลการเรียน</a>  
                 </li>
+                <?php }?>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="/Manager/subjects.html">สถานะการลงทะเบียน</a>
+                    <a href="../subjects/edprograms/Main.php">จัดการแผนการเรียน</a>
                 </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
+                    <li>
+                    <a href="../subjects/edprograms/ShowPrograms.php">แผนการเรียน</a>
+                </li>
+                <?php }?>
+                <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="/SE_System/view/schedule/editSchedule.html">ตารางสอน</a>
+                    <a href="../register/Main.php">ลงทะเบียนนักศึกษา</a>
                 </li>
-            </ul>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
+                    <li>
+                    <a href="#"></a>
+                </li>
+                <?php }?>
 
+                <?php if($_SESSION['Type_id'] == 2){?>
+                <li>
+                    <a href="../schedule/Teacher_sch1.php">ตารางสอน</a>
+                </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
+                <li>
+                    <a href="../schedule/Student_Sch1.php">ตารางเรียน</a>
+                </li>
+                <?php }?>
+                <?php if ($_SESSION['Type_id'] == 1){?>
+                <li>
+                    <a href="../manageStudent/main.php">เพิ่มนักศึกษา</a>
+                    <a href="../manageTeacher/Main.php">เพิ่มอาจารย์</a>
+                </li>
+                <?php } ?>
+            </ul>
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="../../index.html" class="article">กลับเมนูหลัก</a>
+                    <a href="../../index.php" class="article">กลับเมนูหลัก</a>
                 </li>
                 <li>
                     <a href="../../control/login/logout.php" class="download">ออกจากระบบ</a>

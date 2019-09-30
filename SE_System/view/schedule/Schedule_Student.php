@@ -42,7 +42,7 @@ else {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>ข้อมูลส่วนตัวนักศึกษา</title>
+    <title>ค้นหาตารางเรียนนักศึกษา</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -72,8 +72,8 @@ else {
             <p class="text-center text-light mt-3 setfont"><?php echo $name; ?> </p>
             <p class="text-center text-light setfont"><?php echo $major; ?></p>
             <ul class="list-unstyled components pl-2">
-                <li>
-                    <a href="">ข้อมูลส่วนตัว</a>
+            <li>
+                    <a href="../profile/Profile.php">ข้อมูลส่วนตัว</a>
                 </li>
                 <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
@@ -97,13 +97,25 @@ else {
                 <?php }?>
                 <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
+                    <a href="../register/Main.php">ลงทะเบียนนักศึกษา</a>
+                </li>
+                <?php }?>
+
+                <?php if($_SESSION['Type_id'] == 2){?>
+                <li>
                     <a href="../schedule/Teacher_sch1.php">ตารางสอน</a>
                 </li>
                 <?php }else if($_SESSION['Type_id'] == 3){?>
                 <li>
-                    <a href="../schedule/Student_Sch1.php">ตารางสอน</a>
+                    <a href="../schedule/Student_Sch1.php">ตารางเรียน</a>
                 </li>
                 <?php }?>
+                <?php if ($_SESSION['Type_id'] == 1){?>
+                <li>
+                    <a href="../manageStudent/main.php">เพิ่มนักศึกษา</a>
+                    <a href="../manageTeacher/Main.php">เพิ่มอาจารย์</a>
+                </li>
+                <?php } ?>
             </ul>
             
             <ul class="list-unstyled CTAs">
@@ -135,7 +147,7 @@ else {
                 </div>
             </nav>
             
-            <h3>ตรางเรียนนักศึกษา</h3>
+            <h3>ตารางเรียนนักศึกษา</h3>
            <body>
            <div class="container">
 			<br />
