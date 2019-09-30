@@ -71,8 +71,8 @@ else {
             <p class="text-center text-light mt-3 setfont"><?php echo $name; ?> </p>
             <p class="text-center text-light setfont"><?php echo $major; ?></p>
             <ul class="list-unstyled components pl-2">
-                <li>
-                    <a href="">ข้อมูลส่วนตัว</a>
+            <li>
+                    <a href="../profile/Profile.php">ข้อมูลส่วนตัว</a>
                 </li>
                 <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
@@ -96,11 +96,21 @@ else {
                 <?php }?>
                 <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
+                    <a href="">ลงทะเบียนนักศึกษา</a>
+                </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
+                    <li>
+                    <a href="#"></a>
+                </li>
+                <?php }?>
+
+                <?php if($_SESSION['Type_id'] == 2){?>
+                <li>
                     <a href="../schedule/Teacher_sch1.php">ตารางสอน</a>
                 </li>
                 <?php }else if($_SESSION['Type_id'] == 3){?>
                 <li>
-                    <a href="../schedule/Student_Sch1.php">ตารางสอน</a>
+                    <a href="../schedule/Student_Sch1.php">ตารางเรียน</a>
                 </li>
                 <?php }?>
             </ul>
@@ -163,7 +173,7 @@ INNER JOIN teacher_tb ON course_tb.Teach_code = teacher_tb.Teach_code
 INNER JOIN sect_tb ON course_tb.Sect_code = sect_tb.Sect_code   
 INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
 INNER JOIN day_tb ON SUBSTRING(Cos_Time,-8, 3)= day_tb.day
-WHERE student_tb.Std_Code = '".$_SESSION['id']."' AND  course_tb.Cos_term = '1/2561' ORDER BY day_tb.Day_Num ASC" ;
+WHERE student_tb.Std_Code = '".$_SESSION['id']."' AND  course_tb.Cos_term = '2/2561' ORDER BY day_tb.Day_Num ASC" ;
 ////////////////////////////////////////////////////////////////////////////////////////*/
 //  ส่วนการสร้าง tr
 
@@ -237,7 +247,7 @@ INNER JOIN teacher_tb ON course_tb.Teach_code = teacher_tb.Teach_code
 INNER JOIN sect_tb ON course_tb.Sect_code = sect_tb.Sect_code   
 INNER JOIN student_tb ON register_tb.Std_code = student_tb.Std_Code
 INNER JOIN day_tb ON SUBSTRING(Cos_Time,-8, 3)= day_tb.day
-WHERE student_tb.Std_Code = '".$_SESSION['id']."' AND  course_tb.Cos_term = '1/2561' ORDER BY day_tb.Day_Num ASC " ;
+WHERE student_tb.Std_Code = '".$_SESSION['id']."' AND  course_tb.Cos_term = '2/2561' ORDER BY day_tb.Day_Num ASC " ;
 
 $result = mysqli_query($connect, $query);
  $output .= '

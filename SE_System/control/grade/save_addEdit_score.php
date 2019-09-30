@@ -48,7 +48,8 @@ $sqlcheck = "SELECT * FROM `grade_tb`
              WHERE `Std_code` ='".$_SESSION['StdCode']."' 
              AND `Sub_code` = '".$_SESSION['SubCodeED']."'";
 $querycheck = $conn->query($sqlcheck);
-
+// print_r ($querycheck); 
+// return false;
 if($querycheck -> num_rows > 0){
    //Update
    $sql = "UPDATE `grade_tb` SET `GPA`='".$grade."', `grade_font`='".$gradeSum."'
@@ -60,6 +61,7 @@ if($querycheck -> num_rows > 0){
 
    if($query==TRUE){
       header("location: ../../view/grade/GradeManager.php?success=1&SubName=$SubName&ID=".$SubCode);
+
       }
    else{
       header("location: ../../view/grade/GradeManager.php?success=2&SubName=$SubName&ID=".$SubCode); 
@@ -81,7 +83,7 @@ if($querycheck -> num_rows > 0){
 
    if($queryAddG==TRUE){
 
-      header("location: ../../view/grade/GradeManager.php?success=1&SubName=$SubName&ID=".$SubCode);
+      header("location: ../../view/grade/GradeManager.php?successIns=1&SubName=$SubName&ID=".$SubCode);
    }
    else{
 

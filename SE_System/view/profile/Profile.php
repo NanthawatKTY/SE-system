@@ -71,8 +71,8 @@ else {
             <p class="text-center text-light mt-3 setfont"><?php echo $name; ?> </p>
             <p class="text-center text-light setfont"><?php echo $major; ?></p>
             <ul class="list-unstyled components pl-2">
-                <li>
-                    <a href="">ข้อมูลส่วนตัว</a>
+            <li>
+                    <a href="../profile/Profile.php">ข้อมูลส่วนตัว</a>
                 </li>
                 <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
@@ -96,11 +96,21 @@ else {
                 <?php }?>
                 <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
+                    <a href="../../register/Main.php">ลงทะเบียนนักศึกษา</a>
+                </li>
+                <?php }else if($_SESSION['Type_id'] == 3){?>
+                    <li>
+                    <a href="#"></a>
+                </li>
+                <?php }?>
+
+                <?php if($_SESSION['Type_id'] == 2){?>
+                <li>
                     <a href="../schedule/Teacher_sch1.php">ตารางสอน</a>
                 </li>
                 <?php }else if($_SESSION['Type_id'] == 3){?>
                 <li>
-                    <a href="../schedule/Student_Sch1.php">ตารางสอน</a>
+                    <a href="../schedule/Student_Sch1.php">ตารางเรียน</a>
                 </li>
                 <?php }?>
             </ul>

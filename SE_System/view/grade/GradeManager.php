@@ -212,9 +212,10 @@ $resultsub = $querysub -> FETCH_ASSOC();
                             AND `Sub_code` = '".$resultG['Sub_Code']."' ";
             $querygrade = $conn->query($sqlgrade);
             $resultgrade = $querygrade->FETCH_ASSOC();
- 
+    
         error_reporting(0);
         ?>
+       
             <tr>        
             <td><div align="center">
             <?php echo $resultG['Cos_term'];?></div></td>   

@@ -113,11 +113,11 @@ else{
                 <?php }?>
                 <?php if($_SESSION['Type_id'] == 2){?>
                 <li>
-                    <a href="../schedule/Schedule_Teacher.php">ตารางสอน</a>
+                    <a href="../schedule/Teacher_sch1.php">ตารางสอน</a>
                 </li>
                 <?php }else if($_SESSION['Type_id'] == 3){?>
                 <li>
-                    <a href="../schedule/Schedule_Student.php">ตารางสอน</a>
+                    <a href="../schedule/Student_Sch1.php">ตารางเรียน</a>
                 </li>
                 <?php }?>
             </ul>
@@ -164,6 +164,7 @@ else{
                         <th scope="col">หน่วยกิต</th>
                         <th scope="col">กลุ่มวิชา</th>
                         <th scope="col">เกรด</th>
+                        <th scope="col">คะแนนรวม</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -211,6 +212,7 @@ else{
                         <td><?php echo $result_1_2561['Sub_Credit']?></td>
                         <td><?php echo $result_1_2561['Sect_Name']?></td>
                         <td class="text-success" ><?php echo $resultgrade161['grade_font']?></td>
+                        <td class="text-success" ><?php echo $resultgrade161['GPA']?></td>
                         </tr>
                         <?php } ?>
 
@@ -436,8 +438,41 @@ else{
                     หน่วยกิตรวม
             </div>
             <div class="col-12">
-                    <?php  
-                          echo $result_1_2561['Sub_Credit'];
+            <?PHP  $sqlCredit = "SELECT DISTINCT course_tb.Cos_term, subject_tb.Sub_Name, subject_tb.Sub_Credit, sect_tb.Sect_Name, grade_tb.Std_code, 
+                        course_tb.Sub_Code, grade_tb.GPA, grade_tb.grade_font 
+                        FROM course_tb
+                        INNER JOIN sect_tb 
+                        ON course_tb.Sect_code = sect_tb.Sect_code
+                        INNER JOIN register_tb
+                        ON course_tb.Cos_code = register_tb.Cos_code
+                        INNER JOIN grade_tb
+                        ON register_tb.Std_code = grade_tb.Std_code
+                        INNER JOIN subject_tb 
+                        ON course_tb.Sub_Code = subject_tb.Sub_code
+                                    
+                        WHERE  $tb ";
+
+                        $queryCredit = $conn->query($sqlCredit);
+                        $row = mysqli_num_rows($queryCredit);
+                        if($queryCredit->num_rows == 0){?>
+                            <tr>
+                            <td class="text-center" colspan="6">--- ไม่พบข้อมูล ---</td>
+                            <?php }?>
+                            </tr>
+                        <?php while($resultCredit = $queryCredit->fetch_assoc()) {
+                                        $sqlgrade = "   SELECT * FROM `grade_tb` 
+                                        WHERE `Std_code` ='".$resultCredit['Std_code']."' 
+                                    
+                                        AND `Sub_code` = '".$resultCredit['Sub_Code']."' ";
+                                        $querygrade = $conn->query($sqlgrade);
+                                        $resultgrade = $querygrade->FETCH_ASSOC();
+                            ?>
+
+                    <?php } ?>
+                    <?php 
+                    $sum_unit = $row * 3;
+                    echo $sum_unit;
+                    
                     ?>
             </div>
         </div>
@@ -446,9 +481,58 @@ else{
             <div class="row">
                     <div class="col-12">
                             เกรดเฉลี่ย
+
+                            
                     </div>
                     <div class="col-12">
-                            <?php ?>
+                             
+               <?php   $sqlCredit = "SELECT DISTINCT course_tb.Cos_term, subject_tb.Sub_Name, subject_tb.Sub_Credit, sect_tb.Sect_Name, grade_tb.Std_code, 
+                        course_tb.Sub_Code, grade_tb.GPA, grade_tb.grade_font 
+                        FROM course_tb
+                        INNER JOIN sect_tb 
+                        ON course_tb.Sect_code = sect_tb.Sect_code
+                        INNER JOIN register_tb
+                        ON course_tb.Cos_code = register_tb.Cos_code
+                        INNER JOIN grade_tb
+                        ON register_tb.Std_code = grade_tb.Std_code
+                        INNER JOIN subject_tb 
+                        ON course_tb.Sub_Code = subject_tb.Sub_code
+                                    
+                        WHERE  $tb ";
+
+                        $queryCredit = $conn->query($sqlCredit);
+                        $row = mysqli_num_rows($queryCredit);
+                        if($queryCredit->num_rows == 0){?>
+                            <tr>
+                            <td class="text-center" colspan="6">--- ไม่พบข้อมูล ---</td>
+                            <?php }?>
+                            </tr>
+                        <?php while($resultCredit = $queryCredit->fetch_assoc()) {
+                                        $sqlgrade = "   SELECT * FROM `grade_tb` 
+                                        WHERE `Std_code` ='".$resultCredit['Std_code']."' 
+                                        AND `Sub_code` = '".$resultCredit['Sub_Code']."' ";
+                                        $querygrade = $conn->query($sqlgrade);
+                                        $resultgrade = $querygrade->FETCH_ASSOC();
+                                        print_r ($querygrade);
+                            ?>
+
+                    <?php } ?>
+                   
+                    <?php 
+                    // $grade_config = array(
+                    //     'Mon'=>array('', 'จันทร์', 1 ),
+                    //     'Tue'=>array('', 'อังคาร', 2 ),
+                    //     'Wed'=>array('', 'พุธ', 3 ),
+                    //     'Thu'=>array('', 'พฤหัสบดี', 4 ),
+                    //     'Fri'=>array('', 'ศุกร์', 5 ),
+                    //     'Sat'=>array('', 'เสาร์', 6 ),
+                    //     'Sun'=>array('', 'อาทิตย์', 7 ),
+                    // );
+                    // $day_week=array( '', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri','Sat', 'Sun' );
+                    echo  $resultgrade['grade_font'];
+                    
+                    ?>
+  
                     </div>
                 </div>
     </div>

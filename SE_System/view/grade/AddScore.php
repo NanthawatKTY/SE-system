@@ -46,7 +46,6 @@ else {
 
     $querycheckStd = $conn->query($sqlcheckStd);
     $resultcheckStd = $querycheckStd->FETCH_ASSOC();
-
 ?>
 <!DOCTYPE html>
 <html>
