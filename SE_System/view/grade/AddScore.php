@@ -17,9 +17,9 @@ else if($_SESSION['Type_id'] == 2){
     $birth = $resultTC['Teach_Birth'];
     $card = $resultTC['Teach_Card'];
     $code = $resultTC['Teach_code'];
-    $faculty = $resultTC['Teach _Faculty'];
-    $major = $resultTC['Teach _Major'];
-    $img = $resultTC['Teach _Image'];
+    $faculty = $resultTC['Teach_Faculty'];
+    $major = $resultTC['Teach_Major'];
+    $img = $resultTC['Teach_Image'];
 }
 else {
     $sqlSTD = "SELECT * FROM student_tb WHERE Std_code = '".$_SESSION['id']."'";

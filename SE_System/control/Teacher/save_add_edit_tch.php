@@ -14,7 +14,7 @@ $card = $_POST['txtidcard'];
 $major  = $_POST['txtmajor'];
 $fac  = $_POST['txtfac'];
 if($_SESSION['Teach_edit']!=null){
-$sqlTCH = "UPDATE `teacher_tb` SET `Teach_code`='".$code."',`Teach_Pname`='".$Pname."',`Teach_Fname`='".$Fname."',`Teach_Lname`='".$Lname."',`Teach_Tel`='".$tel."',`Teach_Add`='".$add."',`Teach_Birth`='".$Birth."',`Teach_Card`='".$card."',`Teach _Major`='".$major."',`Teach _Faculty`='".$fac."' WHERE Teach_id = '".$_SESSION['Teach_edit']."' ";
+$sqlTCH = "UPDATE `teacher_tb` SET `Teach_code`='".$code."',`Teach_Pname`='".$Pname."',`Teach_Fname`='".$Fname."',`Teach_Lname`='".$Lname."',`Teach_Tel`='".$tel."',`Teach_Add`='".$add."',`Teach_Birth`='".$Birth."',`Teach_Card`='".$card."',`Teach_Major`='".$major."',`Teach_Faculty`='".$fac."' WHERE Teach_id = '".$_SESSION['Teach_edit']."' ";
 $sqlMEM = "UPDATE `member_tb` SET `Mem_user`='".$code."',`Mem_pass`='".$pass."',`Email`='".$Email."' WHERE Mem_user = '".$_SESSION['Std_edit']."' ";
 $queryTCH = $conn->query($sqlTCH);
 $queryMEM  = $conn->query($sqlMEM);
