@@ -217,7 +217,7 @@ else {
                     <tbody>
                         <?php $i = 1; while($row = $query->FETCH_ASSOC()) {
                              $i = $i+1; 
-                             $sqlNameCourse = "  SELECT * FROM `register_tb`
+                             $sqlNameCourse = "SELECT * FROM `register_tb`
                     INNER JOIN coursename_tb
                     ON register_tb.Cos_code = coursename_tb.Cos_code
                     WHERE `Std_code` = '".$row['Std_Code']."' ";
