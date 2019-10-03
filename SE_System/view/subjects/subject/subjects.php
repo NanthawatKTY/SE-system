@@ -66,9 +66,9 @@ else {
             <div class="sidebar-header">
                 <h3>ระบบจัดการ</h3>
             </div>
-            <!-- <img class=" circle-img mt-4"
-                src="https://scontent.fbkk13-1.fna.fbcdn.net/v/t1.0-9/62071969_10216624784104470_275687937776025600_n.jpg?_nc_cat=108&_nc_eui2=AeFlWjrNsKSDZAOkhDiO8Sh9gK_6MxCkO4I7Q7q-kDWjlvHgaQxXXnd_Kdgzvpf12-V57NUXyBmP9tQiXiQDK7h_oUO2uTgBIMIajS4DEgl9rw&_nc_oc=AQnPsBYrLEFJd65Nx-49Wa0az84w5sFxnLpeeeT6v3CGiW6Ct0XMM4l0zk2c3dPGwd8&_nc_ht=scontent.fbkk13-1.fna&oh=4de81c57afef203ee9addf36f5353172&oe=5E0D477F"
-                alt=""> -->
+            <img class="circle-img mt-4"
+                src="../../../image/<?php echo $img;?>"
+                alt="">
             <p class="text-center text-light mt-3 setfont"><?php echo $name; ?> </p>
             <p class="text-center text-light setfont"><?php echo $major; ?></p>
             <ul class="list-unstyled components pl-2">

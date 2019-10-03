@@ -502,28 +502,28 @@ else {
                         //close tag 
                        
                                 if($resultgrade['grade_font'] == 'A') {
-                                $gradesum = 4*$row;
+                                $gradesum = 4*3;
                                
                                 }else if($resultgrade['grade_font'] == 'B+') {
-                                $gradesum = 3.5*$row;
+                                $gradesum = 3.5*3;
                                
                                 }else if($resultgrade['grade_font'] == 'B') {
-                                $gradesum = 3*$row;
+                                $gradesum = 3*3;
                                
                                 }else if($resultgrade['grade_font'] == 'C+') {
-                                $gradesum = 2.5*$row;
+                                $gradesum = 2.5*3;
                                
                                 }else if($resultgrade['grade_font'] == 'C') {
-                                $gradesum = 2*$row;
+                                $gradesum = 2*3;
                                
                                 }else if($resultgrade['grade_font'] == 'D+') {
-                                $gradesum = 1.5*$row;
+                                $gradesum = 1.5*3;
                                
                                 }else if($resultgrade['grade_font'] == 'D') {
-                                $gradesum = 1*$row;
+                                $gradesum = 1*3;
                                
                                 }else if($resultgrade['grade_font'] == 'F'){
-                                $gradesum = 0*$row;
+                                $gradesum = 0*3;
                                 } ?>
                        
                     <?php  $sumgrade = $sumgrade + $gradesum; } ?>  

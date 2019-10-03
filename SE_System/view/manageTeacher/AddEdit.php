@@ -11,6 +11,36 @@ $queryTCH = $conn->query($sqlTCH);
 $queryMem = $conn->query($sqlMem);
 $resultTCH = $queryTCH->fetch_assoc();
 $resultMem = $queryMem->fetch_assoc();
+
+if($_SESSION['Type_id'] == 1){
+    $name = "admin";
+    $img = "admin.jpg";
+    error_reporting(0);
+}
+else if($_SESSION['Type_id'] == 2){
+    $sqlTC = "SELECT * FROM teacher_tb WHERE Teach_code = '".$_SESSION['id']."'";
+    $queryTC = $conn->query($sqlTC);
+    $resultTC  = $queryTC ->FETCH_ASSOC();
+    $name = $resultTC['Teach_Pname']." ".$resultTC['Teach_Fname']." ".$resultTC['Teach_Lname'];
+    $birth = $resultTC['Teach_Birth'];
+    $card = $resultTC['Teach_Card'];
+    $code = $resultTC['Teach_code'];
+    $faculty = $resultTC['Teach_Faculty'];
+    $major = $resultTC['Teach_Major'];
+    $img = $resultTC['Teach_Image'];
+}
+else {
+    $sqlSTD = "SELECT * FROM student_tb WHERE Std_code = '".$_SESSION['id']."'";
+    $querySTD = $conn->query($sqlSTD);
+    $resultSTD = $querySTD->FETCH_ASSOC();
+    $name = $resultSTD['Std_Pname']." ".$resultSTD['Std_Fname']." ".$resultSTD['Std_Lname'];
+    $birth = $resultSTD['Std_Birth'];
+    $card = $resultSTD['Std_Card'];
+    $code = $resultSTD['Std_Code'];
+    $faculty = $resultSTD['Std_Faculty'];
+    $major = $resultSTD['Std_Major'];
+    $img = $resultSTD['Std_Image'];
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,9 +73,9 @@ $resultMem = $queryMem->fetch_assoc();
             <div class="sidebar-header">
                 <h3>ระบบจัดการ</h3>
             </div>
-            <!-- <img class=" circle-img mt-4"
-                src="https://scontent.fbkk13-1.fna.fbcdn.net/v/t1.0-9/62071969_10216624784104470_275687937776025600_n.jpg?_nc_cat=108&_nc_eui2=AeFlWjrNsKSDZAOkhDiO8Sh9gK_6MxCkO4I7Q7q-kDWjlvHgaQxXXnd_Kdgzvpf12-V57NUXyBmP9tQiXiQDK7h_oUO2uTgBIMIajS4DEgl9rw&_nc_oc=AQnPsBYrLEFJd65Nx-49Wa0az84w5sFxnLpeeeT6v3CGiW6Ct0XMM4l0zk2c3dPGwd8&_nc_ht=scontent.fbkk13-1.fna&oh=4de81c57afef203ee9addf36f5353172&oe=5E0D477F"
-                alt=""> -->
+            <img class="circle-img mt-4"
+                src="../../image/<?php echo $img;?>"
+                alt="">
             <p class="text-center text-light mt-3 setfont"><?php echo $name; ?> </p>
             <p class="text-center text-light setfont"><?php echo $major; ?></p>
             <ul class="list-unstyled components pl-2">
